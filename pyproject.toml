@@ -1,0 +1,71 @@
+[tool.poetry]
+name = "parasite"
+version = "0.1.0"
+description = "Data validation for Python 3"
+authors = ["Hendrik Boeck <hendrikboeck.dev@protonmail.com>"]
+packages = [{ include = "*", from = "src" }]
+readme = "README.md"
+license = "MIT"
+homepage = "https://github.com/hendrikboeck/parasite"
+repository = "https://github.com/hendrikboeck/parasite"
+keywords = [
+    "data",
+    "validation",
+    "python",
+    "zod",
+    "datastructures",
+    "types",
+    "objects",
+    "schema",
+    "runtime-evaluation",
+]
+classifiers = [
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: OS Independent",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Typing :: Typed",
+]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+rusttypes = "^0.1.0"
+tracing-py3 = "^0.1.0"
+
+[tool.poetry.dev-dependencies]
+yapf = "^0.31.0"
+toml = "^0.10.2"
+pylint = "^3.1.0"
+pytype = "^2024.4.11"
+pytest = "^8.2.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytype]
+inputs = ["src/parasite"]
+disable = []
+
+[tool.pylint.'MESSAGES CONTROL']
+fail-under = 9.0
+disable = "C,R,W1401"
+
+[tool.yapf]
+based_on_style = "google"
+column_limit = 100
+indent_width = 4
+dedent_closing_brackets = true
+coalesce_brackets = true
+blank_line_before_nested_class_or_def = true
+indent_dictionary_value = true
+spaces_around_default_or_named_assign = true
+spaces_before_comment = 3
+split_all_top_level_comma_separated_values = false
+split_before_dict_set_generator = true
+split_before_dot = true
+split_complex_comprehension = true
