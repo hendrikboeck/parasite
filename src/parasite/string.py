@@ -333,6 +333,32 @@ class String(ParasiteType[str]):
         self._m_regex_t = self._RegexType.IPV6
         return self
 
+    def regex(self, value: Pattern) -> String:
+        """
+        Sets the regex pattern to use for validation.
+
+        Args:
+            value (Pattern): compiled regex pattern
+
+        Returns:
+            String: modified instance
+        """
+        self._m_regex_t = self._RegexType.REGEX
+        self._m_regex = value
+        return self
+
+    def match(self, value: str) -> String:
+        """
+        Sets the regex pattern to use for validation.
+
+        Args:
+            value (str): regex pattern
+
+        Returns:
+            String: modified instance
+        """
+        return self.regex(re.compile(value))
+
     def _apply_transformations(self, value: str) -> str:
         """
         Applies the transformations on the value.

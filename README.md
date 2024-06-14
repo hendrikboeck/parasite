@@ -1,6 +1,28 @@
-# `parasite` - `zod` inspired library for Python 3.11+
+![Stars][stars-shield]
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
 
-> **DISCLAIMER:**
+
+<br />
+<div align="center">
+<a href="https://github.com/hendrikboeck/parasite">
+    <img src="https://raw.githubusercontent.com/hendrikboeck/parasite/main/.github/parasite_logo.png" alt="Logo" width="128" height="128">
+</a>
+
+<h1 align="center">parasite <code>v0.1</code></h1>
+
+<p align="center">
+    <code>zod</code> inspired library for Python 3.11+
+    <br />
+    <a href="https://github.com/hendrikboeck/parasite/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
+    |
+    <a href="https://github.com/ohendrikboeck/parasite/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
+</p>
+</div>
+
+> [!WARNING]
 >
 > This library is under active development, expect things to break or not to work as expected.
 > Creating an issue for bugs you encounter would be appreciated. Documentation is currently work in
@@ -54,7 +76,8 @@ parasite = "^0.1.0"
 
 ## Documentation
 
-Work in Progress...
+> [!IMPORTANT]
+> Work in Progress...
 
 ## License (_MIT License_)
 
@@ -77,3 +100,13 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+[license-shield]: https://img.shields.io/github/license/hendrikboeck/parasite?style=for-the-badge
+[license-url]: https://github.com/hendrikboeck/parasite/blob/main/LICENSE
+[issues-shield]: https://img.shields.io/github/issues/hendrikboeck/parasite?style=for-the-badge
+[issues-url]: https://github.com/hendrikboeck/parasite/issues
+[forks-shield]: https://img.shields.io/github/forks/hendrikboeck/parasite?style=for-the-badge
+[forks-url]: https://github.com/hendrikboeck/parasite/forks
+[contributors-shield]: https://img.shields.io/github/contributors/hendrikboeck/parasite?style=for-the-badge
+[contributors-url]: https://github.com/hendrikboeck/parasite/contributors
+[stars-shield]: https://img.shields.io/github/stars/hendrikboeck/parasite?style=for-the-badge
