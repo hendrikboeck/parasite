@@ -15,7 +15,31 @@ from parasite.never import Never
 
 
 class p(_Namespace):
-    """sudo-namespace for all parasite types. Makes it easier to import and call them."""
+    """
+    sudo-namespace for all parasite types. Makes it easier to import and call them. Tries to mimic
+    the behavior of the ``z`` object imported from ``zod`` library in JavaScript.
+
+    Example::
+
+        >>> from parasite import p
+        >>>
+        >>> schema = p.obj({
+        ...     "name": p.string().required(),
+        ...     "age": p.number().integer().min(0).optional(),
+        ... }).strip()
+        >>>
+        >>> data = {
+        ...     "name": "John Doe",
+        ...     "age": 42,
+        ...     "extra": "This will be stripped",
+        ... }
+        >>>
+        >>> schema.parse(data)
+        {'name': 'John Doe', 'age': 42}
+        >>>
+        >>> schema.parse({})
+        ValidationError: Missing required key: 'name'
+    """
     any: TypeAlias = Any_
     null: TypeAlias = Null
     number: TypeAlias = Number

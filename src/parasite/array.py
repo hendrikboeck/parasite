@@ -21,25 +21,28 @@ class Array(ParasiteType[list[Any]]):
     """
     Parasite type for representing list values.
 
-    Inheritance:
-        ParasiteType[list]
+    Note:
+        Please use ``p.array(...)`` instead of instantiating this class directly. ``p`` can be
+        imported with::
 
-    Args:
-        _f_optional (bool): Whether the value is optional. Default: False
-        _f_nullable (bool): Whether the value can be None. Default: False
-        _m_ul (int | None): The upper limit of the list. Default: None
-        _m_ll (int | None): The lower limit of the list. Default: None
-        _m_element (ParasiteType[T] | None): The element type of the list. Default: None
+            from parasite import p
+            schema = p.array(...)
+            ...
     """
-    # NOTE: do not move this attribute, this has to be first in the class, as it will break, reading
-    # element from constructor functionality
-    _m_element: ParasiteType | None = None
+    _m_element: ParasiteType | None = None   # The element type of the list.
 
-    _f_optional: bool = False
-    _f_nullable: bool = False
+    _f_optional: bool = False   # Whether the value is optional.
+    _f_nullable: bool = False   # Whether the value can be None.
 
-    _m_ul: int | None = None
-    _m_ll: int | None = None
+    _m_ul: int | None = None   # The upper limit of the list.
+    _m_ll: int | None = None   # The lower limit of the list.
+
+    def __init__(self, element: ParasiteType | None = None):
+        """
+        Args:
+            element (ParasiteType | None): The element type of the list. Default: None
+        """
+        self._m_element = element
 
     def optional(self) -> Array:
         """
@@ -183,9 +186,9 @@ class Array(ParasiteType[list[Any]]):
 
         return obj
 
-    def find_and_parse(self, parent: dict[K, Any], key: K) -> Option[list[Any] | None]:
+    def _find_and_parse(self, parent: dict[K, Any], key: K) -> Option[list[Any] | None]:
         if (value := parent.get(key, _NotFound)) is not _NotFound:
-            # if key is found, just package `parse(..)` it into a Some
+            # if key is found, just package ``parse(..)`` it into a Some
             if value is not None:
                 return Some(self.parse(value))
 

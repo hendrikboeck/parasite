@@ -22,18 +22,23 @@ class Any_(ParasiteType[Any]):
     Parasite type for representing any values. This is the default type, when no other type is
     specified.
 
-    Inheritance:
-        ParasiteType[Any]
+    Note:
+        Please use ``p.any()`` instead of instantiating this class directly. ``p`` can be imported
+        with::
 
-    Args:
-        _f_optional (bool): Whether the value is optional. Default: False
+            from parasite import p
+            schema = p.any()
+            ...
     """
-    _f_optional: bool = False
+    _f_optional: bool = False   # Whether the value is optional
+
+    def __init__(self) -> None:
+        pass
 
     def optional(self) -> Any_:
         """
-        Makes the value optional, when parsing with `find_and_parse(..)`. Has no effect on
-        `parse(..)`. Inverse of `required(..)`.
+        Makes the value optional, when parsing with ``_find_and_parse(..)``. Has no effect on
+        ``parse(..)``. Inverse of ``required(..)``.
 
         Returns:
             Any_: modified instance
@@ -43,8 +48,8 @@ class Any_(ParasiteType[Any]):
 
     def required(self) -> Any_:
         """
-        Makes the value required, when parsing with `find_and_parse(..)`. Has no effect on
-        `parse(..)`. Inverse of `optional(..)`. Default behavior.
+        Makes the value required, when parsing with ``_find_and_parse(..)``. Has no effect on
+        ``parse(..)``. Inverse of ``optional(..)``. Default behavior.
 
         Returns:
             Any_: modified instance
@@ -56,8 +61,8 @@ class Any_(ParasiteType[Any]):
         # can never fail, as it accepts any value
         return obj
 
-    def find_and_parse(self, parent: dict[K, Any], key: K) -> Option[Any]:
-        # if key is found, just package `parse(..)` it into a Some
+    def _find_and_parse(self, parent: dict[K, Any], key: K) -> Option[Any]:
+        # if key is found, just package ``parse(..)`` it into a Some
         if (value := parent.get(key, _NotFound)) is not _NotFound:
             return Some(self.parse(value))
 

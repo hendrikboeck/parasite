@@ -29,7 +29,7 @@ class Never(ParasiteType[None]):
         # always raise an error, as this type can never be parsed
         raise ValidationError("this type can never be parsed")
 
-    def find_and_parse(self, parent: dict[K, Any], key: K) -> Option[None]:
+    def _find_and_parse(self, parent: dict[K, Any], key: K) -> Option[None]:
         # if key is found, raise an error
         if parent.get(key, _NotFound) is not _NotFound:
             raise ValidationError(f"key '{key}' found, but this type can never be parsed")

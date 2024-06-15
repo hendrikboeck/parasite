@@ -31,8 +31,8 @@ class Null(ParasiteType[None]):
 
     def optional(self) -> Null:
         """
-        Makes the value optional, when parsing with `find_and_parse(..)`. Has no effect on
-        `parse(..)`. Inverse of `required(..)`.
+        Makes the value optional, when parsing with ``_find_and_parse(..)``. Has no effect on
+        ``parse(..)``. Inverse of ``required(..)``.
 
         Returns:
             Null: modified instance
@@ -42,8 +42,8 @@ class Null(ParasiteType[None]):
 
     def required(self) -> Null:
         """
-        Makes the value required, when parsing with `find_and_parse(..)`. Has no effect on
-        `parse(..)`. Default behavior. Inverse of `optional(..)`.
+        Makes the value required, when parsing with ``_find_and_parse(..)``. Has no effect on
+        ``parse(..)``. Default behavior. Inverse of ``optional(..)``.
 
         Returns:
             Null: modified instance
@@ -59,8 +59,8 @@ class Null(ParasiteType[None]):
         # else raise an error
         raise ValidationError(f"object has to be None, but is '{obj!r}'")
 
-    def find_and_parse(self, parent: dict[K, Any], key: K) -> Option[None]:
-        # if key is found, just package `parse(..)` it into a Some
+    def _find_and_parse(self, parent: dict[K, Any], key: K) -> Option[None]:
+        # if key is found, just package ``parse(..)`` it into a Some
         if (value := parent.get(key, _NotFound)) is not _NotFound:
             return Some(self.parse(value))
 

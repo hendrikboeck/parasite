@@ -228,13 +228,13 @@ class Object(ParasiteType[dict[Any, Any]]):
 
         # Parse the dictionary.
         for key, item in self._m_items.items():
-            item.find_and_parse(obj, key).map(lambda x: obj.update({key: x}))
+            item._find_and_parse(obj, key).map(lambda x: obj.update({key: x}))
 
         return obj
 
-    def find_and_parse(self, parent: dict[K, Any], key: K) -> Option[dict[K, Any] | None]:
+    def _find_and_parse(self, parent: dict[K, Any], key: K) -> Option[dict[K, Any] | None]:
         if (value := parent.get(key, _NotFound)) is not _NotFound:
-            # If key is found, just package `parse(..)` it into a Some.
+            # If key is found, just package ``parse(..)`` it into a Some.
             if value is not None:
                 return Some(self.parse(value))
 

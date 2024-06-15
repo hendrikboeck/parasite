@@ -83,8 +83,8 @@ class String(ParasiteType[str]):
 
     def optional(self) -> String:
         """
-        Makes the value optional, when parsing with `find_and_parse(..)`. Has no effect on
-        `parse(..)`. Inverse of `required(..)`.
+        Makes the value optional, when parsing with ``_find_and_parse(..)``. Has no effect on
+        ``parse(..)``. Inverse of ``required(..)``.
 
         Returns:
             String: modified instance
@@ -94,8 +94,8 @@ class String(ParasiteType[str]):
 
     def required(self) -> String:
         """
-        Makes the value required, when parsing with `find_and_parse(..)`. Has no effect on
-        `parse(..)`. Inverse of `optional(..)`. Default behavior.
+        Makes the value required, when parsing with ``_find_and_parse(..)``. Has no effect on
+        ``parse(..)``. Inverse of ``optional(..)``. Default behavior.
 
         Returns:
             String: modified instance
@@ -105,8 +105,8 @@ class String(ParasiteType[str]):
 
     def nullable(self) -> String:
         """
-        Makes the value nullable, when parsing with `find_and_parse(..)`. Has no effect on
-        `parse(..)`. Inverse of `non_nullable(..)`.
+        Makes the value nullable, when parsing with ``_find_and_parse(..)``. Has no effect on
+        ``parse(..)``. Inverse of ``non_nullable(..)``.
 
         Returns:
             String: modified instance
@@ -116,8 +116,8 @@ class String(ParasiteType[str]):
 
     def non_nullable(self) -> String:
         """
-        Makes the value non-nullable, when parsing with `find_and_parse(..)`. Has no effect on
-        `parse(..)`. Inverse of `nullable(..)`. Default behavior.
+        Makes the value non-nullable, when parsing with ``_find_and_parse(..)``. Has no effect on
+        ``parse(..)``. Inverse of ``nullable(..)``. Default behavior.
 
         Returns:
             String: modified instance
@@ -505,10 +505,10 @@ class String(ParasiteType[str]):
 
         return obj
 
-    def find_and_parse(self, parent: dict[K, Any], key: K) -> Option[str | None]:
+    def _find_and_parse(self, parent: dict[K, Any], key: K) -> Option[str | None]:
         if (value := parent.get(key, _NotFound)) is not _NotFound:
             if value is not None:
-                # if key is found, just package `parse(..)` it into a Some
+                # if key is found, just package ``parse(..)`` it into a Some
                 return Some(self.parse(value))
 
             # if value is None, check if the value is nullable

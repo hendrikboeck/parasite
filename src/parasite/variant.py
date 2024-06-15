@@ -134,9 +134,9 @@ class Variant(ParasiteType[Any]):
 
         raise ValidationError(f"object has to be one of {self._m_variants!r}, but is '{obj!r}'")
 
-    def find_and_parse(self, parent: dict[K, Any], key: K) -> Option[Any | None]:
+    def _find_and_parse(self, parent: dict[K, Any], key: K) -> Option[Any | None]:
         if (value := parent.get(key, _NotFound)) is not _NotFound:
-            # if key is found, just package `parse(..)` it into a Some
+            # if key is found, just package ``parse(..)`` it into a Some
             if value is not None:
                 return Some(self.parse(value))
 

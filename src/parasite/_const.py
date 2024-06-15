@@ -8,7 +8,7 @@ RE_EMAIL = re.compile(
 """
 Regex pattern for email validation as per RFC2822 standards.
 
-Attrribution:
+Attribution:
     - https://regexr.com/2rhq7, by Tripleaxis (from .NET helpfiles)
 """
 
@@ -16,7 +16,7 @@ RE_URL = re.compile(r"^((\w+:\/\/)[-a-zA-Z0-9:@;?&=\/%\+\.\*!'\(\),\$_\{\}\^~\[\
 """
 Regex pattern for URL/URI validation.
 
-Attrribution:
+Attribution:
     - https://regexr.com/2ri7q, by Gabriel Mariani
 """
 

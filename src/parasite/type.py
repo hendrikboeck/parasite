@@ -50,10 +50,10 @@ class ParasiteType(ABC, Generic[T]):
         raise NotImplementedError
 
     @abstractmethod
-    def find_and_parse(self, parent: dict[K, Any], key: K) -> Option[T | None]:
+    def _find_and_parse(self, parent: dict[K, Any], key: K) -> Option[T | None]:
         """
         Default method for finding and parsing a value from a dictionary. This method should be
-        overridden by subclasses. If the key is not found, the method should return `Nil`.
+        overridden by subclasses. If the key is not found, the method should return ``Nil``.
 
         Throws:
             ValidationError: if the value could not be parsed or was invalid
@@ -63,14 +63,14 @@ class ParasiteType(ABC, Generic[T]):
             key (K): key to search for in the dictionary
 
         Returns:
-            Option[T]: parsed destination value or `Nil`
+            Option[T]: parsed destination value or ``Nil``
         """
         raise NotImplementedError
 
     def parse_safe(self, obj: Any) -> Result[T, ValidationError]:
         """
-        Converts the result of `parse(..)` into a `Result` type. Should be used when safe parsing is
-        required. Will only catch `ValidationError` exceptions!!!
+        Converts the result of ``parse(..)`` into a ``Result`` type. Should be used when safe parsing is
+        required. Will only catch ``ValidationError`` exceptions!!!
 
         Args:
             obj (Any): value to parse
@@ -86,11 +86,11 @@ class ParasiteType(ABC, Generic[T]):
         except ValidationError as exc:
             return Err(exc)
 
-    def find_and_parse_safe(self, parent: dict[K, Any],
-                            key: K) -> Result[Option[T | None], ValidationError]:
+    def _find_and_parse_safe(self, parent: dict[K, Any],
+                             key: K) -> Result[Option[T | None], ValidationError]:
         """
-        Converts the result of `find_and_parse(..)` into a `Result` type. Should be used when
-        safe parsing is required. Will only catch `ValidationError` exceptions!!!
+        Converts the result of ``_find_and_parse(..)`` into a ``Result`` type. Should be used when
+        safe parsing is required. Will only catch ``ValidationError`` exceptions!!!
 
         Args:
             parent (dict[K, Any]): dictionary to search for the key
@@ -101,7 +101,7 @@ class ParasiteType(ABC, Generic[T]):
         """
         try:
             # may throw a ValidationError exception
-            return Ok(self.find_and_parse(parent, key))
+            return Ok(self._find_and_parse(parent, key))
 
         # handle ValidationError exceptions, if parsing fails
         except ValidationError as exc:

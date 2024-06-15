@@ -53,8 +53,8 @@ class Number(ParasiteType[Numerical]):
 
     def optional(self) -> Number:
         """
-        Makes the value optional, when parsing with `find_and_parse(..)`. Has no effect on
-        `parse(..)`. Inverse of `required(..)`.
+        Makes the value optional, when parsing with ``_find_and_parse(..)``. Has no effect on
+        ``parse(..)``. Inverse of ``required(..)``.
 
         Returns:
             Number: modified instance
@@ -64,8 +64,8 @@ class Number(ParasiteType[Numerical]):
 
     def required(self) -> Number:
         """
-        Makes the value required, when parsing with `find_and_parse(..)`. Has no effect on
-        `parse(..)`. Inverse of `optional(..)`. Default behavior.
+        Makes the value required, when parsing with ``_find_and_parse(..)``. Has no effect on
+        ``parse(..)``. Inverse of ``optional(..)``. Default behavior.
 
         Returns:
             Number: modified instance
@@ -75,8 +75,8 @@ class Number(ParasiteType[Numerical]):
 
     def nullable(self) -> Number:
         """
-        Makes the value nullable, when parsing with `find_and_parse(..)`. Has no effect on
-        `parse(..)`. Inverse of `non_nullable(..)`.
+        Makes the value nullable, when parsing with ``_find_and_parse(..)``. Has no effect on
+        ``parse(..)``. Inverse of ``non_nullable(..)``.
 
         Returns:
             Number: modified instance
@@ -86,8 +86,8 @@ class Number(ParasiteType[Numerical]):
 
     def non_nullable(self) -> Number:
         """
-        Makes the value non-nullable, when parsing with `find_and_parse(..)`. Has no effect on
-        `parse(..)`. Default behavior. Inverse of `nullable(..)`.
+        Makes the value non-nullable, when parsing with ``_find_and_parse(..)``. Has no effect on
+        ``parse(..)``. Default behavior. Inverse of ``nullable(..)``.
 
         Returns:
             Number: modified instance
@@ -97,8 +97,8 @@ class Number(ParasiteType[Numerical]):
 
     def integer(self) -> Number:
         """
-        Makes the value an integer, when parsing with `find_and_parse(..)`. Has no effect on
-        `parse(..)`. Inverse of `float(..)`.
+        Makes the value an integer, when parsing with ``_find_and_parse(..)``. Has no effect on
+        ``parse(..)``. Inverse of ``float(..)``.
 
         Returns:
             Number: modified instance
@@ -108,8 +108,8 @@ class Number(ParasiteType[Numerical]):
 
     def float(self) -> Number:
         """
-        Makes the value a float, when parsing with `find_and_parse(..)`. Has no effect on
-        `parse(..)`. Default behavior. Inverse of `integer(..)`.
+        Makes the value a float, when parsing with ``_find_and_parse(..)``. Has no effect on
+        ``parse(..)``. Default behavior. Inverse of ``integer(..)``.
 
         Returns:
             Number: modified instance
@@ -243,7 +243,7 @@ class Number(ParasiteType[Numerical]):
 
     def _parse(self, obj: Numerical) -> Numerical:
         """
-        Private function for parsing the value. This function is called by `parse(..)` and should
+        Private function for parsing the value. This function is called by ``parse(..)`` and should
         not be called directly by the user.
 
         Throws:
@@ -290,14 +290,14 @@ class Number(ParasiteType[Numerical]):
 
         raise ValidationError(f"object has to be a number, but is '{obj!r}'")
 
-    def find_and_parse(self, parent: dict[K, Any], key: K) -> Option[Numerical | None]:
+    def _find_and_parse(self, parent: dict[K, Any], key: K) -> Option[Numerical | None]:
         if (value := parent.get(key, _NotFound)) is not _NotFound:
             # if value is None, check if the value is nullable
             if value is None:
                 if self._f_nullable:
                     return Some(None)
                 raise ValidationError(f"key '{key}' cannot be None")
-            # if key is found, just package `parse(..)` it into a Some
+            # if key is found, just package ``parse(..)`` it into a Some
             return Some(self.parse(value))
 
         # if key is not found, return Nil if optional, else raise an error

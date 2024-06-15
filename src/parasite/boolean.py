@@ -23,22 +23,25 @@ class Boolean(ParasiteType[bool]):
     """
     Parasite type for representing boolean values.
 
-    Inheritance:
-        ParasiteType[bool]
+    Note:
+        Please use ``p.boolean()`` instead of instantiating this class directly. ``p`` can be
+        imported with::
 
-    Args:
-        _f_optional (bool): Whether the value is optional. Default: False
-        _f_nullable (bool): Whether the value can be None. Default: False
-        _m_leaniant (tuple[AnyStr, AnyStr]): The regular expressions for the true and false value.
-        Default: (r"^(true|1|yes|y)$", r"^(false|0|no|n)$")
-        _m_literal (bool | None): The literal value of the boolean. Default: None
+            from parasite import p
+            schema = p.boolean()
+            ...
     """
-    _f_optional: bool = False
-    _f_nullable: bool = False
-    _f_leaniant: bool = False
+    _f_optional: bool = False   # Whether the value is optional.
+    _f_nullable: bool = False   # Whether the value can be None.
+    _f_leaniant: bool = False   # Whether the value is leaniant.
 
-    _m_leaniant: tuple[str, str] = (r"^(true|1|yes|y)$", r"^(false|0|no|n)$")
-    _m_literal: bool | None = None
+    _m_leaniant: tuple[str, str] = (
+        r"^(true|1|yes|y)$", r"^(false|0|no|n)$"
+    )   # The regular expressions for the true and false value.
+    _m_literal: bool | None = None   # The literal value of the boolean.
+
+    def __init__(self) -> None:
+        pass
 
     def optional(self) -> Boolean:
         """
@@ -95,7 +98,7 @@ class Boolean(ParasiteType[bool]):
 
     def leaniant(self, re_true: Optional[str] = None, re_false: Optional[str] = None) -> Boolean:
         """
-        Set the value to be leaniant.
+        Set the value to be leaniant. This allows the value to be read from a string or a number.
 
         Args:
             re_true (Optional[str]): The regular expression for the true value. Default: None
@@ -160,9 +163,9 @@ class Boolean(ParasiteType[bool]):
 
         return obj
 
-    def find_and_parse(self, parent: dict[K, Any], key: K) -> Option[bool | None]:
+    def _find_and_parse(self, parent: dict[K, Any], key: K) -> Option[bool | None]:
         if (value := parent.get(key, _NotFound)) is not _NotFound:
-            # if key is found, just package `parse(..)` it into a Some
+            # if key is found, just package ``parse(..)`` it into a Some
             if value is not None:
                 return Some(self.parse(value))
 

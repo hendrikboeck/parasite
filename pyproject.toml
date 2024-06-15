@@ -1,13 +1,14 @@
 [tool.poetry]
 name = "parasite"
-version = "0.1.3"
+version = "0.1.4"
 description = "Data validation for Python 3"
 authors = ["Hendrik Boeck <hendrikboeck.dev@protonmail.com>"]
 packages = [{ include = "*", from = "src" }]
 readme = "README.md"
 license = "MIT"
-homepage = "https://github.com/hendrikboeck/parasite"
+homepage = "https://hendrikboeck.github.io/parasite"
 repository = "https://github.com/hendrikboeck/parasite"
+documentation = "https://hendrikboeck.github.io/parasite"
 keywords = [
     "data",
     "validation",
