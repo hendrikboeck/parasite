@@ -19,5 +19,5 @@ def test_never_default() -> None:
 
 
 def test_never_find() -> None:
-    assert p.never().find_and_parse_safe({}, "key") == Ok(Nil)
-    assert p.never().find_and_parse_safe({"key": "value"}, "key").is_err()
+    assert p.never()._find_and_parse_safe({}, "key") == Ok(Nil)
+    assert p.never()._find_and_parse_safe({"key": "value"}, "key").is_err()

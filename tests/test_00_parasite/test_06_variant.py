@@ -39,40 +39,40 @@ def test_variant_add_variant() -> None:
 def test_variant_find() -> None:
     v = p.variant().add_variant(p.number()).add_variant(p.string())
 
-    assert v.find_and_parse_safe({}, "key").is_err()
-    assert v.find_and_parse_safe({"key": 1}, "key") == Ok(Some(1))
-    assert v.find_and_parse_safe({"key": 1.0}, "key") == Ok(Some(1.0))
-    assert v.find_and_parse_safe({"key": "value"}, "key") == Ok(Some("value"))
+    assert v._find_and_parse_safe({}, "key").is_err()
+    assert v._find_and_parse_safe({"key": 1}, "key") == Ok(Some(1))
+    assert v._find_and_parse_safe({"key": 1.0}, "key") == Ok(Some(1.0))
+    assert v._find_and_parse_safe({"key": "value"}, "key") == Ok(Some("value"))
 
 
 def test_variant_optional() -> None:
     v = p.variant().add_variant(p.number()).add_variant(p.string())
 
-    assert v.optional().find_and_parse_safe({}, "key") == Ok(Nil)
-    assert v.optional().find_and_parse_safe({"key": 1}, "key") == Ok(Some(1))
-    assert v.optional().find_and_parse_safe({"key": 1.0}, "key") == Ok(Some(1.0))
-    assert v.optional().find_and_parse_safe({"key": "value"}, "key") == Ok(Some("value"))
+    assert v.optional()._find_and_parse_safe({}, "key") == Ok(Nil)
+    assert v.optional()._find_and_parse_safe({"key": 1}, "key") == Ok(Some(1))
+    assert v.optional()._find_and_parse_safe({"key": 1.0}, "key") == Ok(Some(1.0))
+    assert v.optional()._find_and_parse_safe({"key": "value"}, "key") == Ok(Some("value"))
 
-    assert v.required().find_and_parse_safe({}, "key").is_err()
-    assert v.required().find_and_parse_safe({"key": 1}, "key") == Ok(Some(1))
-    assert v.required().find_and_parse_safe({"key": 1.0}, "key") == Ok(Some(1.0))
-    assert v.required().find_and_parse_safe({"key": "value"}, "key") == Ok(Some("value"))
+    assert v.required()._find_and_parse_safe({}, "key").is_err()
+    assert v.required()._find_and_parse_safe({"key": 1}, "key") == Ok(Some(1))
+    assert v.required()._find_and_parse_safe({"key": 1.0}, "key") == Ok(Some(1.0))
+    assert v.required()._find_and_parse_safe({"key": "value"}, "key") == Ok(Some("value"))
 
 
 def test_variant_nullable() -> None:
     v = p.variant().add_variant(p.number()).add_variant(p.string())
 
-    assert v.nullable().find_and_parse_safe({}, "key").is_err()
-    assert v.nullable().find_and_parse_safe({"key": 1}, "key") == Ok(Some(1))
-    assert v.nullable().find_and_parse_safe({"key": 1.0}, "key") == Ok(Some(1.0))
-    assert v.nullable().find_and_parse_safe({"key": "value"}, "key") == Ok(Some("value"))
-    assert v.nullable().find_and_parse_safe({"key": None}, "key") == Ok(Some(None))
+    assert v.nullable()._find_and_parse_safe({}, "key").is_err()
+    assert v.nullable()._find_and_parse_safe({"key": 1}, "key") == Ok(Some(1))
+    assert v.nullable()._find_and_parse_safe({"key": 1.0}, "key") == Ok(Some(1.0))
+    assert v.nullable()._find_and_parse_safe({"key": "value"}, "key") == Ok(Some("value"))
+    assert v.nullable()._find_and_parse_safe({"key": None}, "key") == Ok(Some(None))
 
-    assert v.non_nullable().find_and_parse_safe({}, "key").is_err()
-    assert v.non_nullable().find_and_parse_safe({"key": 1}, "key") == Ok(Some(1))
-    assert v.non_nullable().find_and_parse_safe({"key": 1.0}, "key") == Ok(Some(1.0))
-    assert v.non_nullable().find_and_parse_safe({"key": "value"}, "key") == Ok(Some("value"))
-    assert v.non_nullable().find_and_parse_safe({"key": None}, "key").is_err()
+    assert v.non_nullable()._find_and_parse_safe({}, "key").is_err()
+    assert v.non_nullable()._find_and_parse_safe({"key": 1}, "key") == Ok(Some(1))
+    assert v.non_nullable()._find_and_parse_safe({"key": 1.0}, "key") == Ok(Some(1.0))
+    assert v.non_nullable()._find_and_parse_safe({"key": "value"}, "key") == Ok(Some("value"))
+    assert v.non_nullable()._find_and_parse_safe({"key": None}, "key").is_err()
 
 
 def test_variant_rm_variant() -> None:

@@ -21,27 +21,27 @@ def test_string_default() -> None:
 
 
 def test_string_find() -> None:
-    assert p.string().find_and_parse_safe({}, "key").is_err()
-    assert p.string().find_and_parse_safe({"key": "value"}, "key") == Ok(Some("value"))
+    assert p.string()._find_and_parse_safe({}, "key").is_err()
+    assert p.string()._find_and_parse_safe({"key": "value"}, "key") == Ok(Some("value"))
 
 
 def test_string_optional() -> None:
-    assert p.string().optional().find_and_parse_safe({}, "key") == Ok(Nil)
-    assert p.string().optional().find_and_parse_safe({"key": "value"}, "key") == Ok(Some("value"))
+    assert p.string().optional()._find_and_parse_safe({}, "key") == Ok(Nil)
+    assert p.string().optional()._find_and_parse_safe({"key": "value"}, "key") == Ok(Some("value"))
 
-    assert p.string().required().find_and_parse_safe({}, "key").is_err()
-    assert p.string().required().find_and_parse_safe({"key": "value"}, "key") == Ok(Some("value"))
+    assert p.string().required()._find_and_parse_safe({}, "key").is_err()
+    assert p.string().required()._find_and_parse_safe({"key": "value"}, "key") == Ok(Some("value"))
 
 
 def test_string_nullable() -> None:
-    assert p.string().nullable().find_and_parse_safe({}, "key").is_err()
-    assert p.string().nullable().find_and_parse_safe({"key": "value"}, "key") == Ok(Some("value"))
-    assert p.string().nullable().find_and_parse_safe({"key": None}, "key") == Ok(Some(None))
+    assert p.string().nullable()._find_and_parse_safe({}, "key").is_err()
+    assert p.string().nullable()._find_and_parse_safe({"key": "value"}, "key") == Ok(Some("value"))
+    assert p.string().nullable()._find_and_parse_safe({"key": None}, "key") == Ok(Some(None))
 
-    assert p.string().non_nullable().find_and_parse_safe({}, "key").is_err()
-    assert p.string().non_nullable().find_and_parse_safe({"key": "value"},
-                                                         "key") == Ok(Some("value"))
-    assert p.string().non_nullable().find_and_parse_safe({"key": None}, "key").is_err()
+    assert p.string().non_nullable()._find_and_parse_safe({}, "key").is_err()
+    assert p.string().non_nullable()._find_and_parse_safe({"key": "value"},
+                                                          "key") == Ok(Some("value"))
+    assert p.string().non_nullable()._find_and_parse_safe({"key": None}, "key").is_err()
 
 
 def test_string_trim() -> None:

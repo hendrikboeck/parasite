@@ -21,8 +21,8 @@ def test_any_default() -> None:
 
 
 def test_any_optional() -> None:
-    assert p.any().optional().find_and_parse_safe({}, "key") == Ok(Nil)
-    assert p.any().optional().find_and_parse_safe({"key": "value"}, "key") == Ok(Some("value"))
+    assert p.any().optional()._find_and_parse_safe({}, "key") == Ok(Nil)
+    assert p.any().optional()._find_and_parse_safe({"key": "value"}, "key") == Ok(Some("value"))
 
-    assert p.any().required().find_and_parse_safe({}, "key").is_err()
-    assert p.any().required().find_and_parse_safe({"key": "value"}, "key") == Ok(Some("value"))
+    assert p.any().required()._find_and_parse_safe({}, "key").is_err()
+    assert p.any().required()._find_and_parse_safe({"key": "value"}, "key") == Ok(Some("value"))

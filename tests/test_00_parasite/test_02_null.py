@@ -19,8 +19,8 @@ def test_null_default() -> None:
 
 
 def test_null_optional() -> None:
-    assert p.null().optional().find_and_parse_safe({}, "key") == Ok(Nil)
-    assert p.null().optional().find_and_parse_safe({"key": None}, "key") == Ok(Some(None))
+    assert p.null().optional()._find_and_parse_safe({}, "key") == Ok(Nil)
+    assert p.null().optional()._find_and_parse_safe({"key": None}, "key") == Ok(Some(None))
 
-    assert p.null().required().find_and_parse_safe({}, "key").is_err()
-    assert p.null().required().find_and_parse_safe({"key": None}, "key") == Ok(Some(None))
+    assert p.null().required()._find_and_parse_safe({}, "key").is_err()
+    assert p.null().required()._find_and_parse_safe({"key": None}, "key") == Ok(Some(None))

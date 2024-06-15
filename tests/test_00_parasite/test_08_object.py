@@ -29,26 +29,26 @@ def test_object_default() -> None:
 
 
 def test_object_find() -> None:
-    assert p.obj().find_and_parse_safe({}, "key").is_err()
-    assert p.obj().find_and_parse_safe({"key": {}}, "key") == Ok(Some({}))
+    assert p.obj()._find_and_parse_safe({}, "key").is_err()
+    assert p.obj()._find_and_parse_safe({"key": {}}, "key") == Ok(Some({}))
 
 
 def test_object_optional() -> None:
-    assert p.obj().optional().find_and_parse_safe({}, "key") == Ok(Nil)
-    assert p.obj().optional().find_and_parse_safe({"key": {}}, "key") == Ok(Some({}))
+    assert p.obj().optional()._find_and_parse_safe({}, "key") == Ok(Nil)
+    assert p.obj().optional()._find_and_parse_safe({"key": {}}, "key") == Ok(Some({}))
 
-    assert p.obj().required().find_and_parse_safe({}, "key").is_err()
-    assert p.obj().required().find_and_parse_safe({"key": {}}, "key") == Ok(Some({}))
+    assert p.obj().required()._find_and_parse_safe({}, "key").is_err()
+    assert p.obj().required()._find_and_parse_safe({"key": {}}, "key") == Ok(Some({}))
 
 
 def test_object_nullable() -> None:
-    assert p.obj().nullable().find_and_parse_safe({}, "key").is_err()
-    assert p.obj().nullable().find_and_parse_safe({"key": {}}, "key") == Ok(Some({}))
-    assert p.obj().nullable().find_and_parse_safe({"key": None}, "key") == Ok(Some(None))
+    assert p.obj().nullable()._find_and_parse_safe({}, "key").is_err()
+    assert p.obj().nullable()._find_and_parse_safe({"key": {}}, "key") == Ok(Some({}))
+    assert p.obj().nullable()._find_and_parse_safe({"key": None}, "key") == Ok(Some(None))
 
-    assert p.obj().non_nullable().find_and_parse_safe({}, "key").is_err()
-    assert p.obj().non_nullable().find_and_parse_safe({"key": {}}, "key") == Ok(Some({}))
-    assert p.obj().non_nullable().find_and_parse_safe({"key": None}, "key").is_err()
+    assert p.obj().non_nullable()._find_and_parse_safe({}, "key").is_err()
+    assert p.obj().non_nullable()._find_and_parse_safe({"key": {}}, "key") == Ok(Some({}))
+    assert p.obj().non_nullable()._find_and_parse_safe({"key": None}, "key").is_err()
 
 
 def test_object_init_items() -> None:

@@ -27,37 +27,37 @@ def test_array_default() -> None:
 
 
 def test_array_find() -> None:
-    assert p.array().find_and_parse_safe({}, "key").is_err()
-    assert p.array().find_and_parse_safe({"key": []}, "key") == Ok(Some([]))
+    assert p.array()._find_and_parse_safe({}, "key").is_err()
+    assert p.array()._find_and_parse_safe({"key": []}, "key") == Ok(Some([]))
 
-    assert p.array().find_and_parse_safe({"key": [1, 2, 3]}, "key") == Ok(Some([1, 2, 3]))
-    assert p.array().find_and_parse_safe({"key": [1.0, 2.0, 3.0]},
-                                         "key") == Ok(Some([1.0, 2.0, 3.0]))
-    assert p.array().find_and_parse_safe({"key": ["hello", "world"]},
-                                         "key") == Ok(Some(["hello", "world"]))
-    assert p.array().find_and_parse_safe({"key": [True, False]}, "key") == Ok(Some([True, False]))
-    assert p.array().find_and_parse_safe({"key": [[], {}]}, "key") == Ok(Some([[], {}]))
-    assert p.array().find_and_parse_safe({"key": [(), set()]}, "key") == Ok(Some([(), set()]))
-    assert p.array().find_and_parse_safe({"key": [set(), frozenset()]},
-                                         "key") == Ok(Some([set(), frozenset()]))
+    assert p.array()._find_and_parse_safe({"key": [1, 2, 3]}, "key") == Ok(Some([1, 2, 3]))
+    assert p.array()._find_and_parse_safe({"key": [1.0, 2.0, 3.0]},
+                                          "key") == Ok(Some([1.0, 2.0, 3.0]))
+    assert p.array()._find_and_parse_safe({"key": ["hello", "world"]},
+                                          "key") == Ok(Some(["hello", "world"]))
+    assert p.array()._find_and_parse_safe({"key": [True, False]}, "key") == Ok(Some([True, False]))
+    assert p.array()._find_and_parse_safe({"key": [[], {}]}, "key") == Ok(Some([[], {}]))
+    assert p.array()._find_and_parse_safe({"key": [(), set()]}, "key") == Ok(Some([(), set()]))
+    assert p.array()._find_and_parse_safe({"key": [set(), frozenset()]},
+                                          "key") == Ok(Some([set(), frozenset()]))
 
 
 def test_array_optional() -> None:
-    assert p.array().optional().find_and_parse_safe({}, "key") == Ok(Nil)
-    assert p.array().optional().find_and_parse_safe({"key": []}, "key") == Ok(Some([]))
+    assert p.array().optional()._find_and_parse_safe({}, "key") == Ok(Nil)
+    assert p.array().optional()._find_and_parse_safe({"key": []}, "key") == Ok(Some([]))
 
-    assert p.array().required().find_and_parse_safe({}, "key").is_err()
-    assert p.array().required().find_and_parse_safe({"key": []}, "key") == Ok(Some([]))
+    assert p.array().required()._find_and_parse_safe({}, "key").is_err()
+    assert p.array().required()._find_and_parse_safe({"key": []}, "key") == Ok(Some([]))
 
 
 def test_array_nullable() -> None:
-    assert p.array().nullable().find_and_parse_safe({}, "key").is_err()
-    assert p.array().nullable().find_and_parse_safe({"key": []}, "key") == Ok(Some([]))
-    assert p.array().nullable().find_and_parse_safe({"key": None}, "key") == Ok(Some(None))
+    assert p.array().nullable()._find_and_parse_safe({}, "key").is_err()
+    assert p.array().nullable()._find_and_parse_safe({"key": []}, "key") == Ok(Some([]))
+    assert p.array().nullable()._find_and_parse_safe({"key": None}, "key") == Ok(Some(None))
 
-    assert p.array().non_nullable().find_and_parse_safe({}, "key").is_err()
-    assert p.array().non_nullable().find_and_parse_safe({"key": []}, "key") == Ok(Some([]))
-    assert p.array().non_nullable().find_and_parse_safe({"key": None}, "key").is_err()
+    assert p.array().non_nullable()._find_and_parse_safe({}, "key").is_err()
+    assert p.array().non_nullable()._find_and_parse_safe({"key": []}, "key") == Ok(Some([]))
+    assert p.array().non_nullable()._find_and_parse_safe({"key": None}, "key").is_err()
 
 
 def test_array_min() -> None:

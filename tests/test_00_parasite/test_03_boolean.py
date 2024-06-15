@@ -20,26 +20,26 @@ def test_boolean_default() -> None:
 
 
 def test_boolean_find() -> None:
-    assert p.boolean().find_and_parse_safe({}, "key").is_err()
-    assert p.boolean().find_and_parse_safe({"key": True}, "key") == Ok(Some(True))
+    assert p.boolean()._find_and_parse_safe({}, "key").is_err()
+    assert p.boolean()._find_and_parse_safe({"key": True}, "key") == Ok(Some(True))
 
 
 def test_boolean_optional() -> None:
-    assert p.boolean().optional().find_and_parse_safe({}, "key") == Ok(Nil)
-    assert p.boolean().optional().find_and_parse_safe({"key": True}, "key") == Ok(Some(True))
+    assert p.boolean().optional()._find_and_parse_safe({}, "key") == Ok(Nil)
+    assert p.boolean().optional()._find_and_parse_safe({"key": True}, "key") == Ok(Some(True))
 
-    assert p.boolean().required().find_and_parse_safe({}, "key").is_err()
-    assert p.boolean().required().find_and_parse_safe({"key": True}, "key") == Ok(Some(True))
+    assert p.boolean().required()._find_and_parse_safe({}, "key").is_err()
+    assert p.boolean().required()._find_and_parse_safe({"key": True}, "key") == Ok(Some(True))
 
 
 def test_boolean_nullable() -> None:
-    assert p.boolean().nullable().find_and_parse_safe({}, "key").is_err()
-    assert p.boolean().nullable().find_and_parse_safe({"key": True}, "key") == Ok(Some(True))
-    assert p.boolean().nullable().find_and_parse_safe({"key": None}, "key") == Ok(Some(None))
+    assert p.boolean().nullable()._find_and_parse_safe({}, "key").is_err()
+    assert p.boolean().nullable()._find_and_parse_safe({"key": True}, "key") == Ok(Some(True))
+    assert p.boolean().nullable()._find_and_parse_safe({"key": None}, "key") == Ok(Some(None))
 
-    assert p.boolean().non_nullable().find_and_parse_safe({}, "key").is_err()
-    assert p.boolean().non_nullable().find_and_parse_safe({"key": True}, "key") == Ok(Some(True))
-    assert p.boolean().non_nullable().find_and_parse_safe({"key": None}, "key").is_err()
+    assert p.boolean().non_nullable()._find_and_parse_safe({}, "key").is_err()
+    assert p.boolean().non_nullable()._find_and_parse_safe({"key": True}, "key") == Ok(Some(True))
+    assert p.boolean().non_nullable()._find_and_parse_safe({"key": None}, "key").is_err()
 
 
 def test_boolean_leaniant() -> None:

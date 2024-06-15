@@ -20,31 +20,31 @@ def test_number_default() -> None:
 
 
 def test_number_find() -> None:
-    assert p.number().find_and_parse_safe({}, "key").is_err()
-    assert p.number().find_and_parse_safe({"key": 1}, "key") == Ok(Some(1))
-    assert p.number().find_and_parse_safe({"key": 1.0}, "key") == Ok(Some(1.0))
+    assert p.number()._find_and_parse_safe({}, "key").is_err()
+    assert p.number()._find_and_parse_safe({"key": 1}, "key") == Ok(Some(1))
+    assert p.number()._find_and_parse_safe({"key": 1.0}, "key") == Ok(Some(1.0))
 
 
 def test_number_optional() -> None:
-    assert p.number().optional().find_and_parse_safe({}, "key") == Ok(Nil)
-    assert p.number().optional().find_and_parse_safe({"key": 1}, "key") == Ok(Some(1))
-    assert p.number().optional().find_and_parse_safe({"key": 1.0}, "key") == Ok(Some(1.0))
+    assert p.number().optional()._find_and_parse_safe({}, "key") == Ok(Nil)
+    assert p.number().optional()._find_and_parse_safe({"key": 1}, "key") == Ok(Some(1))
+    assert p.number().optional()._find_and_parse_safe({"key": 1.0}, "key") == Ok(Some(1.0))
 
-    assert p.number().required().find_and_parse_safe({}, "key").is_err()
-    assert p.number().required().find_and_parse_safe({"key": 1}, "key") == Ok(Some(1))
-    assert p.number().required().find_and_parse_safe({"key": 1.0}, "key") == Ok(Some(1.0))
+    assert p.number().required()._find_and_parse_safe({}, "key").is_err()
+    assert p.number().required()._find_and_parse_safe({"key": 1}, "key") == Ok(Some(1))
+    assert p.number().required()._find_and_parse_safe({"key": 1.0}, "key") == Ok(Some(1.0))
 
 
 def test_number_nullable() -> None:
-    assert p.number().nullable().find_and_parse_safe({}, "key").is_err()
-    assert p.number().nullable().find_and_parse_safe({"key": 1}, "key") == Ok(Some(1))
-    assert p.number().nullable().find_and_parse_safe({"key": 1.0}, "key") == Ok(Some(1.0))
-    assert p.number().nullable().find_and_parse_safe({"key": None}, "key") == Ok(Some(None))
+    assert p.number().nullable()._find_and_parse_safe({}, "key").is_err()
+    assert p.number().nullable()._find_and_parse_safe({"key": 1}, "key") == Ok(Some(1))
+    assert p.number().nullable()._find_and_parse_safe({"key": 1.0}, "key") == Ok(Some(1.0))
+    assert p.number().nullable()._find_and_parse_safe({"key": None}, "key") == Ok(Some(None))
 
-    assert p.number().non_nullable().find_and_parse_safe({}, "key").is_err()
-    assert p.number().non_nullable().find_and_parse_safe({"key": 1}, "key") == Ok(Some(1))
-    assert p.number().non_nullable().find_and_parse_safe({"key": 1.0}, "key") == Ok(Some(1.0))
-    assert p.number().non_nullable().find_and_parse_safe({"key": None}, "key").is_err()
+    assert p.number().non_nullable()._find_and_parse_safe({}, "key").is_err()
+    assert p.number().non_nullable()._find_and_parse_safe({"key": 1}, "key") == Ok(Some(1))
+    assert p.number().non_nullable()._find_and_parse_safe({"key": 1.0}, "key") == Ok(Some(1.0))
+    assert p.number().non_nullable()._find_and_parse_safe({"key": None}, "key").is_err()
 
 
 def test_number_integer() -> None:
