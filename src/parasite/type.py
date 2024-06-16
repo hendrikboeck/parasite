@@ -69,8 +69,11 @@ class ParasiteType(ABC, Generic[T]):
 
     def parse_safe(self, obj: Any) -> Result[T, ValidationError]:
         """
-        Converts the result of ``parse(..)`` into a ``Result`` type. Should be used when safe parsing is
-        required. Will only catch ``ValidationError`` exceptions!!!
+        Converts the result of :func:`parse` into a ``Result`` type. Should be used when safe
+        parsing is required.
+
+        Note:
+            Will only catch :class:`parasite.errors.ValidationError` exceptions!!!
 
         Args:
             obj (Any): value to parse
@@ -89,8 +92,11 @@ class ParasiteType(ABC, Generic[T]):
     def _find_and_parse_safe(self, parent: dict[K, Any],
                              key: K) -> Result[Option[T | None], ValidationError]:
         """
-        Converts the result of ``_find_and_parse(..)`` into a ``Result`` type. Should be used when
-        safe parsing is required. Will only catch ``ValidationError`` exceptions!!!
+        Converts the result of :func:`_find_and_parse` into a ``Result`` type. Should be used when
+        safe parsing is required.
+
+        Note:
+            Will only catch :class:`parasite.errors.ValidationError` exceptions!!!
 
         Args:
             parent (dict[K, Any]): dictionary to search for the key

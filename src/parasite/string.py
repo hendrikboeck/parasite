@@ -83,8 +83,8 @@ class String(ParasiteType[str]):
 
     def optional(self) -> String:
         """
-        Makes the value optional, when parsing with ``_find_and_parse(..)``. Has no effect on
-        ``parse(..)``. Inverse of ``required(..)``.
+        Makes the value optional, when parsing with :func:`_find_and_parse`. Has no effect on
+        :func:`parse`. Inverse of :func:`required`.
 
         Returns:
             String: modified instance
@@ -94,8 +94,8 @@ class String(ParasiteType[str]):
 
     def required(self) -> String:
         """
-        Makes the value required, when parsing with ``_find_and_parse(..)``. Has no effect on
-        ``parse(..)``. Inverse of ``optional(..)``. Default behavior.
+        Makes the value required, when parsing with :func:`_find_and_parse`. Has no effect on
+        :func:`parse`. Inverse of :func:`optional`. Default behavior.
 
         Returns:
             String: modified instance

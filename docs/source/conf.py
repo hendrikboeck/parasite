@@ -14,7 +14,7 @@ sys.path.insert(0, os.path.abspath('../src'))
 project = 'Parasite'
 copyright = f'2024-{datetime.date.today().year}, Hendrik Boeck <hendrikboeck.dev@protonmail.com>'
 author = 'Hendrik Boeck <hendrikboeck.dev@protonmail.com>'
-release = 'v0.1.5'
+release = 'v0.1.6'
 html_title = f"{project} {release}"
 
 # -- General configuration ---------------------------------------------------
@@ -30,9 +30,13 @@ extensions = [
 templates_path = ['_templates']
 exclude_patterns = []
 
+pygments_style = "emacs"
+pygments_dark_style = "one-dark"
+
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 html_theme = 'qiskit-ecosystem'
+# html_theme = 'furo'
 html_static_path = ['_static']
 html_logo = "_static/parasite-logo.png"
 

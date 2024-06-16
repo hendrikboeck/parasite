@@ -21,8 +21,13 @@ class Never(ParasiteType[None]):
     """
     Parasite type for representing never values.
 
-    Inheritance:
-        ParasiteType[None]
+    Note:
+        Please use ``p.never()`` instead of instantiating this class directly. ``p`` can be
+        imported with::
+
+            from parasite import p
+            schema = p.never()
+            ...
     """
 
     def parse(self, obj: Any) -> None:

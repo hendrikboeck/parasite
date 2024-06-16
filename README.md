@@ -33,6 +33,8 @@
 - [Why?](#why)
 - [What about the name?](#what-about-the-name)
 - [Getting Started](#getting-started)
+  - [Installing](#installing)
+  - [Example usage](#example-usage)
 - [Documentation](#documentation)
 - [License (_MIT License_)](#license-mit-license)
 
@@ -55,15 +57,17 @@ library that inspired this creation.
 
 ## Getting Started
 
+### Installing
+
 Install using `pip`:
 
-```
+```sh
 pip install parasite
 ```
 
 Install using `poetry` CLI:
 
-```
+```sh
 poetry add parasite
 ```
 
@@ -74,10 +78,31 @@ or using `pyproject.toml`:
 parasite = "^0.1.0"
 ```
 
+### Example usage
+
+```python
+from parasite import p
+
+schema = p.obj({
+    "name": p.string().required(),
+    "age": p.number().integer().min(0).optional(),
+}).strip()
+
+data = {
+    "name": "John Doe",
+    "age": 42,
+    "extra": "This will be stripped",
+}
+
+schema.parse(data)   # {'name': 'John Doe', 'age': 42}
+schema.parse({})   # ValidationError: Missing required key: 'name'
+```
+
 ## Documentation
 
 > [!IMPORTANT]
-> Work in Progress...
+>
+> You can find the sphinx online documentation [here](https://hendrikboeck.github.io/parasite)!
 
 ## License (_MIT License_)
 

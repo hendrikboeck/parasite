@@ -9,7 +9,7 @@ Welcome to Parasite's documentation!
 .. toctree::
    :hidden:
 
-   API Reference <apidocs/index>
+   API Reference <apidocs/pkg_parasite/index>
    GitHub <https://github.com/hendrikboeck/parasite>
 
 .. Documentation Home <index>

@@ -19,7 +19,7 @@ class p(_Namespace):
     sudo-namespace for all parasite types. Makes it easier to import and call them. Tries to mimic
     the behavior of the ``z`` object imported from ``zod`` library in JavaScript.
 
-    Example::
+    Example usage::
 
         >>> from parasite import p
         >>>

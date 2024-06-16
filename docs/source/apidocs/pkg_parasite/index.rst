@@ -1,23 +1,23 @@
-####################
-``parasite`` Package
-####################
+.. _apidocs:
 
-Module API
-==========
+#############
+API Reference
+#############
 
-.. automodule:: parasite
-    :members:
-    :undoc-members:
-    :show-inheritance:
+This section documents the API of the ``parasite`` package. Use the links below to
+navigate the code documentation.
 
-Module Reference
-================
+Modules
+=======
 
 .. toctree::
    :maxdepth: 3
 
+   _root
    _const
    errors
    any
    array
    boolean
+   never
+   object

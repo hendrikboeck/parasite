@@ -37,22 +37,46 @@ class Any_(ParasiteType[Any]):
 
     def optional(self) -> Any_:
         """
-        Makes the value optional, when parsing with ``_find_and_parse(..)``. Has no effect on
-        ``parse(..)``. Inverse of ``required(..)``.
+        Makes the value optional, when parsing with :func:`_find_and_parse`. Has no effect on
+        :func:`parse`. Inverse of :func:`required`.
 
         Returns:
             Any_: modified instance
+
+        Example usage::
+
+            from parasite import p
+
+            schema = p.obj({ "name": p.any() })
+            schema.parse({ "name": "John" })  # -> { "name": "John" }
+            schema.parse({ })  # -> ValidationError: key 'name' not found, but is required
+
+            schema = p.obj({ "name": p.any().optional() })
+            schema.parse({ "name": "John" })  # -> { "name": "John" }
+            schema.parse({ })  # -> { }
         """
         self._f_optional = True
         return self
 
     def required(self) -> Any_:
         """
-        Makes the value required, when parsing with ``_find_and_parse(..)``. Has no effect on
-        ``parse(..)``. Inverse of ``optional(..)``. Default behavior.
+        Makes the value required, when parsing with :func:`_find_and_parse`. Has no effect on
+        :func:`parse`. Inverse of :func:`optional`. Default behavior.
 
         Returns:
             Any_: modified instance
+
+        Example usage::
+
+            from parasite import p
+
+            schema = p.obj({ "name": p.any() })
+            schema.parse({ "name": "John" })  # -> { "name": "John" }
+            schema.parse({ })  # -> ValidationError: key 'name' not found, but is required
+
+            schema = p.obj({ "name": p.any().required() })
+            schema.parse({ "name": "John" })  # -> { "name": "John" }
+            schema.parse({ })  # -> ValidationError: key 'name' not found, but is required
         """
         self._f_optional = False
         return self

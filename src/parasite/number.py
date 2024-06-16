@@ -23,38 +23,34 @@ class Number(ParasiteType[Numerical]):
     """
     Parasite type for representing numerical values. This type can parse both integers and floats.
 
-    Inheritance:
-        ParasiteType[Numerical]
+    Note:
+        Please use ``p.number()`` instead of instantiating this class directly. ``p`` can be
+        imported with::
 
-    Args:
-        _f_optional (bool): Whether the value is optional. Default: False
-        _f_nullable (bool): Whether the value can be None. Default: False
-        _f_integer (bool): Whether the value has to be an integer. Default: False
-        _f_lt (bool): Whether the value has to be less than a certain value. Default: False
-        _f_lte (bool): Whether the value has to be less than or equal to a certain value.
-        Default: False
-        _f_gt (bool): Whether the value has to be greater than a certain value. Default: False
-        _f_gte (bool): Whether the value has to be greater than or equal to a certain value.
-        Default: False
-        _m_ul (Numerical | None): Upper limit for the value. Default: None
-        _m_ll (Numerical | None): Lower limit for the value. Default: None
+            from parasite import p
+            schema = p.number()
+            ...
     """
-    _f_optional: bool = False
-    _f_nullable: bool = False
-    _f_integer: bool = False
 
-    _f_lt: bool = False
-    _f_lte: bool = False
-    _f_gt: bool = False
-    _f_gte: bool = False
+    _f_optional: bool = False   # Wether the value is optional
+    _f_nullable: bool = False   # Wether the value can be None
+    _f_integer: bool = False   # Wether the value has to be an integer
 
-    _m_ul: Numerical | None = None
-    _m_ll: Numerical | None = None
+    _f_lt: bool = False   # Wether the value has to be less than a certain value
+    _f_lte: bool = False   # Wether the value has to be less than or equal to a certain value
+    _f_gt: bool = False   # Wether the value has to be greater than a certain value
+    _f_gte: bool = False   # Wether the value has to be greater than or equal to a certain value
+
+    _m_ul: Numerical | None = None   # Upper limit for the value
+    _m_ll: Numerical | None = None   # Lower limit for the value
+
+    def __init__(self) -> None:
+        pass
 
     def optional(self) -> Number:
         """
-        Makes the value optional, when parsing with ``_find_and_parse(..)``. Has no effect on
-        ``parse(..)``. Inverse of ``required(..)``.
+        Makes the value optional, when parsing with :func:`_find_and_parse`. Has no effect on
+        :func:`parse`. Inverse of :func:`required`.
 
         Returns:
             Number: modified instance
@@ -64,8 +60,8 @@ class Number(ParasiteType[Numerical]):
 
     def required(self) -> Number:
         """
-        Makes the value required, when parsing with ``_find_and_parse(..)``. Has no effect on
-        ``parse(..)``. Inverse of ``optional(..)``. Default behavior.
+        Makes the value required, when parsing with :func:`_find_and_parse`. Has no effect on
+        :func:`parse`. Inverse of :func:`optional`. Default behavior.
 
         Returns:
             Number: modified instance

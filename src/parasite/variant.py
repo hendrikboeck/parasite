@@ -39,7 +39,8 @@ class Variant(ParasiteType[Any]):
 
     def optional(self) -> Variant:
         """
-        Set the value to be optional.
+        Makes the value optional, when parsing with :func:`_find_and_parse`. Has no effect on
+        :func:`parse`. Inverse of :func:`required`.
 
         Returns:
             Variant: The updated instance of the class.
@@ -49,7 +50,8 @@ class Variant(ParasiteType[Any]):
 
     def required(self) -> Variant:
         """
-        Set the value to be required.
+        Makes the value required, when parsing with :func:`_find_and_parse`. Has no effect on
+        :func:`parse`. Inverse of :func:`optional`. Default behavior.
 
         Returns:
             Variant: The updated instance of the class.

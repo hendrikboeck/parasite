@@ -45,20 +45,46 @@ class Boolean(ParasiteType[bool]):
 
     def optional(self) -> Boolean:
         """
-        Set the value to be optional.
+        Makes the value optional, when parsing with :func:`_find_and_parse`. Has no effect on
+        :func:`parse`. Inverse of :func:`required`.
 
         Returns:
             Boolean: The updated instance of the class.
+
+        Example usage::
+
+            from parasite import p
+
+            schema = p.obj({ "name": p.boolean() })
+            schema.parse({ "name": True })  # -> { "name": True }
+            schema.parse({ })  # -> ValidationError: key 'name' not found, but is required
+
+            schema = p.obj({ "name": p.boolean().optional() })
+            schema.parse({ "name": True })  # -> { "name": True }
+            schema.parse({ })  # -> { }
         """
         self._f_optional = True
         return self
 
     def required(self) -> Boolean:
         """
-        Set the value to be required.
+        Makes the value required, when parsing with :func:`_find_and_parse`. Has no effect on
+        :func:`parse`. Inverse of :func:`optional`. Default behavior.
 
         Returns:
             Boolean: The updated instance of the class.
+
+        Example usage::
+
+            from parasite import p
+
+            schema = p.obj({ "name": p.boolean() })
+            schema.parse({ "name": True })  # -> { "name": True }
+            schema.parse({ })  # -> ValidationError: key 'name' not found, but is required
+
+            schema = p.obj({ "name": p.boolean().required() })
+            schema.parse({ "name": True })  # -> { "name": True }
+            schema.parse({ })  # -> ValidationError: key 'name' not found, but is required
         """
         self._f_optional = False
         return self
@@ -69,6 +95,18 @@ class Boolean(ParasiteType[bool]):
 
         Returns:
             Boolean: The updated instance of the class.
+
+        Example usage::
+
+            from parasite import p
+
+            schema = p.obj({ "name": p.boolean() })
+            schema.parse({ "name": True })  # -> { "name": True }
+            schema.parse({ "name": None })  # -> ValidationError: key 'name' cannot be None
+
+            schema = p.obj({ "name": p.boolean().nullable() })
+            schema.parse({ "name": True })  # -> { "name": True }
+            schema.parse({ "name": None })  # -> { "name": None }
         """
         self._f_nullable = True
         return self
@@ -79,6 +117,18 @@ class Boolean(ParasiteType[bool]):
 
         Returns:
             Boolean: The updated instance of the class.
+
+        Example usage::
+
+            from parasite import p
+
+            schema = p.obj({ "name": p.boolean() })
+            schema.parse({ "name": True })  # -> { "name": True }
+            schema.parse({ "name": None })  # -> ValidationError: key 'name' cannot be None
+
+            schema = p.obj({ "name": p.boolean().non_nullable() })
+            schema.parse({ "name": True })  # -> { "name": True }
+            schema.parse({ "name": None })  # -> ValidationError: key 'name' cannot be None
         """
         self._f_nullable = False
         return self
@@ -92,6 +142,18 @@ class Boolean(ParasiteType[bool]):
 
         Returns:
             Boolean: The updated instance of the class.
+
+        Example usage::
+
+            from parasite import p
+
+            schema = p.boolean()
+            schema.parse(True)  # -> True
+            schema.parse(False)  # -> False
+
+            schema = p.boolean().literal(True)
+            schema.parse(True)  # -> True
+            schema.parse(False)  # -> ValidationError: object has to be True, but is False
         """
         self._m_literal = value
         return self
@@ -106,6 +168,20 @@ class Boolean(ParasiteType[bool]):
 
         Returns:
             Boolean: The updated instance of the class.
+
+        Example usage::
+
+            from parasite import p
+
+            schema = p.boolean()
+            schema.parse(True)  # -> True
+            schema.parse("true")  # -> ValidationError: object has to be a boolean, but is 'true'
+            schema.parse(1)  # -> ValidationError: object has to be a boolean, but is '1'
+
+            schema = p.boolean().leaniant()
+            schema.parse("true")  # -> True
+            schema.parse("false")  # -> False
+            schema.parse(1)  # -> True
         """
         self._f_leaniant = True
 

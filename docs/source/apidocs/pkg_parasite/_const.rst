@@ -1,6 +1,9 @@
-############################
-``_const`` Private Submodule
-############################
+###################
+``parasite._const``
+###################
+
+Member Reference
+================
 
 .. automodule:: parasite._const
    :members:

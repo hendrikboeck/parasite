@@ -21,32 +21,61 @@ class Null(ParasiteType[None]):
     """
     Parasite type for representing None values.
 
-    Inheritance:
-        ParasiteType[None]
+    Note:
+        Please use ``p.null()`` instead of instantiating this class directly. ``p`` can be
+        imported with::
 
-    Args:
-        _f_optional (bool): Whether the value is optional. Default: False
+            from parasite import p
+            schema = p.null()
+            ...
     """
-    _f_optional: bool = False
+    _f_optional: bool = False   # Wether the value is optional
+
+    def __init__(self) -> None:
+        pass
 
     def optional(self) -> Null:
         """
-        Makes the value optional, when parsing with ``_find_and_parse(..)``. Has no effect on
-        ``parse(..)``. Inverse of ``required(..)``.
+        Makes the value optional, when parsing with :func:`_find_and_parse`. Has no effect on
+        :func:`parse`. Inverse of :func:`required`.
 
         Returns:
             Null: modified instance
+
+        Example usage::
+
+            from parasite import p
+
+            schema = p.obj({ "name": p.null() })
+            schema.parse({ "name": None })  # -> { "name": None }
+            schema.parse({ })  # -> ValidationError: key 'name' not found, but is required
+
+            schema = p.obj({ "name": p.null().optional() })
+            schema.parse({ "name": None })  # -> { "name": None }
+            schema.parse({ })  # -> { }
         """
         self._f_optional = True
         return self
 
     def required(self) -> Null:
         """
-        Makes the value required, when parsing with ``_find_and_parse(..)``. Has no effect on
-        ``parse(..)``. Default behavior. Inverse of ``optional(..)``.
+        Makes the value required, when parsing with :func:`_find_and_parse`. Has no effect on
+        :func:`parse`. Inverse of :func:`optional`. Default behavior.
 
         Returns:
             Null: modified instance
+
+        Example usage::
+
+            from parasite import p
+
+            schema = p.obj({ "name": p.null() })
+            schema.parse({ "name": None })  # -> { "name": None }
+            schema.parse({ })  # -> ValidationError: key 'name' not found, but is required
+
+            schema = p.obj({ "name": p.null().required() })
+            schema.parse({ "name": None })  # -> { "name": None }
+            schema.parse({ })  # -> ValidationError: key 'name' not found, but is required
         """
         self._f_optional = False
         return self
