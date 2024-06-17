@@ -81,6 +81,8 @@ class String(ParasiteType[str]):
     _m_contains: str | None = None
     _m_regex: Pattern | None = None
 
+    _phone_codes = []
+    
     def optional(self) -> String:
         """
         Makes the value optional, when parsing with :func:`_find_and_parse`. Has no effect on
@@ -346,6 +348,28 @@ class String(ParasiteType[str]):
         self._m_regex_t = self._RegexType.REGEX
         self._m_regex = value
         return self
+    
+    def phone(self, codes: str | int | list | tuple) -> String:
+        '''
+        
+        '''
+        def code_validator(code):
+            if isinstance(code, str): 
+                if code.startswith('+'):
+                    try: code = int(code[1:]) + 1
+                    except ValueError:
+                        raise ValueError('Invalid country code')
+                else: 
+                    try: code = int(code)
+                    except ValueError:
+                        raise ValueError('Invalid country code')
+            return code
+                    
+        if isinstance(codes, (int, str)): self._phone_codes.append(  code_validator(codes)  ) 
+        if isinstance(codes, (tuple, list)):
+            for code in codes:
+                self._phone_codes.append(  code_validator(code)  ) 
+        return self
 
     def match(self, value: str) -> String:
         """
@@ -417,6 +441,20 @@ class String(ParasiteType[str]):
         if self._m_contains is not None and self._m_contains not in value:
             raise ValidationError(f"value '{value}' does not contain '{self._m_contains}'")
 
+        if bool(self._phone_codes):
+            phone = value
+            if value.startswith('+'):
+                self._phone_codes = [i - 1 for i in self._phone_codes]
+                try: phone = int(value[1:])
+                except ValueError:
+                    raise ValueError(f"phone number '{value}' is not correct")
+            else:
+                try: phone = int(value)
+                except ValueError:
+                    raise ValueError(f"phone number '{value}' is not correct")
+            if not any(str(phone).startswith(str(code)) for code in self._phone_codes):
+                raise ValidationError(f"incorrect phone code")       
+                
         return value
 
     def _parse_regex(self, value: str) -> str:
@@ -522,3 +560,4 @@ class String(ParasiteType[str]):
             return Nil
 
         raise ValidationError(f"key '{key}' not found, but is required")
+
