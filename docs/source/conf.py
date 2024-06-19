@@ -14,7 +14,7 @@ sys.path.insert(0, os.path.abspath('../src'))
 project = 'Parasite'
 copyright = f'2024-{datetime.date.today().year}, Hendrik Boeck <hendrikboeck.dev@protonmail.com>'
 author = 'Hendrik Boeck <hendrikboeck.dev@protonmail.com>'
-release = 'v0.1.7'
+release = 'v0.1.8'
 html_title = f"{project} {release}"
 
 # -- General configuration ---------------------------------------------------

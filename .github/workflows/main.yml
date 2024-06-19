@@ -139,6 +139,11 @@ jobs:
       with:
         python-version: 3.11
 
+    - name: Update System && Install Packages
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y graphviz
+
     - name: Install dependecies
       run: |
         python -m pip install --upgrade pip
