@@ -34,4 +34,3 @@ Member Reference
    :members:
    :inherited-members:
    :undoc-members:
-   :show-inheritance:

@@ -72,7 +72,7 @@ class Number(ParasiteType[Numerical]):
     def nullable(self) -> Number:
         """
         Makes the value nullable, when parsing with ``_find_and_parse(..)``. Has no effect on
-        ``parse(..)``. Inverse of ``non_nullable(..)``.
+        ``parse(..)``. Inverse of ``not_nullable(..)``.
 
         Returns:
             Number: modified instance
@@ -80,9 +80,9 @@ class Number(ParasiteType[Numerical]):
         self._f_nullable = True
         return self
 
-    def non_nullable(self) -> Number:
+    def not_nullable(self) -> Number:
         """
-        Makes the value non-nullable, when parsing with ``_find_and_parse(..)``. Has no effect on
+        Makes the value not-nullable, when parsing with ``_find_and_parse(..)``. Has no effect on
         ``parse(..)``. Default behavior. Inverse of ``nullable(..)``.
 
         Returns:

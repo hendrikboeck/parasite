@@ -19,7 +19,8 @@ K = TypeVar("K")
 @dataclass
 class Array(ParasiteType[list[Any]]):
     """
-    Parasite type for representing list values.
+    ``parasite`` type for creating and parsing list/array based schemas. Will return a python
+    ``list[Any]`` with the parsed values on success.
 
     Note:
         Please use ``p.array(...)`` instead of instantiating this class directly. ``p`` can be
@@ -28,6 +29,16 @@ class Array(ParasiteType[list[Any]]):
             from parasite import p
             schema = p.array(...)
             ...
+
+    Note:
+        Calling the constructor with an element type will set the element type of the list. This is
+        equivalent to calling ``p.array().element(element)`` (see :func:`element`). If no element
+        type is specified, the list will skip parsing the elements, and therefore accept any type of
+        object or value.
+
+    Inheritance:
+        .. inheritance-diagram:: parasite.array.Array
+            :parts: 1
     """
     _m_element: ParasiteType | None = None   # The element type of the list.
 
@@ -42,39 +53,58 @@ class Array(ParasiteType[list[Any]]):
         Args:
             element (ParasiteType | None): The element type of the list. Default: None
 
-        Example usage::
+        Example usage:
+            Lets assume we have the following schemas::
 
-            from parasite import p
+                from parasite import p
 
-            schema = p.array()
-            schema.parse(["John", "Doe"])  # -> ["John", "Doe"]
-            schema.parse(["John", 1])  # -> ["John", 1]
+                schema = p.array()
+                schema2 = p.array(p.string())
 
-            schema = p.array(p.string())
-            schema.parse(["John", "Doe"])  # -> ["John", "Doe"]
-            schema.parse(["John", 1])  # -> ValidationError: element at index 1 is invalid: object has to be a string, but is 1
+            The resulting schemas will parse the following objects::
+
+                >>> schema.parse(["John", "Doe"])
+                ["John", "Doe"]
+                >>> schema.parse(["John", 1])
+                ["John", 1]
+
+                >>> schema.parse(["John", "Doe"])
+                ["John", "Doe"]
+                >>> schema.parse(["John", 1])
+                ValidationError: element at index 1 is invalid: object has to be a string, but is 1
         """
-        self._m_element = element
+        self.element(element)
 
     def optional(self) -> Array:
         """
         Makes the value optional, when parsing with :func:`_find_and_parse`. Has no effect on
         :func:`parse`. Inverse of :func:`required`.
 
+        Warning:
+            This function has no effect if the value is parsed as a standalone value.
+
         Returns:
             Array: The updated instance of the class.
 
-        Example usage::
+        Example usage:
+            Lets assume we have the following schemas::
 
-            from parasite import p
+                from parasite import p
 
-            schema = p.obj({ "name": p.array() })
-            schema.parse({ "name": ["John", "Doe"] })  # -> { "name": ["John", "Doe"] }
-            schema.parse({ })  # -> ValidationError: key 'name' not found, but is required
+                schema = p.obj({ "name": p.array().optional() })
+                schema2 = p.obj({ "name": p.array() })
 
-            schema = p.obj({ "name": p.array().optional() })
-            schema.parse({ "name": ["John", "Doe"] })  # -> { "name": ["John", "Doe"] }
-            schema.parse({ })  # -> { }
+            The resulting schemas will parse the following objects::
+
+                >>> schema.parse({ "name": ["John", "Doe"] })
+                { "name": ["John", "Doe"] }
+                >>> schema.parse({ })
+                { }
+
+                >>> schema2.parse({ "name": ["John", "Doe"] })
+                { "name": ["John", "Doe"] }
+                >>> schema2.parse({ })
+                ValidationError: key 'name' not found, but is required
         """
         self._f_optional = True
         return self
@@ -84,71 +114,114 @@ class Array(ParasiteType[list[Any]]):
         Makes the value required, when parsing with :func:`_find_and_parse`. Has no effect on
         :func:`parse`. Inverse of :func:`optional`. Default behavior.
 
+        Note:
+            This function is default behavior for the class and therefore only has an effect if the
+            function :func:`optional` may have been called before.
+
+        Warning:
+            This function has no effect if the value is parsed as a standalone value.
+
         Returns:
             Array: The updated instance of the class.
 
-        Example usage::
+        Example usage:
+            Lets assume we have the following schemas::
 
-            from parasite import p
+                from parasite import p
 
-            schema = p.obj({ "name": p.array() })
-            schema.parse({ "name": ["John", "Doe"] })  # -> { "name": ["John", "Doe"] }
-            schema.parse({ })  # -> ValidationError: key 'name' not found, but is required
+                schema = p.obj({ "name": p.array().optional().required() })
+                schema2 = p.obj({ "name": p.array()})
 
-            schema = p.obj({ "name": p.array().required() })
-            schema.parse({ "name": ["John", "Doe"] })  # -> { "name": ["John", "Doe"] }
-            schema.parse({ })  # -> ValidationError: key 'name' not found, but is required
+            The resulting schemas will parse the following objects::
+
+                >>> schema.parse({ "name": ["John", "Doe"] })
+                { "name": ["John", "Doe"] }
+                >>> schema.parse({ })
+                ValidationError: key 'name' not found, but is required
+
+                >>> schema2.parse({ "name": ["John", "Doe"] })
+                { "name": ["John", "Doe"] }
+                >>> schema2.parse({ })
+                ValidationError: key 'name' not found, but is required
         """
         self._f_optional = False
         return self
 
     def nullable(self) -> Array:
         """
-        Set the value to be nullable.
+        Makes the value nullable, when parsing with :func:`_find_and_parse`. Has no effect on
+        :func:`parse`. Inverse of :func:`not_nullable`.
+
+        Warning:
+            This function has no effect if the value is parsed as a standalone value.
 
         Returns:
             Array: The updated instance of the class.
 
-        Example usage::
+        Example usage:
+            Lets assume we have the following schemas::
 
-            from parasite import p
+                from parasite import p
 
-            schema = p.obj({ "name": p.array() })
-            schema.parse({ "name": ["John", "Doe"] })  # -> { "name": ["John", "Doe"] }
-            schema.parse({ "name": None })  # -> ValidationError: key 'name' cannot be None
+                schema = p.obj({ "name": p.array().nullable()})
+                schema2 = p.obj({ "name": p.array() })
 
-            schema = p.obj({ "name": p.array().nullable() })
-            schema.parse({ "name": ["John", "Doe"] })  # -> { "name": ["John", "Doe"] }
-            schema.parse({ "name": None })  # -> { "name": None }
+            The resulting schemas will parse the following objects::
+
+                >>> schema.parse({ "name": ["John", "Doe"] })
+                { "name": ["John", "Doe"] }
+                >>> schema.parse({ "name": None })
+                { "name": None }
+
+                >>> schema2.parse({ "name": ["John", "Doe"] })
+                { "name": ["John", "Doe"] }
+                >>> schema2.parse({ "name": None })
+                ValidationError: key "name" is not nullable, but is None
         """
         self._f_nullable = True
         return self
 
-    def non_nullable(self) -> Array:
+    def not_nullable(self) -> Array:
         """
-        Set the value to be non-nullable.
+        Makes the value not-nullable, when parsing with :func:`_find_and_parse`. Has no effect on
+        :func:`parse`. Inverse of :func:`nullable`. Default behavior.
+
+        Note:
+            This function is default behavior for the class and therefore only has an effect if the
+            function :func:`nullable` may have been called before.
+
+        Warning:
+            This function has no effect if the value is parsed as a standalone value.
 
         Returns:
             Array: The updated instance of the class.
 
-        Example usage::
+        Example usage:
+            Lets assume we have the following schemas::
 
-            from parasite import p
+                from parasite import p
 
-            schema = p.obj({ "name": p.array() })
-            schema.parse({ "name": ["John", "Doe"] })  # -> { "name": ["John", "Doe"] }
-            schema.parse({ "name": None })  # -> ValidationError: key 'name' cannot be None
+                schema = p.obj({ "name": p.array().nullable().not_nullable() })
+                schema2 = p.obj({ "name": p.array() })
 
-            schema = p.obj({ "name": p.array().non_nullable() })
-            schema.parse({ "name": ["John", "Doe"] })  # -> { "name": ["John", "Doe"] }
-            schema.parse({ "name": None })  # -> ValidationError: key 'name' cannot be None
+            The resulting schemas will parse the following objects::
+
+                >>> schema.parse({ "name": ["John", "Doe"] })
+                { "name": ["John", "Doe"] }
+                >>> schema.parse({ "name": None })
+                ValidationError: key "name" is not nullable, but is None
+
+                >>> schema2.parse({ "name": ["John", "Doe"] })
+                { "name": ["John", "Doe"] }
+                >>> schema2.parse({ "name": None })
+                ValidationError: key "name" is not nullable, but is None
         """
         self._f_nullable = False
         return self
 
     def min(self, value: int) -> Array:
         """
-        Set the minimum length of the list.
+        Enforce the minimum length of the list.
 
         Args:
             value (int): The minimum length of the list.
@@ -156,20 +229,27 @@ class Array(ParasiteType[list[Any]]):
         Returns:
             Array: The updated instance of the class.
 
-        Example usage::
+        Example usage:
+            Lets assume we have the following schemas::
 
-            from parasite import p
+                from parasite import p
 
-            schema = p.array().min(2)
-            schema.parse(["John", "Doe"])  # -> ["John", "Doe"]
-            schema.parse(["John"])  # -> ValidationError: list has to have at least 2 elements, but has 1
+                schema = p.array().min(2)
+
+            The resulting schemas will parse the following objects::
+
+                >>> schema.parse(["John", "Doe"])
+                ["John", "Doe"]
+
+                >>> schema.parse(["John"])
+                ValidationError: list has to have at least 2 elements, but has 1
         """
         self._m_ll = value
         return self
 
     def max(self, value: int) -> Array:
         """
-        Set the maximum length of the list.
+        Enforce the maximum length of the list.
 
         Args:
             value (int): The maximum length of the list.
@@ -177,54 +257,76 @@ class Array(ParasiteType[list[Any]]):
         Returns:
             Array: The updated instance of the class.
 
-        Example usage::
+        Example usage:
+            Lets assume we have the following schemas::
 
-            from parasite import p
+                from parasite import p
 
-            schema = p.array().max(2)
-            schema.parse(["John", "Doe"])  # -> ["John", "Doe"]
-            schema.parse(["John", "Doe", "Smith"])  # -> ValidationError: list has to have at most 2 elements, but has 3
+                schema = p.array().max(2)
+
+            The resulting schemas will parse the following objects::
+
+                >>> schema.parse(["John", "Doe"])
+                ["John", "Doe"]
+
+                >>> schema.parse(["John", "Doe", "Smith"])
+                ValidationError: list has to have at most 2 elements, but has 3
         """
         self._m_ul = value
         return self
 
     def not_empty(self) -> Array:
         """
-        Set the list to not be empty.
+        Enforce the list to not be empty. Equivalent to calling ``min(1)``.
 
         Returns:
             Array: The updated instance of the class.
 
-        Example usage::
+        Example usage:
+            Lets assume we have the following schemas::
 
-            from parasite import p
+                from parasite import p
 
-            schema = p.array().not_empty()
-            schema.parse(["John", "Doe"])  # -> ["John", "Doe"]
-            schema.parse([])  # -> ValidationError: list has to have at least 1 elements, but has 0
+                schema = p.array().not_empty()
+
+            The resulting schemas will parse the following objects::
+
+                >>> schema.parse(["John", "Doe"])
+                ["John", "Doe"]
+
+                >>> schema.parse([ ])
+                ValidationError: list has to have at least 1 elements, but has 0
         """
         return self.min(1)
 
     def empty(self) -> Array:
         """
-        Set the list to be empty.
+        Enforce the list to be empty. Equivalent to calling ``max(0)``.
 
         Returns:
             Array: The updated instance of the class.
 
-        Example usage::
+        Example usage:
+            Lets assume we have the following schemas::
 
-            from parasite import p
+                from parasite import p
 
-            schema = p.array().empty()
-            schema.parse([])  # -> []
-            schema.parse(["John", "Doe"])  # -> ValidationError: list has to have at most 0 elements, but has 2
+                schema = p.array().empty()
+
+            The resulting schemas will parse the following objects::
+
+                >>> schema.parse([ ])
+                [ ]
+
+                >>> schema.parse(["John", "Doe"])
+                ValidationError: list has to have at most 0 elements, but has 2
         """
         return self.max(0)
 
     def length(self, value: int) -> Array:
         """
-        Set the length of the list.
+        Enforce the list to have exactly the given length. Equivalent to calling
+        ``min(value).max(value)``.
 
         Args:
             value (int): The length of the list.
@@ -232,19 +334,32 @@ class Array(ParasiteType[list[Any]]):
         Returns:
             Array: The updated instance of the class.
 
-        Example usage::
+        Example usage:
+            Lets assume we have the following schemas::
 
-            from parasite import p
+                from parasite import p
 
-            schema = p.array().length(2)
-            schema.parse(["John", "Doe"])  # -> ["John", "Doe"]
-            schema.parse(["John", "Doe", "Smith"])  # -> ValidationError: list has to have exactly 2 elements, but has 3
+                schema = p.array().length(2)
+
+            The resulting schemas will parse the following objects::
+
+                >>> schema.parse(["John", "Doe"])
+                ["John", "Doe"]
+
+                >>> schema.parse(["John", "Doe", "Smith"])
+                ValidationError: list has to have exactly 2 elements, but has 3
+
+                >>> schema.parse(["John"])
+                ValidationError: list has to have exactly 2 elements, but has 1
         """
         return self.min(value).max(value)
 
     def element(self, element: ParasiteType) -> Array:
         """
-        Set the element type of the list.
+        Set the ParsiteType schema of the elements in the list. Can also be set in the constructor.
+        Note:
+            If not set, the list will skip parsing the elements, and therefore accept any type of
+            object or value.
 
         Args:
             element (ParasiteType[T]): The element type of the list.
@@ -252,13 +367,20 @@ class Array(ParasiteType[list[Any]]):
         Returns:
             Array: The updated instance of the class.
 
-        Example usage::
+        Example usage:
+            Lets assume we have the following schemas::
 
-            from parasite import p
+                from parasite import p
 
-            schema = p.array().element(p.string())
-            schema.parse(["John", "Doe"])  # -> ["John", "Doe"]
-            schema.parse(["John", 1])  # -> ValidationError: element at index 1 is invalid: object has to be a string, but is 1
+                schema = p.array().element(p.string())
+
+            The resulting schemas will parse the following objects::
+
+                >>> schema.parse(["John", "Doe"])
+                ["John", "Doe"]
+
+                >>> schema.parse(["John", 1])
+                ValidationError: element at index 1 is invalid: object has to be a string, but is 1
         """
         self._m_element = element
         return self
@@ -306,7 +428,7 @@ class Array(ParasiteType[list[Any]]):
             if self._f_nullable:
                 return Some(None)
 
-            raise ValidationError(f"key '{key}' cannot be None")
+            raise ValidationError(f"key '{key}' is not nullable, but is None")
 
         # if key is not found, return Nil if optional, else raise an error
         if self._f_optional:

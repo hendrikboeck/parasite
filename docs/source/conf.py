@@ -14,7 +14,7 @@ sys.path.insert(0, os.path.abspath('../src'))
 project = 'Parasite'
 copyright = f'2024-{datetime.date.today().year}, Hendrik Boeck <hendrikboeck.dev@protonmail.com>'
 author = 'Hendrik Boeck <hendrikboeck.dev@protonmail.com>'
-release = 'v0.1.6'
+release = 'v0.1.7'
 html_title = f"{project} {release}"
 
 # -- General configuration ---------------------------------------------------
@@ -24,12 +24,23 @@ extensions = [
     "sphinx.ext.autodoc",
     "sphinx.ext.viewcode",
     "sphinx.ext.napoleon",
+    "sphinx.ext.inheritance_diagram",
+    "sphinx.ext.graphviz",
+    "sphinx.ext.intersphinx",
+   # 'sphinxcontrib.plantuml',
     'qiskit_sphinx_theme',
 ]
+# plantuml = "plantuml"
 
+intersphinx_mapping = {
+    'python': ('https://docs.python.org/3', None),
+    'qiskit': ('https://qiskit.org/documentation/', None),
+    'rusttypes': ('https://hendrikboeck.github.io/rusttypes-py3/', None),
+}
 templates_path = ['_templates']
 exclude_patterns = []
 
+graphviz_output_format = 'svg'
 pygments_style = "emacs"
 pygments_dark_style = "one-dark"
 

@@ -1,4 +1,3 @@
-from uuid import uuid4
 from rusttypes.option import Nil, Some
 from rusttypes.result import Ok
 from parasite import p
@@ -38,10 +37,10 @@ def test_string_nullable() -> None:
     assert p.string().nullable()._find_and_parse_safe({"key": "value"}, "key") == Ok(Some("value"))
     assert p.string().nullable()._find_and_parse_safe({"key": None}, "key") == Ok(Some(None))
 
-    assert p.string().non_nullable()._find_and_parse_safe({}, "key").is_err()
-    assert p.string().non_nullable()._find_and_parse_safe({"key": "value"},
+    assert p.string().not_nullable()._find_and_parse_safe({}, "key").is_err()
+    assert p.string().not_nullable()._find_and_parse_safe({"key": "value"},
                                                           "key") == Ok(Some("value"))
-    assert p.string().non_nullable()._find_and_parse_safe({"key": None}, "key").is_err()
+    assert p.string().not_nullable()._find_and_parse_safe({"key": None}, "key").is_err()
 
 
 def test_string_trim() -> None:

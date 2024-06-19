@@ -30,6 +30,15 @@ class Boolean(ParasiteType[bool]):
             from parasite import p
             schema = p.boolean()
             ...
+
+    Warning:
+        When using the leaniant mode (see :func:`leaniant`), the regular expressions are
+        case-insensitive. This means that you only need to handle lowercase variations of your
+        regex. This also means that the regex can only handle case-insensitive cases.
+
+    Inheritance:
+        .. inheritance-diagram:: parasite.boolean.Boolean
+            :parts: 1
     """
     _f_optional: bool = False   # Whether the value is optional.
     _f_nullable: bool = False   # Whether the value can be None.
@@ -111,7 +120,7 @@ class Boolean(ParasiteType[bool]):
         self._f_nullable = True
         return self
 
-    def non_nullable(self) -> Boolean:
+    def not_nullable(self) -> Boolean:
         """
         Set the value to be not nullable.
 
@@ -126,7 +135,7 @@ class Boolean(ParasiteType[bool]):
             schema.parse({ "name": True })  # -> { "name": True }
             schema.parse({ "name": None })  # -> ValidationError: key 'name' cannot be None
 
-            schema = p.obj({ "name": p.boolean().non_nullable() })
+            schema = p.obj({ "name": p.boolean().not_nullable() })
             schema.parse({ "name": True })  # -> { "name": True }
             schema.parse({ "name": None })  # -> ValidationError: key 'name' cannot be None
         """
@@ -160,7 +169,16 @@ class Boolean(ParasiteType[bool]):
 
     def leaniant(self, re_true: Optional[str] = None, re_false: Optional[str] = None) -> Boolean:
         """
-        Set the value to be leaniant. This allows the value to be read from a string or a number.
+        Set the value to be leaniant. This allows the value to be read from a string or a number. As
+        numbers only ``0`` (converts to: ``False``) and ``1`` (converts to: ``True``) are accepted.
+
+        Note:
+            All string input in leaniant mode is converted to lowercase before, so you only need to
+            handle lowercase variations of your regex. By default the following regular expressions
+            are used::
+
+                re_true = r"^(true|1|yes|y)$"
+                re_false = r"^(false|0|no|n)$"
 
         Args:
             re_true (Optional[str]): The regular expression for the true value. Default: None
@@ -169,19 +187,31 @@ class Boolean(ParasiteType[bool]):
         Returns:
             Boolean: The updated instance of the class.
 
-        Example usage::
+        Example usage:
+            Lets assume we have the following schemas::
 
-            from parasite import p
+                from parasite import p
 
-            schema = p.boolean()
-            schema.parse(True)  # -> True
-            schema.parse("true")  # -> ValidationError: object has to be a boolean, but is 'true'
-            schema.parse(1)  # -> ValidationError: object has to be a boolean, but is '1'
+                schema = p.boolean().leaniant()
+                schema2 = p.boolean()
 
-            schema = p.boolean().leaniant()
-            schema.parse("true")  # -> True
-            schema.parse("false")  # -> False
-            schema.parse(1)  # -> True
+            The resulting schemas will parse the following objects::
+
+                >>> schema.parse(True)
+                True
+                >>> schema.parse("true")
+                True
+                >>> schema.parse("false")
+                False
+                >>> schema.parse(1)
+                True
+
+                >>> schema2.parse(True)
+                True
+                >>> schema2.parse("true")
+                ValidationError: object has to be a boolean, but is 'true'
+                >>> schema2.parse(1)
+                ValidationError: object has to be a boolean, but is '1'
         """
         self._f_leaniant = True
 

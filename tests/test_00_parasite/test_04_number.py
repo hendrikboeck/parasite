@@ -41,10 +41,10 @@ def test_number_nullable() -> None:
     assert p.number().nullable()._find_and_parse_safe({"key": 1.0}, "key") == Ok(Some(1.0))
     assert p.number().nullable()._find_and_parse_safe({"key": None}, "key") == Ok(Some(None))
 
-    assert p.number().non_nullable()._find_and_parse_safe({}, "key").is_err()
-    assert p.number().non_nullable()._find_and_parse_safe({"key": 1}, "key") == Ok(Some(1))
-    assert p.number().non_nullable()._find_and_parse_safe({"key": 1.0}, "key") == Ok(Some(1.0))
-    assert p.number().non_nullable()._find_and_parse_safe({"key": None}, "key").is_err()
+    assert p.number().not_nullable()._find_and_parse_safe({}, "key").is_err()
+    assert p.number().not_nullable()._find_and_parse_safe({"key": 1}, "key") == Ok(Some(1))
+    assert p.number().not_nullable()._find_and_parse_safe({"key": 1.0}, "key") == Ok(Some(1.0))
+    assert p.number().not_nullable()._find_and_parse_safe({"key": None}, "key").is_err()
 
 
 def test_number_integer() -> None:

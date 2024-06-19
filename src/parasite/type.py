@@ -53,7 +53,7 @@ class ParasiteType(ABC, Generic[T]):
     def _find_and_parse(self, parent: dict[K, Any], key: K) -> Option[T | None]:
         """
         Default method for finding and parsing a value from a dictionary. This method should be
-        overridden by subclasses. If the key is not found, the method should return ``Nil``.
+        overridden by subclasses. If the key is not found, the method should return :class:`Nil`.
 
         Throws:
             ValidationError: if the value could not be parsed or was invalid
@@ -69,8 +69,8 @@ class ParasiteType(ABC, Generic[T]):
 
     def parse_safe(self, obj: Any) -> Result[T, ValidationError]:
         """
-        Converts the result of :func:`parse` into a ``Result`` type. Should be used when safe
-        parsing is required.
+        Converts the result of :func:`parse` into a :class:`rusttypes.result.Result` type. Should be
+        used when safe parsing is required.
 
         Note:
             Will only catch :class:`parasite.errors.ValidationError` exceptions!!!

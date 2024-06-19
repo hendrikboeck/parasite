@@ -37,9 +37,9 @@ def test_boolean_nullable() -> None:
     assert p.boolean().nullable()._find_and_parse_safe({"key": True}, "key") == Ok(Some(True))
     assert p.boolean().nullable()._find_and_parse_safe({"key": None}, "key") == Ok(Some(None))
 
-    assert p.boolean().non_nullable()._find_and_parse_safe({}, "key").is_err()
-    assert p.boolean().non_nullable()._find_and_parse_safe({"key": True}, "key") == Ok(Some(True))
-    assert p.boolean().non_nullable()._find_and_parse_safe({"key": None}, "key").is_err()
+    assert p.boolean().not_nullable()._find_and_parse_safe({}, "key").is_err()
+    assert p.boolean().not_nullable()._find_and_parse_safe({"key": True}, "key") == Ok(Some(True))
+    assert p.boolean().not_nullable()._find_and_parse_safe({"key": None}, "key").is_err()
 
 
 def test_boolean_leaniant() -> None:

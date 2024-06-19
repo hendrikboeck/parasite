@@ -55,9 +55,9 @@ def test_array_nullable() -> None:
     assert p.array().nullable()._find_and_parse_safe({"key": []}, "key") == Ok(Some([]))
     assert p.array().nullable()._find_and_parse_safe({"key": None}, "key") == Ok(Some(None))
 
-    assert p.array().non_nullable()._find_and_parse_safe({}, "key").is_err()
-    assert p.array().non_nullable()._find_and_parse_safe({"key": []}, "key") == Ok(Some([]))
-    assert p.array().non_nullable()._find_and_parse_safe({"key": None}, "key").is_err()
+    assert p.array().not_nullable()._find_and_parse_safe({}, "key").is_err()
+    assert p.array().not_nullable()._find_and_parse_safe({"key": []}, "key") == Ok(Some([]))
+    assert p.array().not_nullable()._find_and_parse_safe({"key": None}, "key").is_err()
 
 
 def test_array_min() -> None:

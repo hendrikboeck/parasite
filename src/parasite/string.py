@@ -106,7 +106,7 @@ class String(ParasiteType[str]):
     def nullable(self) -> String:
         """
         Makes the value nullable, when parsing with ``_find_and_parse(..)``. Has no effect on
-        ``parse(..)``. Inverse of ``non_nullable(..)``.
+        ``parse(..)``. Inverse of ``not_nullable(..)``.
 
         Returns:
             String: modified instance
@@ -114,9 +114,9 @@ class String(ParasiteType[str]):
         self._f_nullable = True
         return self
 
-    def non_nullable(self) -> String:
+    def not_nullable(self) -> String:
         """
-        Makes the value non-nullable, when parsing with ``_find_and_parse(..)``. Has no effect on
+        Makes the value not-nullable, when parsing with ``_find_and_parse(..)``. Has no effect on
         ``parse(..)``. Inverse of ``nullable(..)``. Default behavior.
 
         Returns:
@@ -207,7 +207,7 @@ class String(ParasiteType[str]):
 
     def not_empty(self) -> String:
         """
-        Sets the lower limit for the value. The value has to be non-empty.
+        Sets the lower limit for the value. The value has to be not-empty.
 
         Returns:
             String: modified instance

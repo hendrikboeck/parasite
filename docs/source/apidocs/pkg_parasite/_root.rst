@@ -9,4 +9,4 @@ Member Reference
     :members:
     :inherited-members:
     :undoc-members:
-    :show-inheritance:
+    :private-members: parasite._Namespace

@@ -147,7 +147,8 @@ class Object(ParasiteType[dict[Any, Any]]):
 
     def nullable(self) -> Object:
         """
-        Set the value to be nullable.
+        Makes the value nullable, when parsing with :func:`_find_and_parse`. Has no effect on
+        :func:`parse`. Inverse of :func:`not_nullable`.
 
         Warning:
             This function has no effect if the value is parsed as a standalone value.
@@ -173,17 +174,15 @@ class Object(ParasiteType[dict[Any, Any]]):
                 >>> schema2.parse({ "sub": { } })
                 { "sub": { } }
                 >>> schema2.parse({ "sub": None })
-                ValidationError: object has to be a dictionary, but is 'None'
-
-
+                ValidationError: key "sub" is not nullable, but is None
         """
         self._f_nullable = True
         return self
 
-    def non_nullable(self) -> Object:
+    def not_nullable(self) -> Object:
         """
-        Set the value to be non-nullable. This function only has an effect if the value is parsed
-        inside a dictionary.
+        Makes the value not-nullable, when parsing with :func:`_find_and_parse`. Has no effect on
+        :func:`parse`. Inverse of :func:`nullable`. Default behavior.
 
         Note:
             This function is default behavior for the class and therefore only has an effect if the
@@ -200,7 +199,7 @@ class Object(ParasiteType[dict[Any, Any]]):
 
                 from parasite import p
 
-                schema = p.obj({ "sub": p.obj().nullable().non_nullable() })
+                schema = p.obj({ "sub": p.obj().nullable().not_nullable() })
                 schema2 = p.obj({ "sub": p.obj() })
 
             The resulting schemas will parse the following objects::
@@ -208,12 +207,12 @@ class Object(ParasiteType[dict[Any, Any]]):
                 >>> schema.parse({ "sub": { } })
                 { "sub": { } }
                 >>> schema.parse({ "sub": None })
-                ValidationError: object has to be a dictionary, but is 'None'
+                ValidationError: key "sub" is not nullable, but is None
 
                 >>> schema2.parse({ "sub": { } })
                 { "sub": { } }
                 >>> schema2.parse({ "sub": None })
-                ValidationError: object has to be a dictionary, but is 'None'
+                ValidationError: key "sub" is not nullable, but is None
         """
         self._f_nullable = False
         return self
@@ -602,6 +601,8 @@ class Object(ParasiteType[dict[Any, Any]]):
             # If value is None, check if the value is nullable.
             if self._f_nullable:
                 return Some(None)
+
+            raise ValidationError(f"key {key!r} is not nullable, but is None")
 
         # If the value is optional, return a Nil.
         if self._f_optional:

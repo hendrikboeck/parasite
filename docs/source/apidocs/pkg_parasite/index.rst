@@ -21,3 +21,4 @@ Modules
    boolean
    never
    object
+   variant

@@ -68,11 +68,11 @@ def test_variant_nullable() -> None:
     assert v.nullable()._find_and_parse_safe({"key": "value"}, "key") == Ok(Some("value"))
     assert v.nullable()._find_and_parse_safe({"key": None}, "key") == Ok(Some(None))
 
-    assert v.non_nullable()._find_and_parse_safe({}, "key").is_err()
-    assert v.non_nullable()._find_and_parse_safe({"key": 1}, "key") == Ok(Some(1))
-    assert v.non_nullable()._find_and_parse_safe({"key": 1.0}, "key") == Ok(Some(1.0))
-    assert v.non_nullable()._find_and_parse_safe({"key": "value"}, "key") == Ok(Some("value"))
-    assert v.non_nullable()._find_and_parse_safe({"key": None}, "key").is_err()
+    assert v.not_nullable()._find_and_parse_safe({}, "key").is_err()
+    assert v.not_nullable()._find_and_parse_safe({"key": 1}, "key") == Ok(Some(1))
+    assert v.not_nullable()._find_and_parse_safe({"key": 1.0}, "key") == Ok(Some(1.0))
+    assert v.not_nullable()._find_and_parse_safe({"key": "value"}, "key") == Ok(Some("value"))
+    assert v.not_nullable()._find_and_parse_safe({"key": None}, "key").is_err()
 
 
 def test_variant_rm_variant() -> None:
