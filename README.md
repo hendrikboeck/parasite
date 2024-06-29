@@ -3,6 +3,7 @@
 [![Forks][forks-shield]][forks-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
+[![check-code-coverage][coverage-shield]](#code-coverage)
 
 
 <br />
@@ -36,6 +37,7 @@
   - [Installing](#installing)
   - [Example usage](#example-usage)
 - [Documentation](#documentation)
+- [Code Coverage](#code-coverage)
 - [License (_MIT License_)](#license-mit-license)
 
 ## Why?
@@ -104,6 +106,32 @@ schema.parse({})   # ValidationError: Missing required key: "name"
 >
 > You can find the sphinx online documentation [here](https://hendrikboeck.github.io/parasite)!
 
+## Code Coverage
+
+
+
+```
+---------- coverage: platform linux, python 3.11.9-final-0 -----------
+Name                       Stmts   Miss  Cover
+----------------------------------------------
+src/parasite/__init__.py      22      0   100%
+src/parasite/_const.py        17      0   100%
+src/parasite/any.py           27      0   100%
+src/parasite/array.py         70      0   100%
+src/parasite/boolean.py       72      0   100%
+src/parasite/errors.py         1      0   100%
+src/parasite/never.py         18      0   100%
+src/parasite/null.py          29      0   100%
+src/parasite/number.py       105      0   100%
+src/parasite/object.py        93      0   100%
+src/parasite/string.py       207      0   100%
+src/parasite/type.py          29      0   100%
+src/parasite/variant.py       61      0   100%
+----------------------------------------------
+TOTAL                        751      0   100%
+```
+
+
 ## License (_MIT License_)
 
 Copyright (c) 2024, Hendrik Böck <<hendrikboeck.dev@protonmail.com>>
@@ -135,3 +163,4 @@ SOFTWARE.
 [contributors-shield]: https://img.shields.io/github/contributors/hendrikboeck/parasite?style=for-the-badge
 [contributors-url]: https://github.com/hendrikboeck/parasite/contributors
 [stars-shield]: https://img.shields.io/github/stars/hendrikboeck/parasite?style=for-the-badge
+[coverage-shield]: https://img.shields.io/badge/code--coverage-100%-brightgreen?style=for-the-badge
