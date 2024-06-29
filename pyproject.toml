@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "parasite"
-version = "0.1.8"
+version = "0.1.9"
 description = "Data validation for Python 3"
 authors = ["Hendrik Boeck <hendrikboeck.dev@protonmail.com>"]
 packages = [{ include = "*", from = "src" }]
