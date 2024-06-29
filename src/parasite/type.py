@@ -48,7 +48,6 @@ class ParasiteType(ABC, Generic[T]):
         Returns:
             T: parsed destination value
         """
-        raise NotImplementedError
 
     @abstractmethod
     def _find_and_parse(self, parent: dict[K, Any], key: K) -> Option[T | None]:
@@ -66,7 +65,6 @@ class ParasiteType(ABC, Generic[T]):
         Returns:
             Option[T]: parsed destination value or ``Nil``
         """
-        raise NotImplementedError
 
     def parse_safe(self, obj: Any) -> Result[T, ValidationError]:
         """

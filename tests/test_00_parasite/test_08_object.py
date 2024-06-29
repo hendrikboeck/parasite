@@ -1,6 +1,8 @@
+import pytest
 from rusttypes.option import Nil, Some
 from rusttypes.result import Ok
 from parasite import p
+from parasite.errors import ValidationError
 
 
 def test_object_default() -> None:
@@ -110,6 +112,10 @@ def test_object_extend() -> None:
     assert o1._m_items == {"key": p.number()}
     assert o2._m_items == {"key": p.number()}
 
+    with pytest.raises(ValidationError):
+        o1 = p.obj({"key": p.variant([p.string(), p.number()])})
+        o1.extend(p.null())
+
 
 def test_object_merge() -> None:
     o1 = p.obj({"key": p.string()})
@@ -140,6 +146,13 @@ def test_object_merge() -> None:
     assert o1._m_items == {"key": p.obj({"key": p.string(), "key2": p.string()})}
     assert o2._m_items == {"key": p.obj({"key2": p.string()})}
 
+    o1 = p.obj({"key": p.variant([p.string(), p.number()])})
+    o2 = p.obj({"key": p.variant([p.boolean(), p.null()])})
+
+    o1.merge(o2)
+    assert o1._m_items == {"key": p.variant([p.string(), p.number(), p.boolean(), p.null()])}
+    assert o2._m_items == {"key": p.variant([p.boolean(), p.null()])}
+
 
 def test_object_pick() -> None:
     assert p.obj({"key": p.string(), "key2": p.string()}).pick(["key"]) == p.obj(
@@ -150,11 +163,8 @@ def test_object_pick() -> None:
         {"key": p.string()}
     )
 
-    try:
+    with pytest.raises(KeyError):
         p.obj({"key": p.string(), "key2": p.string()}).pick(["key3"])
-        assert False
-    except KeyError:
-        assert True
 
     assert p.obj({"key": p.string(), "key2": p.string()}).pick_safe(["key3"]) == p.obj({})
 

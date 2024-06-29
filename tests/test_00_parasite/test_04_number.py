@@ -52,6 +52,11 @@ def test_number_integer() -> None:
     assert p.number().integer().parse_safe(1.0).is_err()
 
 
+def test_number_float() -> None:
+    assert p.number().float().parse_safe(1) == Ok(1.0)
+    assert p.number().float().parse_safe(1.0) == Ok(1.0)
+
+
 def test_number_gt() -> None:
     assert p.number().gt(1).parse_safe(2) == Ok(2)
     assert p.number().gt(1).parse_safe(1).is_err()

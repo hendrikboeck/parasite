@@ -5,7 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 import math
 import re
-from typing import Any, Optional, TypeVar
+from typing import Any, TypeVar
 
 # -- Library Imports --
 from rusttypes.option import Nil, Option, Some
@@ -170,7 +170,7 @@ class Boolean(ParasiteType[bool]):
         self._m_literal = value
         return self
 
-    def leaniant(self, re_true: Optional[str] = None, re_false: Optional[str] = None) -> Boolean:
+    def leaniant(self, re_true: str | None = None, re_false: str | None = None) -> Boolean:
         """
         Set the value to be leaniant. This allows the value to be read from a string or a number. As
         numbers only ``0`` (converts to: ``False``) and ``1`` (converts to: ``True``) are accepted.
@@ -248,7 +248,7 @@ class Boolean(ParasiteType[bool]):
                 )
 
         # if obj is a number, try to convert it to a boolean
-        elif isinstance(obj, (int, float)) and self._f_leaniant:
+        elif isinstance(obj, int | float) and self._f_leaniant:
             # first check if the number is an actual number
             if math.isnan(obj):
                 obj = False

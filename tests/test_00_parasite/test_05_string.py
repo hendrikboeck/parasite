@@ -1,3 +1,4 @@
+import re
 from rusttypes.option import Nil, Some
 from rusttypes.result import Ok
 from parasite import p
@@ -182,3 +183,23 @@ def test_string_ipv6() -> None:
         .is_err()
     )
     assert p.string().ipv6().parse_safe("hello").is_err()
+
+
+def test_string_regex() -> None:
+    rex = re.compile(r"^[0-9]+$")
+
+    assert p.string().regex(rex).parse_safe("123456") == Ok("123456")
+    assert p.string().regex(rex).parse_safe("hello").is_err()
+
+    s1 = p.string().regex(rex)
+    s1._m_regex = None
+    assert s1.parse_safe("123456").is_err()
+
+    s2 = p.string()
+    s2._m_regex_t = None
+    assert s2.parse_safe("123456") == Ok("123456")
+
+
+def test_string_match() -> None:
+    assert p.string().match(r"^[0-9]+$").parse_safe("123456") == Ok("123456")
+    assert p.string().match(r"^[0-9]+$").parse_safe("hello").is_err()

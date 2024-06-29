@@ -3,7 +3,7 @@ from __future__ import annotations
 
 # -- STL Imports --
 from dataclasses import dataclass
-from typing import Any, TypeAlias, TypeVar
+from typing import Any, TypeVar
 
 # -- Library Imports --
 from rusttypes.option import Nil, Option, Some
@@ -15,7 +15,7 @@ from parasite.type import ParasiteType, _NotFound
 K = TypeVar("K")
 """Template type for the key in a dictionary."""
 
-Numerical: TypeAlias = int | float
+Numerical = int | float
 
 
 @dataclass

@@ -29,5 +29,3 @@ class ValidationError(Exception):
                 print(e)
                 # key "name" not found, but is required
     """
-
-    pass

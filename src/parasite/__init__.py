@@ -1,6 +1,3 @@
-# -- STL Imports --
-from typing import TypeAlias
-
 # -- Package Imports --
 from parasite.any import Any_
 from parasite.array import Array
@@ -73,12 +70,12 @@ class p(Namespace):
             ValidationError: key "name" not found, but is required
     """
 
-    any: TypeAlias = Any_
-    null: TypeAlias = Null
-    number: TypeAlias = Number
-    string: TypeAlias = String
-    boolean: TypeAlias = Boolean
-    never: TypeAlias = Never
-    variant: TypeAlias = Variant
-    obj: TypeAlias = Object
-    array: TypeAlias = Array
+    any = Any_
+    null = Null
+    number = Number
+    string = String
+    boolean = Boolean
+    never = Never
+    variant = Variant
+    obj = Object
+    array = Array

@@ -3,7 +3,8 @@ from __future__ import annotations
 
 # -- STL Imports --
 from dataclasses import dataclass, field
-from typing import Any, Iterable, TypeVar
+from typing import Any, TypeVar
+from collections.abc import Iterable
 
 # -- Library Imports --
 from rusttypes.option import Nil, Option, Some
@@ -36,7 +37,7 @@ class Variant(ParasiteType[Any]):
     _f_optional: bool = False  # Whether the value is optional.
     _f_nullable: bool = False  # Whether the value can be None.
 
-    def __init__(self, variants: Iterable[ParasiteType] = []):
+    def __init__(self, variants: Iterable[ParasiteType] | None = None):
         """
         Args:
             variants (Iterable[ParasiteType], optional): The variants of the variant. Default: [].
@@ -66,7 +67,7 @@ class Variant(ParasiteType[Any]):
                 ValidationError: object has to be one of [], but is "42"
 
         """
-        self._m_variants = list(variants)
+        self._m_variants = list(variants or [])
 
     def optional(self) -> Variant:
         """
@@ -351,8 +352,9 @@ class Variant(ParasiteType[Any]):
             Result[Variant, ValueError]: The updated instance of the class or an error
 
         Example usage:
-            You can remove a variant from the variant by calling the :func:`rm_variant_safe` function.
-            The following example shows how to remove a string variant from a variant schema::
+            You can remove a variant from the variant by calling the :func:`rm_variant_safe`
+            function. The following example shows how to remove a string variant from a variant
+            schema::
 
                 from parasite import p
 

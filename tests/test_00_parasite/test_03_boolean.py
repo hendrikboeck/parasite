@@ -60,6 +60,10 @@ def test_boolean_leaniant() -> None:
     assert p.boolean().leaniant().parse_safe(float("nan")) == Ok(False)
     assert p.boolean().leaniant().parse_safe(False) == Ok(False)
 
+    assert p.boolean().leaniant().parse_safe(2).is_err()
+    assert p.boolean().leaniant().parse_safe(2.0).is_err()
+    assert p.boolean().leaniant().parse_safe("hello").is_err()
+
     re_true = r"^foo$"
     re_false = r"^bar$"
     assert p.boolean().leaniant(re_true, re_false).parse_safe("foo") == Ok(True)

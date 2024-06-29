@@ -53,7 +53,7 @@ class Object(ParasiteType[dict[Any, Any]]):
     # Whether the dictionary should be stripped of all keys that are not in the dictionary.
     _f_strip: bool = False
 
-    def __init__(self, items: dict[Any, ParasiteType] = {}) -> None:
+    def __init__(self, items: dict[Any, ParasiteType] | None = None) -> None:
         """
         Args:
             items (dict[K, ParasiteType]): The schema of subitems of the dictionary. Default: {}.
@@ -83,7 +83,7 @@ class Object(ParasiteType[dict[Any, Any]]):
                 >>> schema2.parse({ "name": "John" })
                 { "name": "John" }
         """
-        self._m_items = items
+        self._m_items = items or {}
 
     def optional(self) -> Object:
         """
@@ -342,7 +342,7 @@ class Object(ParasiteType[dict[Any, Any]]):
         the value of the current dictionary will not be overwritten, but the values will be merged.
         This results in the following behavior:
 
-        - If both values are objects, they will be merged into a single dictionary with :func:`merge`.
+        - If both values are objects, they will be merged (:func:`merge`) into a single dictionary.
         - If both values are variants, they will be merged into a single variant.
         - If one value is a variant and the other is not, the value will be added to the variant.
         - If both values are something else, they will be merged into a new variant.
@@ -589,17 +589,17 @@ class Object(ParasiteType[dict[Any, Any]]):
 
         # If the dictionary should be strict, check if all keys are allowed.
         if self._f_strict:
-            for key in obj.keys():
+            for key in obj:
                 if key not in self._m_items:
                     raise ValidationError(f"object has the key {key!r}, but is not allowed to")
 
         # If the dictionary should be stripped, strip it.
         if self._f_strip:
-            obj = {key: value for key, value in obj.items() if key in self._m_items.keys()}
+            obj = {key: value for key, value in obj.items() if key in self._m_items}
 
         # Parse the dictionary.
         for key, item in self._m_items.items():
-            item._find_and_parse(obj, key).map(lambda x: obj.update({key: x}))
+            item._find_and_parse(obj, key).map(lambda x, k=key: obj.update({k: x}))
 
         return obj
 
