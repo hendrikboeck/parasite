@@ -386,16 +386,16 @@ class Object(ParasiteType[dict[Any, Any]]):
             if key in self._m_items:
                 # if both src and dest are objects, merge them
                 if isinstance(value, Object) and isinstance(self._m_items[key], Object):
-                    self._m_items[key].merge(value)
+                    self._m_items[key].merge(value)  # type: ignore
 
                 # if both src and dest are arrays, merge them
                 elif isinstance(value, Variant) and isinstance(self._m_items[key], Variant):
                     for variant in value._m_variants:
-                        self._m_items[key].add_variant(variant)
+                        self._m_items[key].add_variant(variant)  # type: ignore
 
                 # if dest is already a variant, add the value to it
                 elif isinstance(self._m_items[key], Variant):
-                    self._m_items[key].add_variant(value)
+                    self._m_items[key].add_variant(value)  # type: ignore
 
                 # else, create a new variant and add both values
                 else:
