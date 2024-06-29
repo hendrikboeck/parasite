@@ -1,0 +1,59 @@
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" xmlns:ns1="http://www.w3.org/1999/xlink" width="266pt" height="64pt" viewBox="0.00 0.00 266.00 64.00">
+<ns0:g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 60)">
+<ns0:title>inheritance9162650a61</ns0:title>
+
+<ns0:g id="node1" class="node">
+<ns0:title>ABC</ns0:title>
+<ns0:g id="a_node1"><ns0:a ns1:href="https://docs.python.org/3/library/abc.html#abc.ABC" ns1:title="Helper class that provides a standard way to create an ABC using" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="54,-56 0,-56 0,-37 54,-37 54,-56" />
+<ns0:text text-anchor="middle" x="27" y="-44" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">ABC</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node3" class="node">
+<ns0:title>ParasiteType</ns0:title>
+<ns0:g id="a_node3"><ns0:a ns1:title="Abstract base class for parasite types. Parasite types are used to parse and validate values">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="168,-37 90,-37 90,-18 168,-18 168,-37" />
+<ns0:text text-anchor="middle" x="129" y="-25" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">ParasiteType</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge1" class="edge">
+<ns0:title>ABC-&gt;ParasiteType</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M54.01,-41.56C63.36,-39.78 74.18,-37.73 84.6,-35.75" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="85.1,-37.43 89.68,-34.78 84.44,-33.99 85.1,-37.43" />
+</ns0:g>
+
+<ns0:g id="node2" class="node">
+<ns0:title>Generic</ns0:title>
+<ns0:g id="a_node2"><ns0:a ns1:href="https://docs.python.org/3/library/typing.html#typing.Generic" ns1:title="Abstract base class for generic types." target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="54,-19 0,-19 0,0 54,0 54,-19" />
+<ns0:text text-anchor="middle" x="27" y="-7" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">Generic</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge2" class="edge">
+<ns0:title>Generic-&gt;ParasiteType</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M54.01,-14.18C63.36,-15.87 74.18,-17.81 84.6,-19.69" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="84.45,-21.44 89.68,-20.6 85.07,-17.99 84.45,-21.44" />
+</ns0:g>
+
+<ns0:g id="node4" class="node">
+<ns0:title>Variant</ns0:title>
+<ns0:g id="a_node4"><ns0:a ns1:href="../apidocs/pkg_parasite/variant.html#parasite.variant.Variant" ns1:title="``parasite`` type for representing variant values. The value can be one of the variants" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="258,-37 204,-37 204,-18 258,-18 258,-37" />
+<ns0:text text-anchor="middle" x="231" y="-25" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">Variant</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge3" class="edge">
+<ns0:title>ParasiteType-&gt;Variant</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M168.09,-27.5C178.15,-27.5 188.89,-27.5 198.56,-27.5" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="198.8,-29.25 203.8,-27.5 198.8,-25.75 198.8,-29.25" />
+</ns0:g>
+</ns0:g>
+</ns0:svg>
