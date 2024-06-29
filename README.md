@@ -3,7 +3,7 @@
 [![Forks][forks-shield]][forks-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
-[![check-code-coverage][coverage-shield]](#code-coverage)
+[![Code Coverage][coverage-shield]](#code-coverage)
 
 
 <br />
@@ -163,4 +163,4 @@ SOFTWARE.
 [contributors-shield]: https://img.shields.io/github/contributors/hendrikboeck/parasite?style=for-the-badge
 [contributors-url]: https://github.com/hendrikboeck/parasite/contributors
 [stars-shield]: https://img.shields.io/github/stars/hendrikboeck/parasite?style=for-the-badge
-[coverage-shield]: https://img.shields.io/badge/code--coverage-100%-brightgreen?style=for-the-badge
+[coverage-shield]: https://img.shields.io/badge/Code%20Coverage-100%25-brightgreen.svg?style=for-the-badge
