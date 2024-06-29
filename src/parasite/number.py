@@ -28,21 +28,22 @@ class Number(ParasiteType[Numerical]):
         imported with::
 
             from parasite import p
+
             schema = p.number()
             ...
     """
 
-    _f_optional: bool = False   # Wether the value is optional
-    _f_nullable: bool = False   # Wether the value can be None
-    _f_integer: bool = False   # Wether the value has to be an integer
+    _f_optional: bool = False  # Wether the value is optional
+    _f_nullable: bool = False  # Wether the value can be None
+    _f_integer: bool = False  # Wether the value has to be an integer
 
-    _f_lt: bool = False   # Wether the value has to be less than a certain value
-    _f_lte: bool = False   # Wether the value has to be less than or equal to a certain value
-    _f_gt: bool = False   # Wether the value has to be greater than a certain value
-    _f_gte: bool = False   # Wether the value has to be greater than or equal to a certain value
+    _f_lt: bool = False  # Wether the value has to be less than a certain value
+    _f_lte: bool = False  # Wether the value has to be less than or equal to a certain value
+    _f_gt: bool = False  # Wether the value has to be greater than a certain value
+    _f_gte: bool = False  # Wether the value has to be greater than or equal to a certain value
 
-    _m_ul: Numerical | None = None   # Upper limit for the value
-    _m_ll: Numerical | None = None   # Lower limit for the value
+    _m_ul: Numerical | None = None  # Upper limit for the value
+    _m_ll: Numerical | None = None  # Lower limit for the value
 
     def __init__(self) -> None:
         pass
@@ -257,16 +258,16 @@ class Number(ParasiteType[Numerical]):
             self._m_ul = int(self._m_ul) if self._m_ul is not None else None
 
         if self._f_lt and obj >= self._m_ul:
-            raise ValidationError(f"object has to be < '{self._m_ul}', but is '{obj!r}'")
+            raise ValidationError(f"object has to be < '{self._m_ul}', but is {obj!r}")
 
         elif self._f_lte and obj > self._m_ul:
-            raise ValidationError(f"object has to be =<'{self._m_ul}', but is '{obj!r}'")
+            raise ValidationError(f"object has to be =<'{self._m_ul}', but is {obj!r}")
 
         if self._f_gt and obj <= self._m_ll:
-            raise ValidationError(f"object has to be > '{self._m_ll}', but is '{obj!r}'")
+            raise ValidationError(f"object has to be > '{self._m_ll}', but is {obj!r}")
 
         elif self._f_gte and obj < self._m_ll:
-            raise ValidationError(f"object has to be >='{self._m_ll}', but is '{obj!r}'")
+            raise ValidationError(f"object has to be >='{self._m_ll}', but is {obj!r}")
 
         return obj
 
@@ -278,26 +279,28 @@ class Number(ParasiteType[Numerical]):
 
         elif isinstance(obj, float):
             if self._f_integer:
-                raise ValidationError(f"object has to be an integer, but is '{obj!r}'")
+                raise ValidationError(f"object has to be an integer, but is {obj!r}")
             return float(self._parse(obj))
 
         elif isinstance(obj, int):
             return int(self._parse(obj))
 
-        raise ValidationError(f"object has to be a number, but is '{obj!r}'")
+        raise ValidationError(f"object has to be a number, but is {obj!r}")
 
     def _find_and_parse(self, parent: dict[K, Any], key: K) -> Option[Numerical | None]:
         if (value := parent.get(key, _NotFound)) is not _NotFound:
-            # if value is None, check if the value is nullable
-            if value is None:
-                if self._f_nullable:
-                    return Some(None)
-                raise ValidationError(f"key '{key}' cannot be None")
             # if key is found, just package ``parse(..)`` it into a Some
-            return Some(self.parse(value))
+            if value is not None:
+                return Some(self.parse(value))
+
+            # if value is None, check if the value is nullable
+            if self._f_nullable:
+                return Some(None)
+
+            raise ValidationError(f"key {key!r} is not nullable, but is None")
 
         # if key is not found, return Nil if optional, else raise an error
         if self._f_optional:
             return Nil
 
-        raise ValidationError(f"key '{key}' not found, but is required")
+        raise ValidationError(f"key {key!r} not found, but is required")

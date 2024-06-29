@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from re import Pattern
 import re
 from typing import Any, TypeVar
-from enum import Enum
+from enum import Enum, auto
 
 # -- Library Imports --
 from rusttypes.option import Nil, Option, Some
@@ -24,70 +24,86 @@ K = TypeVar("K")
 @dataclass
 class String(ParasiteType[str]):
     """
-    Parasite type for representing string values.
+    ``parasite`` type for creating and parsing string based schemas. Will return a python ``str``
+    with the parsed values on success.
 
     Inheritance:
-        ParasiteType[str]
-
-    Args:
-        _f_optional (bool): Whether the value is optional. Default: False
-        _f_nullable (bool): Whether the value can be None. Default: False
-        _f_transform_before_parse (bool): Whether to transform the value before parsing.
-        Default: False
-        _f_trim (bool): Whether to trim the value. Default: False
-        _f_to_lower (bool): Whether to convert the value to lowercase. Default: False
-        _f_to_upper (bool): Whether to convert the value to uppercase. Default: False
-        _m_regex_t (_RegexType): Type of regex to use for validation. Default: NONE
-        _m_ul (int | None): Upper limit for the value. Default: None
-        _m_ll (int | None): Lower limit for the value. Default: None
-        _m_starts (str | None): String that the value must start with. Default: None
-        _m_ends (str | None): String that the value must end with. Default: None
-        _m_contains (str | None): String that the value must contain. Default: None
-        _m_regex (Pattern | None): Compiled regex pattern to use for validation, if _m_regex_t is
-        REGEX. Default: None
+        .. inheritance-diagram:: parasite.string.String
+            :parts: 1
     """
 
     class _RegexType(Enum):
         """
         Enum for the different types of regexes that can be used to validate a string.
+
+        Inheritance:
+            .. inheritance-diagram:: parasite.string.String._RegexType
+                :parts: 1
         """
-        NONE = 0
-        EMAIL = 1
-        URL = 2
-        UUID = 3
-        CUID = 4
-        CUID2 = 5
-        ULID = 6
-        IPV4 = 7
-        IPV6 = 8
-        REGEX = 9
+
+        NONE = auto()
+        EMAIL = auto()
+        URL = auto()
+        UUID = auto()
+        CUID = auto()
+        CUID2 = auto()
+        ULID = auto()
+        IPV4 = auto()
+        IPV6 = auto()
+        REGEX = auto()
 
     # flags
-    _f_optional: bool = False
-    _f_nullable: bool = False
-    _f_transform_before_parse: bool = False
+    _f_optional: bool = False  # Whether the value is optional
+    _f_nullable: bool = False  # Whether the value can be None
+    _f_transform_before_parse: bool = False  # Whether to transform the value before parsing
 
     # transformation flags
-    _f_trim: bool = False
-    _f_to_lower: bool = False
-    _f_to_upper: bool = False
+    _f_trim: bool = False  # Whether to trim the value
+    _f_to_lower: bool = False  # Whether to convert the value to lowercase
+    _f_to_upper: bool = False  # Whether to convert the value to uppercase
 
-    _m_regex_t: _RegexType = _RegexType.NONE
-    _m_ul: int | None = None
-    _m_ll: int | None = None
+    _m_regex_t: _RegexType = _RegexType.NONE  # Type of regex to use for validation
+    _m_ul: int | None = None  # Upper limit for the value
+    _m_ll: int | None = None  # Lower limit for the value
 
-    _m_starts: str | None = None
-    _m_ends: str | None = None
-    _m_contains: str | None = None
-    _m_regex: Pattern | None = None
+    _m_starts: str | None = None  # String that the value must start with
+    _m_ends: str | None = None  # String that the value must end with
+    _m_contains: str | None = None  # String that the value must contain
+    _m_regex: Pattern | None = None  # Compiled regex pattern to use for validation
+
+    def __init__(self) -> None:
+        pass
 
     def optional(self) -> String:
         """
         Makes the value optional, when parsing with :func:`_find_and_parse`. Has no effect on
         :func:`parse`. Inverse of :func:`required`.
 
+        Warning:
+            This function has no effect if the value is parsed as a standalone value.
+
         Returns:
-            String: modified instance
+            String: The updated instance of the class.
+
+        Example usage:
+            Lets assume we have the following schemas::
+
+                from parasite import p
+
+                schema = p.obj({ "name": p.string().optional() })
+                schema2 = p.obj({ "name": p.string() })
+
+            The resulting schemas will parse the following objects::
+
+                >>> schema.parse({ "name": "John" })
+                { "name": "John" }
+                >>> schema.parse({ })
+                { }
+
+                >>> schema2.parse({ "name": "John" })
+                { "name": "John" }
+                >>> schema2.parse({ })
+                ValidationError: key "name" not found, but is required
         """
         self._f_optional = True
         return self
@@ -97,30 +113,107 @@ class String(ParasiteType[str]):
         Makes the value required, when parsing with :func:`_find_and_parse`. Has no effect on
         :func:`parse`. Inverse of :func:`optional`. Default behavior.
 
+        Note:
+            This function is default behavior for the class and therefore only has an effect if the
+            function :func:`optional` may have been called before.
+
+        Warning:
+            This function has no effect if the value is parsed as a standalone value.
+
         Returns:
-            String: modified instance
+            String: The updated instance of the class.
+
+        Example usage:
+            Lets assume we have the following schemas::
+
+                from parasite import p
+
+                schema = p.obj({ "name": p.string().optional().required() })
+                schema2 = p.obj({ "name": p.string() })
+
+            The resulting schemas will parse the following objects::
+
+                >>> schema.parse({ "name": "John" })
+                { "name": "John" }
+                >>> schema.parse({ })
+                ValidationError: key "name" not found, but is required
+
+                >>> schema2.parse({ "name": "John" })
+                { "name": "John" }
+                >>> schema2.parse({ })
+                ValidationError: key "name" not found, but is required
         """
         self._f_optional = False
         return self
 
     def nullable(self) -> String:
         """
-        Makes the value nullable, when parsing with ``_find_and_parse(..)``. Has no effect on
-        ``parse(..)``. Inverse of ``not_nullable(..)``.
+        Makes the value nullable, when parsing with :func:`_find_and_parse`. Has no effect on
+        :func:`parse`. Inverse of :func:`not_nullable`.
+
+        Warning:
+            This function has no effect if the value is parsed as a standalone value.
 
         Returns:
-            String: modified instance
+            String: The updated instance of the class.
+
+        Example usage:
+            Lets assume we have the following schemas::
+
+                from parasite import p
+
+                schema = p.obj({ "name": p.string().nullable() })
+                schema2 = p.obj({ "name": p.string() })
+
+            The resulting schemas will parse the following objects::
+
+                >>> schema.parse({ "name": "John" })
+                { "name": "John" }
+                >>> schema.parse({ "name": None })
+                { "name": None }
+
+                >>> schema2.parse({ "name": "John" })
+                { "name": "John" }
+                >>> schema2.parse({ "name": None })
+                ValidationError: key "name" is not nullable, but is None
         """
         self._f_nullable = True
         return self
 
     def not_nullable(self) -> String:
         """
-        Makes the value not-nullable, when parsing with ``_find_and_parse(..)``. Has no effect on
-        ``parse(..)``. Inverse of ``nullable(..)``. Default behavior.
+        Makes the value not-nullable, when parsing with :func:`_find_and_parse`. Has no effect on
+        :func:`parse`. Default behavior. Inverse of :func:`nullable`.
+
+        Note:
+            This function is default behavior for the class and therefore only has an effect if the
+            function :func:`nullable` may have been called before.
+
+        Warning:
+            This function has no effect if the value is parsed as a standalone value.
 
         Returns:
-            String: modified instance
+            String: The updated instance of the class.
+
+        Example usage:
+            Lets assume we have the following schemas::
+
+                from parasite import p
+
+                schema = p.obj({ "name": p.string().nullable().not_nullable() })
+                schema2 = p.obj({ "name": p.string() })
+
+            The resulting schemas will parse the following objects::
+
+                >>> schema.parse({ "name": "John" })
+                { "name": "John" }
+                >>> schema.parse({ "name": None })
+                ValidationError: key "name" is not nullable, but is None
+
+                >>> schema2.parse({ "name": "John" })
+                { "name": "John" }
+                >>> schema2.parse({ "name": None })
+                ValidationError: key "name" is not nullable, but is None
         """
         self._f_nullable = False
         return self
@@ -491,7 +584,7 @@ class String(ParasiteType[str]):
 
     def parse(self, obj: Any) -> str:
         if not isinstance(obj, str):
-            raise ValidationError(f"expected a string, but got '{obj!r}'")
+            raise ValidationError(f"expected a string, but got {obj!r}")
 
         if self._f_transform_before_parse:
             obj = self._apply_transformations(obj)
@@ -515,10 +608,10 @@ class String(ParasiteType[str]):
             if self._f_nullable:
                 return Some(None)
 
-            raise ValidationError(f"key '{key}' cannot be None")
+            raise ValidationError(f"key {key!r} is not nullable, but is None")
 
         # if key is not found, return Nil if optional, else raise an error
         if self._f_optional:
             return Nil
 
-        raise ValidationError(f"key '{key}' not found, but is required")
+        raise ValidationError(f"key {key!r} not found, but is required")

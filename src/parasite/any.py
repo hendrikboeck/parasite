@@ -27,6 +27,7 @@ class Any_(ParasiteType[Any]):
         with::
 
             from parasite import p
+
             schema = p.any()
             ...
 
@@ -34,7 +35,8 @@ class Any_(ParasiteType[Any]):
         .. inheritance-diagram:: parasite.any.Any_
             :parts: 1
     """
-    _f_optional: bool = False   # Whether the value is optional
+
+    _f_optional: bool = False  # Whether the value is optional
 
     def __init__(self) -> None:
         pass
@@ -68,7 +70,7 @@ class Any_(ParasiteType[Any]):
                 >>> schema2.parse({ "name": "John" })
                 { "name": "John" }
                 >>> schema2.parse({ })
-                ValidationError: key 'name' not found, but is required
+                ValidationError: key "name" not found, but is required
         """
         self._f_optional = True
         return self
@@ -101,12 +103,12 @@ class Any_(ParasiteType[Any]):
                 >>> schema.parse({ "name": "John" })
                 { "name": "John" }
                 >>> schema.parse({ })
-                ValidationError: key 'name' not found, but is required
+                ValidationError: key "name" not found, but is required
 
                 >>> schema2.parse({ "name": "John" })
                 { "name": "John" }
                 >>> schema2.parse({ })
-                ValidationError: key 'name' not found, but is required
+                ValidationError: key "name" not found, but is required
         """
         self._f_optional = False
         return self

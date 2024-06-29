@@ -30,7 +30,8 @@ class ParasiteType(ABC, Generic[T]):
     from a dictionary or standalone values (some options are only available for dictionaries).
 
     Inheritance:
-        ABC, Generic[T]
+        .. inheritance-diagram:: parasite.type.ParasiteType
+            :parts: 1
     """
 
     @abstractmethod
@@ -89,8 +90,11 @@ class ParasiteType(ABC, Generic[T]):
         except ValidationError as exc:
             return Err(exc)
 
-    def _find_and_parse_safe(self, parent: dict[K, Any],
-                             key: K) -> Result[Option[T | None], ValidationError]:
+    def _find_and_parse_safe(
+        self,
+        parent: dict[K, Any],
+        key: K,
+    ) -> Result[Option[T | None], ValidationError]:
         """
         Converts the result of :func:`_find_and_parse` into a ``Result`` type. Should be used when
         safe parsing is required.

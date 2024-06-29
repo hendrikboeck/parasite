@@ -6,7 +6,7 @@ Brief
 =====
 
 Reference for the ``object`` submodule of the ``parasite`` package. This submodule
-contains the :class:`Object` class, which is a generic container for a dictionary Python object.
+contains the :class:`parasite.object.Object` class, which is a generic container for a dictionary Python object.
 
 Usage
 =====
@@ -23,7 +23,7 @@ Usage
    schema.parse({
       "name": "John",
       "age": 30,
-   })  # -> {'name': 'John', 'age': 30 }
+   })  # -> {"name": "John", "age": 30 }
    ...
 
 Member Reference
@@ -33,5 +33,4 @@ Member Reference
    :members:
    :inherited-members:
    :undoc-members:
-   :show-inheritance:
 

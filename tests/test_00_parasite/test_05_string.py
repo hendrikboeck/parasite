@@ -38,8 +38,9 @@ def test_string_nullable() -> None:
     assert p.string().nullable()._find_and_parse_safe({"key": None}, "key") == Ok(Some(None))
 
     assert p.string().not_nullable()._find_and_parse_safe({}, "key").is_err()
-    assert p.string().not_nullable()._find_and_parse_safe({"key": "value"},
-                                                          "key") == Ok(Some("value"))
+    assert p.string().not_nullable()._find_and_parse_safe({"key": "value"}, "key") == Ok(
+        Some("value")
+    )
     assert p.string().not_nullable()._find_and_parse_safe({"key": None}, "key").is_err()
 
 
@@ -169,9 +170,15 @@ def test_string_ipv4() -> None:
 
 
 def test_string_ipv6() -> None:
-    assert p.string().ipv6().parse_safe("2001:0db8:85a3:0000:0000:8a2e:0370:7334"
-                                       ) == Ok("2001:0db8:85a3:0000:0000:8a2e:0370:7334")
-    assert p.string().ipv6().parse_safe(
-        "2001:0db8:85a3:0000:0000:8a2e:0370:7334:2001:0db8:85a3:0000:0000:8a2e:0370:7334"
-    ).is_err()
+    assert p.string().ipv6().parse_safe("2001:0db8:85a3:0000:0000:8a2e:0370:7334") == (
+        Ok("2001:0db8:85a3:0000:0000:8a2e:0370:7334")
+    )
+    assert (
+        p.string()
+        .ipv6()
+        .parse_safe(
+            "2001:0db8:85a3:0000:0000:8a2e:0370:7334:2001:0db8:85a3:0000:0000:8a2e:0370:7334"
+        )
+        .is_err()
+    )
     assert p.string().ipv6().parse_safe("hello").is_err()

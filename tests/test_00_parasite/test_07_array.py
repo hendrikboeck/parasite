@@ -31,15 +31,18 @@ def test_array_find() -> None:
     assert p.array()._find_and_parse_safe({"key": []}, "key") == Ok(Some([]))
 
     assert p.array()._find_and_parse_safe({"key": [1, 2, 3]}, "key") == Ok(Some([1, 2, 3]))
-    assert p.array()._find_and_parse_safe({"key": [1.0, 2.0, 3.0]},
-                                          "key") == Ok(Some([1.0, 2.0, 3.0]))
-    assert p.array()._find_and_parse_safe({"key": ["hello", "world"]},
-                                          "key") == Ok(Some(["hello", "world"]))
+    assert p.array()._find_and_parse_safe({"key": [1.0, 2.0, 3.0]}, "key") == Ok(
+        Some([1.0, 2.0, 3.0])
+    )
+    assert p.array()._find_and_parse_safe({"key": ["hello", "world"]}, "key") == Ok(
+        Some(["hello", "world"])
+    )
     assert p.array()._find_and_parse_safe({"key": [True, False]}, "key") == Ok(Some([True, False]))
     assert p.array()._find_and_parse_safe({"key": [[], {}]}, "key") == Ok(Some([[], {}]))
     assert p.array()._find_and_parse_safe({"key": [(), set()]}, "key") == Ok(Some([(), set()]))
-    assert p.array()._find_and_parse_safe({"key": [set(), frozenset()]},
-                                          "key") == Ok(Some([set(), frozenset()]))
+    assert p.array()._find_and_parse_safe({"key": [set(), frozenset()]}, "key") == Ok(
+        Some([set(), frozenset()])
+    )
 
 
 def test_array_optional() -> None:

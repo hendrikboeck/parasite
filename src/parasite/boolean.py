@@ -28,6 +28,7 @@ class Boolean(ParasiteType[bool]):
         imported with::
 
             from parasite import p
+
             schema = p.boolean()
             ...
 
@@ -40,14 +41,16 @@ class Boolean(ParasiteType[bool]):
         .. inheritance-diagram:: parasite.boolean.Boolean
             :parts: 1
     """
-    _f_optional: bool = False   # Whether the value is optional.
-    _f_nullable: bool = False   # Whether the value can be None.
-    _f_leaniant: bool = False   # Whether the value is leaniant.
+
+    _f_optional: bool = False  # Whether the value is optional.
+    _f_nullable: bool = False  # Whether the value can be None.
+    _f_leaniant: bool = False  # Whether the value is leaniant.
 
     _m_leaniant: tuple[str, str] = (
-        r"^(true|1|yes|y)$", r"^(false|0|no|n)$"
-    )   # The regular expressions for the true and false value.
-    _m_literal: bool | None = None   # The literal value of the boolean.
+        r"^(true|1|yes|y)$",
+        r"^(false|0|no|n)$",
+    )  # The regular expressions for the true and false value.
+    _m_literal: bool | None = None  # The literal value of the boolean.
 
     def __init__(self) -> None:
         pass
@@ -64,13 +67,13 @@ class Boolean(ParasiteType[bool]):
 
             from parasite import p
 
-            schema = p.obj({ "name": p.boolean() })
-            schema.parse({ "name": True })  # -> { "name": True }
-            schema.parse({ })  # -> ValidationError: key 'name' not found, but is required
+            schema = p.obj({"name": p.boolean()})
+            schema.parse({"name": True})  # -> { "name": True }
+            schema.parse({})  # -> ValidationError: key "name" not found, but is required
 
-            schema = p.obj({ "name": p.boolean().optional() })
-            schema.parse({ "name": True })  # -> { "name": True }
-            schema.parse({ })  # -> { }
+            schema = p.obj({"name": p.boolean().optional()})
+            schema.parse({"name": True})  # -> { "name": True }
+            schema.parse({})  # -> { }
         """
         self._f_optional = True
         return self
@@ -87,13 +90,13 @@ class Boolean(ParasiteType[bool]):
 
             from parasite import p
 
-            schema = p.obj({ "name": p.boolean() })
-            schema.parse({ "name": True })  # -> { "name": True }
-            schema.parse({ })  # -> ValidationError: key 'name' not found, but is required
+            schema = p.obj({"name": p.boolean()})
+            schema.parse({"name": True})  # -> { "name": True }
+            schema.parse({})  # -> ValidationError: key "name" not found, but is required
 
-            schema = p.obj({ "name": p.boolean().required() })
-            schema.parse({ "name": True })  # -> { "name": True }
-            schema.parse({ })  # -> ValidationError: key 'name' not found, but is required
+            schema = p.obj({"name": p.boolean().required()})
+            schema.parse({"name": True})  # -> { "name": True }
+            schema.parse({})  # -> ValidationError: key "name" not found, but is required
         """
         self._f_optional = False
         return self
@@ -109,13 +112,13 @@ class Boolean(ParasiteType[bool]):
 
             from parasite import p
 
-            schema = p.obj({ "name": p.boolean() })
-            schema.parse({ "name": True })  # -> { "name": True }
-            schema.parse({ "name": None })  # -> ValidationError: key 'name' cannot be None
+            schema = p.obj({"name": p.boolean()})
+            schema.parse({"name": True})  # -> { "name": True }
+            schema.parse({"name": None})  # -> ValidationError: key "name" cannot be None
 
-            schema = p.obj({ "name": p.boolean().nullable() })
-            schema.parse({ "name": True })  # -> { "name": True }
-            schema.parse({ "name": None })  # -> { "name": None }
+            schema = p.obj({"name": p.boolean().nullable()})
+            schema.parse({"name": True})  # -> { "name": True }
+            schema.parse({"name": None})  # -> { "name": None }
         """
         self._f_nullable = True
         return self
@@ -131,13 +134,13 @@ class Boolean(ParasiteType[bool]):
 
             from parasite import p
 
-            schema = p.obj({ "name": p.boolean() })
-            schema.parse({ "name": True })  # -> { "name": True }
-            schema.parse({ "name": None })  # -> ValidationError: key 'name' cannot be None
+            schema = p.obj({"name": p.boolean()})
+            schema.parse({"name": True})  # -> { "name": True }
+            schema.parse({"name": None})  # -> ValidationError: key "name" cannot be None
 
-            schema = p.obj({ "name": p.boolean().not_nullable() })
-            schema.parse({ "name": True })  # -> { "name": True }
-            schema.parse({ "name": None })  # -> ValidationError: key 'name' cannot be None
+            schema = p.obj({"name": p.boolean().not_nullable()})
+            schema.parse({"name": True})  # -> { "name": True }
+            schema.parse({"name": None})  # -> ValidationError: key "name" cannot be None
         """
         self._f_nullable = False
         return self
@@ -241,7 +244,7 @@ class Boolean(ParasiteType[bool]):
                 # raise an error if the value could not be matched to any regex
                 raise ValidationError(
                     f"object has to be regex (true: {self._m_leaniant[0]!r}, false: "
-                    f"{self._m_leaniant[1]!r}) accepted boolean value, but is '{obj!r}'"
+                    f"{self._m_leaniant[1]!r}) accepted boolean value, but is {obj!r}"
                 )
 
         # if obj is a number, try to convert it to a boolean
@@ -257,11 +260,11 @@ class Boolean(ParasiteType[bool]):
                 obj = False
 
             else:
-                raise ValidationError(f"object has to be 1 or 0, but is '{obj!r}'")
+                raise ValidationError(f"object has to be 1 or 0, but is {obj!r}")
 
         else:
             # raise an error if the value could not be parsed
-            raise ValidationError(f"object has to be a boolean, but is '{obj!r}'")
+            raise ValidationError(f"object has to be a boolean, but is {obj!r}")
 
         # if literal is set, check if obj is the literal value
         if self._m_literal is not None and obj != self._m_literal:
@@ -279,10 +282,10 @@ class Boolean(ParasiteType[bool]):
             if self._f_nullable:
                 return Some(None)
 
-            raise ValidationError(f"key '{key}' cannot be None")
+            raise ValidationError(f"key {key!r} is not nullable, but is None")
 
         # if key is not found, return Nil if optional, else raise an error
         if self._f_optional:
             return Nil
 
-        raise ValidationError(f"key '{key}' not found, but is required")
+        raise ValidationError(f"key {key!r} not found, but is required")

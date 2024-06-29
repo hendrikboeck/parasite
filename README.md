@@ -94,8 +94,8 @@ data = {
     "extra": "This will be stripped",
 }
 
-schema.parse(data)   # {'name': 'John Doe', 'age': 42}
-schema.parse({})   # ValidationError: Missing required key: 'name'
+schema.parse(data)   # {"name": "John Doe", "age": 42}
+schema.parse({})   # ValidationError: Missing required key: "name"
 ```
 
 ## Documentation

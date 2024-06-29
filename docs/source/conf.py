@@ -69,6 +69,8 @@ html_theme_options = {
 # Only add type hints from signature to description body if the parameter has documentation.  The
 # return type is always added to the description (if in the signature).
 # autodoc_typehints_description_target = "documented_params"
+autodoc_member_order = "bysource"
+autodoc_typehints = "both"
 
 autoclass_content = "both"
 

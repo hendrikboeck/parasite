@@ -20,16 +20,21 @@ K = TypeVar("K")
 @dataclass
 class Variant(ParasiteType[Any]):
     """
-    Parasite type for representing variant values. The value can be one of the variants specified in
-    the constructor or added through the :func:`add_item` function. The value is parsed by trying to
-    parse it with each variant in the order they are added. If note of the variants can parse the
-    value, a :class:`ValidationError` is raised.
-    """
-    # The variants of the variant.
-    _m_variants: list[ParasiteType] = field(default_factory = lambda: [])
+    ``parasite`` type for representing variant values. The value can be one of the variants
+    specified in the constructor or added through the :func:`add_item` function. The value is parsed
+    by trying to parse it with each variant in the order they are added. If none of the variants can
+    parse the value, a :class:`ValidationError` is raised.
 
-    _f_optional: bool = False   # Whether the value is optional.
-    _f_nullable: bool = False   # Whether the value can be None.
+    Inheritance:
+        .. inheritance-diagram:: parasite.variant.Variant
+            :parts: 1
+    """
+
+    # The variants of the variant.
+    _m_variants: list[ParasiteType] = field(default_factory=lambda: [])
+
+    _f_optional: bool = False  # Whether the value is optional.
+    _f_nullable: bool = False  # Whether the value can be None.
 
     def __init__(self, variants: Iterable[ParasiteType] = []):
         """
@@ -103,7 +108,7 @@ class Variant(ParasiteType[Any]):
                 >>> schema2.parse({ "sub": 42 })
                 { "sub": 42 }
                 >>> schema2.parse({ })
-                ValidationError: key 'sub' not found, but is required
+                ValidationError: key "sub" not found, but is required
         """
         self._f_optional = True
         return self
@@ -147,12 +152,12 @@ class Variant(ParasiteType[Any]):
                 >>> schema.parse({ "sub": "42" })
                 { "sub": "42" }
                 >>> schema.parse({ })
-                ValidationError: key 'sub' not found, but is required
+                ValidationError: key "sub" not found, but is required
 
                 >>> schema2.parse({ "sub": 42 })
                 { "sub": 42 }
                 >>> schema2.parse({ })
-                ValidationError: key 'sub' not found, but is required
+                ValidationError: key "sub" not found, but is required
         """
         self._f_optional = False
         return self
@@ -241,12 +246,12 @@ class Variant(ParasiteType[Any]):
                 >>> schema.parse({ "sub": "42" })
                 { "sub": "42" }
                 >>> schema.parse({ "sub": None })
-                ValidationError: key 'sub' cannot be None
+                ValidationError: key "sub" cannot be None
 
                 >>> schema2.parse({ "sub": 42 })
                 { "sub": 42 }
                 >>> schema2.parse({ "sub": None })
-                ValidationError: key 'sub' not found, but is required
+                ValidationError: key "sub" not found, but is required
         """
         self._f_nullable = False
         return self
@@ -325,6 +330,7 @@ class Variant(ParasiteType[Any]):
         """
         try:
             self._m_variants.remove(variant)
+
         except ValueError as exc:
             raise ValueError(f"Variant {variant!r} not found in {self!r}") from exc
 
@@ -387,7 +393,7 @@ class Variant(ParasiteType[Any]):
             except ValidationError:
                 continue
 
-        raise ValidationError(f"object has to be one of {self._m_variants!r}, but is '{obj!r}'")
+        raise ValidationError(f"object has to be one of {self._m_variants!r}, but is {obj!r}")
 
     def _find_and_parse(self, parent: dict[K, Any], key: K) -> Option[Any | None]:
         if (value := parent.get(key, _NotFound)) is not _NotFound:
@@ -399,10 +405,10 @@ class Variant(ParasiteType[Any]):
             if self._f_nullable:
                 return Some(None)
 
-            raise ValidationError(f"key '{key}' cannot be None")
+            raise ValidationError(f"key {key!r} is not nullable, but is None")
 
         # if key is not found, return Nil if optional, else raise an error
         if self._f_optional:
             return Nil
 
-        raise ValidationError(f"key '{key}' not found, but is required")
+        raise ValidationError(f"key {key!r} not found, but is required")

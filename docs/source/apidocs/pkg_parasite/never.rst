@@ -21,7 +21,7 @@ Usage
    ...
 
    schema = p.obj({ "name": p.never() })
-   schema.parse({ "name": "John" })  # ValidationError: key 'name' found, but this type can never be parsed
+   schema.parse({ "name": "John" })  # ValidationError: key "name" found, but this type can never be parsed
    ...
 
 Member Reference

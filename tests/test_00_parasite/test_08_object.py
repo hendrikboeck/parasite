@@ -142,15 +142,13 @@ def test_object_merge() -> None:
 
 
 def test_object_pick() -> None:
-    assert p.obj({
-        "key": p.string(),
-        "key2": p.string()
-    }).pick(["key"]) == p.obj({"key": p.string()})
+    assert p.obj({"key": p.string(), "key2": p.string()}).pick(["key"]) == p.obj(
+        {"key": p.string()}
+    )
 
-    assert p.obj({
-        "key": p.string(),
-        "key2": p.string()
-    }).pick_safe(["key"]) == p.obj({"key": p.string()})
+    assert p.obj({"key": p.string(), "key2": p.string()}).pick_safe(["key"]) == p.obj(
+        {"key": p.string()}
+    )
 
     try:
         p.obj({"key": p.string(), "key2": p.string()}).pick(["key3"])
@@ -162,25 +160,17 @@ def test_object_pick() -> None:
 
 
 def test_object_omit() -> None:
-    assert p.obj({
-        "key": p.string(),
-        "key2": p.string()
-    }).omit(["key"]) == p.obj({"key2": p.string()})
+    assert p.obj({"key": p.string(), "key2": p.string()}).omit(["key"]) == p.obj(
+        {"key2": p.string()}
+    )
 
-    assert p.obj({
-        "key": p.string(),
-        "key2": p.string()
-    }).omit(["key3"]) == p.obj({
-        "key": p.string(),
-        "key2": p.string()
-    })
+    assert p.obj({"key": p.string(), "key2": p.string()}).omit(["key3"]) == p.obj(
+        {"key": p.string(), "key2": p.string()}
+    )
 
 
 def test_object_add_item() -> None:
     assert p.obj().add_item("key", p.string()) == p.obj({"key": p.string()})
-    assert p.obj({
-        "key": p.string()
-    }).add_item("key2", p.string()) == p.obj({
-        "key": p.string(),
-        "key2": p.string()
-    })
+    assert p.obj({"key": p.string()}).add_item("key2", p.string()) == p.obj(
+        {"key": p.string(), "key2": p.string()}
+    )

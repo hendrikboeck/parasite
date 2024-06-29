@@ -26,9 +26,13 @@ class Never(ParasiteType[None]):
         imported with::
 
             from parasite import p
+
             schema = p.never()
             ...
     """
+
+    def __init__(self) -> None:
+        pass
 
     def parse(self, obj: Any) -> None:
         # always raise an error, as this type can never be parsed
@@ -37,6 +41,6 @@ class Never(ParasiteType[None]):
     def _find_and_parse(self, parent: dict[K, Any], key: K) -> Option[None]:
         # if key is found, raise an error
         if parent.get(key, _NotFound) is not _NotFound:
-            raise ValidationError(f"key '{key}' found, but this type can never be parsed")
+            raise ValidationError(f"key {key!r} found, but this type can never be parsed")
 
         return Nil

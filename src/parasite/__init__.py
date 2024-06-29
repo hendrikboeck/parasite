@@ -13,7 +13,7 @@ from parasite.variant import Variant
 from parasite.never import Never
 
 
-class Namespace():
+class Namespace:
     """Abstract base class for all namespace implementations. This class tries to mimic the behavior
     of a namespace in other programming languages.
 
@@ -72,6 +72,7 @@ class p(Namespace):
             >>> schema.parse({})
             ValidationError: key "name" not found, but is required
     """
+
     any: TypeAlias = Any_
     null: TypeAlias = Null
     number: TypeAlias = Number

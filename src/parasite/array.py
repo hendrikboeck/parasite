@@ -27,6 +27,7 @@ class Array(ParasiteType[list[Any]]):
         imported with::
 
             from parasite import p
+
             schema = p.array(...)
             ...
 
@@ -40,13 +41,14 @@ class Array(ParasiteType[list[Any]]):
         .. inheritance-diagram:: parasite.array.Array
             :parts: 1
     """
-    _m_element: ParasiteType | None = None   # The element type of the list.
 
-    _f_optional: bool = False   # Whether the value is optional.
-    _f_nullable: bool = False   # Whether the value can be None.
+    _m_element: ParasiteType | None = None  # The element type of the list.
 
-    _m_ul: int | None = None   # The upper limit of the list.
-    _m_ll: int | None = None   # The lower limit of the list.
+    _f_optional: bool = False  # Whether the value is optional.
+    _f_nullable: bool = False  # Whether the value can be None.
+
+    _m_ul: int | None = None  # The upper limit of the list.
+    _m_ll: int | None = None  # The lower limit of the list.
 
     def __init__(self, element: ParasiteType | None = None):
         """
@@ -91,8 +93,8 @@ class Array(ParasiteType[list[Any]]):
 
                 from parasite import p
 
-                schema = p.obj({ "name": p.array().optional() })
-                schema2 = p.obj({ "name": p.array() })
+                schema = p.obj({"name": p.array().optional()})
+                schema2 = p.obj({"name": p.array()})
 
             The resulting schemas will parse the following objects::
 
@@ -104,7 +106,7 @@ class Array(ParasiteType[list[Any]]):
                 >>> schema2.parse({ "name": ["John", "Doe"] })
                 { "name": ["John", "Doe"] }
                 >>> schema2.parse({ })
-                ValidationError: key 'name' not found, but is required
+                ValidationError: key "name" not found, but is required
         """
         self._f_optional = True
         return self
@@ -129,20 +131,20 @@ class Array(ParasiteType[list[Any]]):
 
                 from parasite import p
 
-                schema = p.obj({ "name": p.array().optional().required() })
-                schema2 = p.obj({ "name": p.array()})
+                schema = p.obj({"name": p.array().optional().required()})
+                schema2 = p.obj({"name": p.array()})
 
             The resulting schemas will parse the following objects::
 
                 >>> schema.parse({ "name": ["John", "Doe"] })
                 { "name": ["John", "Doe"] }
                 >>> schema.parse({ })
-                ValidationError: key 'name' not found, but is required
+                ValidationError: key "name" not found, but is required
 
                 >>> schema2.parse({ "name": ["John", "Doe"] })
                 { "name": ["John", "Doe"] }
                 >>> schema2.parse({ })
-                ValidationError: key 'name' not found, but is required
+                ValidationError: key "name" not found, but is required
         """
         self._f_optional = False
         return self
@@ -163,8 +165,8 @@ class Array(ParasiteType[list[Any]]):
 
                 from parasite import p
 
-                schema = p.obj({ "name": p.array().nullable()})
-                schema2 = p.obj({ "name": p.array() })
+                schema = p.obj({"name": p.array().nullable()})
+                schema2 = p.obj({"name": p.array()})
 
             The resulting schemas will parse the following objects::
 
@@ -201,8 +203,8 @@ class Array(ParasiteType[list[Any]]):
 
                 from parasite import p
 
-                schema = p.obj({ "name": p.array().nullable().not_nullable() })
-                schema2 = p.obj({ "name": p.array() })
+                schema = p.obj({"name": p.array().nullable().not_nullable()})
+                schema2 = p.obj({"name": p.array()})
 
             The resulting schemas will parse the following objects::
 
@@ -387,7 +389,7 @@ class Array(ParasiteType[list[Any]]):
 
     def parse(self, obj: Any) -> list[Any]:
         if not isinstance(obj, list):
-            raise ValidationError(f"object has to be a list, but is '{obj!r}'")
+            raise ValidationError(f"object has to be a list, but is {obj!r}")
 
         if self._m_ll is not None and len(obj) < self._m_ll:
             raise ValidationError(
@@ -428,10 +430,10 @@ class Array(ParasiteType[list[Any]]):
             if self._f_nullable:
                 return Some(None)
 
-            raise ValidationError(f"key '{key}' is not nullable, but is None")
+            raise ValidationError(f"key {key!r} is not nullable, but is None")
 
         # if key is not found, return Nil if optional, else raise an error
         if self._f_optional:
             return Nil
 
-        raise ValidationError(f"key '{key}' not found, but is required")
+        raise ValidationError(f"key {key!r} not found, but is required")

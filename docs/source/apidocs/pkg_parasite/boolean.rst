@@ -6,7 +6,7 @@ Brief
 =====
 
 Reference for the ``boolean`` submodule of the ``parasite`` package. This submodule
-contains the :class:`parasite.any.Boolean` class, which is a generic container for
+contains the :class:`parasite.boolean.Boolean` class, which is a generic container for
 any Python object.
 
 Usage

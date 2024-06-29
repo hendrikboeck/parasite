@@ -21,21 +21,33 @@ K = TypeVar("K")
 @dataclass
 class Object(ParasiteType[dict[Any, Any]]):
     """
-    Parasite type for representing dictionary values.
+    ``parasite`` type for creating and parsing dictionary based schemas. Will return a python
+    ``dict[Any, Any]`` with the parsed values on success.
 
     Note:
         Please use ``p.obj(...)`` instead of instantiating this class directly. ``p`` can be
         imported with::
 
             from parasite import p
-            schema = p.obj({ ... })
-            ...
-    """
-    # The items of the dictionary.s
-    _m_items: dict[Any, ParasiteType] = field(default_factory = lambda: {})
 
-    _f_optional: bool = False   # Whether the value is optional.
-    _f_nullable: bool = False   # Whether the value can be None.
+            schema = p.obj({...})
+            ...
+
+    Note:
+        Calling the constructor with a dictionary of keys and their respective schemas will create a
+        new schema. This is equivalent to calling :func:`add_item` for each key and schema. If no or
+        an empty dictionary is passed, the schema will accept any kind of dictionary.
+
+    Inheritance:
+        .. inheritance-diagram:: parasite.object.Object
+            :parts: 1
+    """
+
+    # The items of the dictionary schema.
+    _m_items: dict[Any, ParasiteType] = field(default_factory=lambda: {})
+
+    _f_optional: bool = False  # Whether the value is optional.
+    _f_nullable: bool = False  # Whether the value can be None.
     # Whether the dictionary should be parsed and not allow any other keys to exist.
     _f_strict: bool = False
     # Whether the dictionary should be stripped of all keys that are not in the dictionary.
@@ -64,7 +76,7 @@ class Object(ParasiteType[dict[Any, Any]]):
                 >>> schema.parse({ "name": "John" })
                 { "name": "John" }
                 >>> schema.parse({ })
-                ValidationError: key 'name' not found, but is required
+                ValidationError: key "name" not found, but is required
 
                 >>> schema2.parse({ })
                 { }
@@ -102,7 +114,7 @@ class Object(ParasiteType[dict[Any, Any]]):
                 >>> schema2.parse({ "sub": { } })
                 { "sub": { } }
                 >>> schema2.parse({ })
-                ValidationError: key 'sub' not found, but is required
+                ValidationError: key "sub" not found, but is required
         """
         self._f_optional = True
         return self
@@ -135,12 +147,12 @@ class Object(ParasiteType[dict[Any, Any]]):
                 >>> schema.parse({ "sub": { } })
                 { "sub": { } }
                 >>> schema.parse({ })
-                ValidationError: key 'sub' not found, but is required
+                ValidationError: key "sub" not found, but is required
 
                 >>> schema2.parse({ "sub": { } })
                 { "sub": { } }
                 >>> schema2.parse({ })
-                ValidationError: key 'sub' not found, but is required
+                ValidationError: key "sub" not found, but is required
         """
         self._f_optional = False
         return self
@@ -238,7 +250,7 @@ class Object(ParasiteType[dict[Any, Any]]):
                 >>> schema.parse({ "name": "John" })
                 { "name": "John" }
                 >>> schema.parse({ "name": "John", "age": 20 })
-                ValidationError: object has the key 'age', but is not allowed to
+                ValidationError: object has the key "age", but is not allowed to
 
                 >>> schema2.parse({ "name": "John" })
                 { "name": "John" }
@@ -315,7 +327,7 @@ class Object(ParasiteType[dict[Any, Any]]):
                 { "name": "John", "age": 20 }
 
                 >>> schema.parse({ "name": "John", "age": "20" })
-                ValidationError: key 'age' has to be an integer, but is '20'
+                ValidationError: key "age" has to be an integer, but is 20
         """
         if not isinstance(other, Object):
             raise ValidationError(f"object has to be a dictionary, but is '{other!r}'")
@@ -356,9 +368,9 @@ class Object(ParasiteType[dict[Any, Any]]):
                 p.obj({
                     "name": p.string(),
                     "age": p.variant([
-                         p.string(),
-                         p.number().integer(),
-                     ])
+                        p.string(),
+                        p.number().integer(),
+                    ])
                 })
 
             The resulting schema will parse the following objects::
@@ -370,7 +382,6 @@ class Object(ParasiteType[dict[Any, Any]]):
                 { "name": "John", "age": "20" }
         """
         for key, value in other._m_items.items():
-
             # If the key is in the dictionary, merge the values.
             if key in self._m_items:
                 # if both src and dest are objects, merge them
@@ -438,7 +449,7 @@ class Object(ParasiteType[dict[Any, Any]]):
                 { "name": "John", "age": 20 }
 
                 >>> schema.parse({ "name": "John", "age": 20, "city": "New York" })
-                ValidationError: object has the key 'city', but is not allowed to
+                ValidationError: object has the key "city", but is not allowed to
         """
         new_obj = copy.deepcopy(self)
         new_obj._m_items = {key: self._m_items[key] for key in keys}
@@ -521,7 +532,7 @@ class Object(ParasiteType[dict[Any, Any]]):
             The resulting schema will parse the following objects::
 
                 >>> schema.parse({ "name": "John", "age": 20, "city": "New York" })
-                ValidationError: object has the key 'name', but is not allowed to
+                ValidationError: object has the key "name", but is not allowed to
 
                 >>> schema.parse({ "city": "New York" })
                 { "city": "New York" }
@@ -567,20 +578,20 @@ class Object(ParasiteType[dict[Any, Any]]):
                 { "name": "John", "age": 20, "city": "New York" }
 
                 >>> schema.parse({ "name": "John", "age": 20 })
-                ValidationError: key 'city' not found, but is required
+                ValidationError: key "city" not found, but is required
         """
         self._m_items[key] = item
         return self
 
     def parse(self, obj: Any) -> dict[Any, Any]:
         if not isinstance(obj, dict):
-            raise ValidationError(f"object has to be a dictionary, but is '{obj!r}'")
+            raise ValidationError(f"object has to be a dictionary, but is {obj!r}")
 
         # If the dictionary should be strict, check if all keys are allowed.
         if self._f_strict:
             for key in obj.keys():
                 if key not in self._m_items:
-                    raise ValidationError(f"object has the key '{key}', but is not allowed to")
+                    raise ValidationError(f"object has the key {key!r}, but is not allowed to")
 
         # If the dictionary should be stripped, strip it.
         if self._f_strip:

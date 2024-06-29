@@ -12,7 +12,9 @@ Attribution:
     - https://regexr.com/2rhq7, by Tripleaxis (from .NET helpfiles)
 """
 
-RE_URL = re.compile(r"^((\w+:\/\/)[-a-zA-Z0-9:@;?&=\/%\+\.\*!'\(\),\$_\{\}\^~\[\]`#|]+)$",)
+RE_URL = re.compile(
+    r"^((\w+:\/\/)[-a-zA-Z0-9:@;?&=\/%\+\.\*!'\(\),\$_\{\}\^~\[\]`#|]+)$",
+)
 """
 Regex pattern for URL/URI validation.
 
@@ -21,7 +23,7 @@ Attribution:
 """
 
 RE_UUID = re.compile(
-    r'^[0-9A-Za-z]{8}-[0-9A-Za-z]{4}-4[0-9A-Za-z]{3}-[89ABab][0-9A-Za-z]{3}-[0-9A-Za-z]{12}$'
+    r"^[0-9A-Za-z]{8}-[0-9A-Za-z]{4}-4[0-9A-Za-z]{3}-[89ABab][0-9A-Za-z]{3}-[0-9A-Za-z]{12}$"
 )
 """Regex pattern validation for UUID v4 as per RFC9562.
 
@@ -35,7 +37,7 @@ Attribution:
 #
 # Original Project: https://github.com/colinhacks/zod
 # License File: licenses/zod_mit.txt
-RE_CUID = re.compile(r'^c[^\\s-]{8,}$')
+RE_CUID = re.compile(r"^c[^\\s-]{8,}$")
 """Regex pattern for CUID validation."""
 
 # Copyright (c) 2022 Colin McDonnell
@@ -43,7 +45,7 @@ RE_CUID = re.compile(r'^c[^\\s-]{8,}$')
 #
 # Original Project: https://github.com/colinhacks/zod
 # License File: licenses/zod_mit.txt
-RE_CUID2 = re.compile(r'^[a-z][a-z0-9]*$')
+RE_CUID2 = re.compile(r"^[a-z][a-z0-9]*$")
 """Regex pattern for CUID2 validation."""
 
 # Copyright (c) 2022 Colin McDonnell
@@ -51,7 +53,7 @@ RE_CUID2 = re.compile(r'^[a-z][a-z0-9]*$')
 #
 # Original Project: https://github.com/colinhacks/zod
 # License File: licenses/zod_mit.txt
-RE_ULID = re.compile(r'^[0-9A-HJKMNP-TV-Z]{26}$')
+RE_ULID = re.compile(r"^[0-9A-HJKMNP-TV-Z]{26}$")
 """Regex pattern for ULID validation."""
 
 # Copyright (c) 2022 Colin McDonnell
@@ -60,7 +62,8 @@ RE_ULID = re.compile(r'^[0-9A-HJKMNP-TV-Z]{26}$')
 # Original Project: https://github.com/colinhacks/zod
 # License File: licenses/zod_mit.txt
 RE_IPV4 = re.compile(
-    r"^(?:(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\.){3}(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])$"
+    r"^(?:(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\.){3}(?:25[0-5]|2[0-4][0-9]|1[0-9]"
+    r"[0-9]|[1-9][0-9]|[0-9])$"
 )
 """Regex pattern for IPv4 validation."""
 
@@ -70,10 +73,10 @@ RE_IPV4 = re.compile(
 # Original Project: https://github.com/colinhacks/zod
 # License File: licenses/zod_mit.txt
 RE_IPV6 = re.compile(
-    r'^(([a-f0-9]{1,4}:){7}|::([a-f0-9]{1,4}:){0,6}|([a-f0-9]{1,4}:){1}:([a-f0-9]{1,4}:){0,5}|'
-    r'([a-f0-9]{1,4}:){2}:([a-f0-9]{1,4}:){0,4}|([a-f0-9]{1,4}:){3}:([a-f0-9]{1,4}:){0,3}|'
-    r'([a-f0-9]{1,4}:){4}:([a-f0-9]{1,4}:){0,2}|([a-f0-9]{1,4}:){5}:([a-f0-9]{1,4}:){0,1})([a-f0-9]'
-    r'{1,4}|(((25[0-5])|(2[0-4][0-9])|(1[0-9]{2})|([0-9]{1,2}))\\.){3}((25[0-5])|(2[0-4][0-9])|'
-    r'(1[0-9]{2})|([0-9]{1,2})))$'
+    r"^(([a-f0-9]{1,4}:){7}|::([a-f0-9]{1,4}:){0,6}|([a-f0-9]{1,4}:){1}:([a-f0-9]{1,4}:){0,5}|"
+    r"([a-f0-9]{1,4}:){2}:([a-f0-9]{1,4}:){0,4}|([a-f0-9]{1,4}:){3}:([a-f0-9]{1,4}:){0,3}|"
+    r"([a-f0-9]{1,4}:){4}:([a-f0-9]{1,4}:){0,2}|([a-f0-9]{1,4}:){5}:([a-f0-9]{1,4}:){0,1})([a-f0-9]"
+    r"{1,4}|(((25[0-5])|(2[0-4][0-9])|(1[0-9]{2})|([0-9]{1,2}))\\.){3}((25[0-5])|(2[0-4][0-9])|"
+    r"(1[0-9]{2})|([0-9]{1,2})))$"
 )
 """Regex pattern for IPv6 validation."""

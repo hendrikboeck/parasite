@@ -20,5 +20,7 @@ Modules
    array
    boolean
    never
+   null
    object
+   string
    variant
