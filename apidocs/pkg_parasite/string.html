@@ -1,0 +1,918 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="parasite.variant" href="variant.html" /><link rel="prev" title="parasite.object" href="object.html" />
+
+    <!-- Generated with Sphinx 7.3.7 and Furo 2024.01.29 -->
+        <title>parasite.string - Parasite v0.1.10</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=135e06be" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=83e35b93" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/qiskit-sphinx-theme.css?v=fe84956c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/qiskit-ecosystem.css?v=745c5aa7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=36a5483c" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #282C34;
+  --color-code-foreground: #ABB2BF;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #282C34;
+  --color-code-foreground: #ABB2BF;
+  
+      }
+    }
+  }
+</style><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<script src="../../_static/js/web-components/top-nav-bar.js"></script></head>
+  <body>
+    
+    <script>document.body.dataset.theme = "light";</script>
+    
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg id="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+      <defs><style>.cls-1{fill:none;}</style></defs>
+      <path d="M28,4H4A2,2,0,0,0,2,6V26a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V6A2,2,0,0,0,28,4ZM4,6H20V26H4ZM28,26H22V6h6Z"/>
+      <rect id="_Transparent_Rectangle_" data-name="&lt;Transparent Rectangle&gt;" class="cls-1" width="32" height="32"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg id="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+      <defs><style>.cls-1{fill:none;}</style></defs>
+      <rect x="4" y="6" width="24" height="2"/>
+      <rect x="4" y="24" width="24" height="2"/>
+      <rect x="4" y="12" width="24" height="2"/>
+      <rect x="4" y="18" width="24" height="2"/>
+      <rect id="_Transparent_Rectangle_" data-name="&lt;Transparent Rectangle&gt;" class="cls-1" width="32" height="32"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg version="1.1" id="icon" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+         viewBox="0 0 32 32" style="enable-background:new 0 0 32 32;" xml:space="preserve"><polygon points="22,16 12,26 10.6,24.6 19.2,16 10.6,7.4 12,6 " stroke="currentColor"/>
+      <rect id="_x3C_Transparent_Rectangle_x3E_" fill="none" width="32" height="32"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-new-tab" viewBox="0 0 32 32">
+    <svg id="icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+      <defs>
+        <style>
+          .cls-1 {
+            fill: none;
+          }
+        </style>
+      </defs>
+      <path fill="#6929C4" d="M26,28H6a2.0027,2.0027,0,0,1-2-2V6A2.0027,2.0027,0,0,1,6,4H16V6H6V26H26V16h2V26A2.0027,2.0027,0,0,1,26,28Z"/>
+      <polygon fill="#6929C4" points="20 2 20 4 26.586 4 18 12.586 19.414 14 28 5.414 28 12 30 12 30 2 20 2"/>
+      <rect id="_Transparent_Rectangle_" data-name="&lt;Transparent Rectangle&gt;" class="cls-1" width="32" height="32"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">Parasite v0.1.10</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky">
+<a class="sidebar-brand" href="../../index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="../../_static/parasite-logo.png" alt="Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">Parasite v0.1.10</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">API Reference</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of API Reference</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="_root.html"><code class="docutils literal notranslate"><span class="pre">parasite</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="_const.html"><code class="docutils literal notranslate"><span class="pre">parasite._const</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="errors.html"><code class="docutils literal notranslate"><span class="pre">parasite.errors</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="any.html"><code class="docutils literal notranslate"><span class="pre">parasite.any</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="array.html"><code class="docutils literal notranslate"><span class="pre">parasite.array</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="boolean.html"><code class="docutils literal notranslate"><span class="pre">parasite.boolean</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="never.html"><code class="docutils literal notranslate"><span class="pre">parasite.never</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="null.html"><code class="docutils literal notranslate"><span class="pre">parasite.null</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="object.html"><code class="docutils literal notranslate"><span class="pre">parasite.object</span></code></a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">parasite.string</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="variant.html"><code class="docutils literal notranslate"><span class="pre">parasite.variant</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/hendrikboeck/parasite">GitHub</a></li>
+</ul>
+
+</div></div>
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="parasite-string">
+<h1><code class="docutils literal notranslate"><span class="pre">parasite.string</span></code><a class="headerlink" href="#parasite-string" title="Link to this heading">¶</a></h1>
+<section id="brief">
+<h2>Brief<a class="headerlink" href="#brief" title="Link to this heading">¶</a></h2>
+<p>Reference for the <code class="docutils literal notranslate"><span class="pre">string</span></code> submodule of the <code class="docutils literal notranslate"><span class="pre">parasite</span></code> package. This submodule
+contains the <a class="reference internal" href="#parasite.string.String" title="parasite.string.String"><code class="xref py py-class docutils literal notranslate"><span class="pre">parasite.string.String</span></code></a> class, which is a generic container for a string
+Python object.</p>
+</section>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">parasite</span> <span class="kn">import</span> <span class="n">p</span>
+
+<span class="n">schema</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">string</span><span class="p">()</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="n">schema</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">)</span>  <span class="c1"># -&gt; &quot;hello&quot;</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+</section>
+<section id="module-parasite.string">
+<span id="member-reference"></span><h2>Member Reference<a class="headerlink" href="#module-parasite.string" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="parasite.string.K">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">parasite.string.</span></span><span class="sig-name descname"><span class="pre">K</span></span><a class="headerlink" href="#parasite.string.K" title="Link to this definition">¶</a></dt>
+<dd><p>Template type for the key in a dictionary.</p>
+<p>alias of TypeVar(‘K’)</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="parasite.string.String">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">parasite.string.</span></span><span class="sig-name descname"><span class="pre">String</span></span><a class="reference internal" href="../../_modules/parasite/string.html#String"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parasite.string.String" title="Link to this definition">¶</a></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">parasite</span></code> type for creating and parsing string based schemas. Will return a python <code class="docutils literal notranslate"><span class="pre">str</span></code>
+with the parsed values on success.</p>
+<dl>
+<dt>Inheritance:</dt><dd><div class="graphviz"><object data="../../_images/inheritance-57215919847aa00e6a0376398b680c61b1eaa73e.svg" type="image/svg+xml" class="inheritance graphviz">
+<p class="warning">Inheritance diagram of parasite.string.String</p></object></div>
+</dd>
+</dl>
+<dl class="field-list simple">
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="parasite.string.String.optional">
+<span class="sig-name descname"><span class="pre">optional</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#parasite.string.String" title="parasite.string.String"><span class="pre">String</span></a></span></span><a class="reference internal" href="../../_modules/parasite/string.html#String.optional"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parasite.string.String.optional" title="Link to this definition">¶</a></dt>
+<dd><p>Makes the value optional, when parsing with <code class="xref py py-func docutils literal notranslate"><span class="pre">_find_and_parse()</span></code>. Has no effect on
+<a class="reference internal" href="#parasite.string.String.parse" title="parasite.string.String.parse"><code class="xref py py-func docutils literal notranslate"><span class="pre">parse()</span></code></a>. Inverse of <a class="reference internal" href="#parasite.string.String.required" title="parasite.string.String.required"><code class="xref py py-func docutils literal notranslate"><span class="pre">required()</span></code></a>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function has no effect if the value is parsed as a standalone value.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The updated instance of the class.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#parasite.string.String" title="parasite.string.String">String</a></p>
+</dd>
+</dl>
+<dl>
+<dt>Example usage:</dt><dd><p>Lets assume we have the following schemas:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">parasite</span> <span class="kn">import</span> <span class="n">p</span>
+
+<span class="n">schema</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">obj</span><span class="p">({</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">string</span><span class="p">()</span><span class="o">.</span><span class="n">optional</span><span class="p">()</span> <span class="p">})</span>
+<span class="n">schema2</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">obj</span><span class="p">({</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">string</span><span class="p">()</span> <span class="p">})</span>
+</pre></div>
+</div>
+<p>The resulting schemas will parse the following objects:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">schema</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;John&quot;</span> <span class="p">})</span>
+<span class="go">{ &quot;name&quot;: &quot;John&quot; }</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">schema</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span> <span class="p">})</span>
+<span class="go">{ }</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">schema2</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;John&quot;</span> <span class="p">})</span>
+<span class="go">{ &quot;name&quot;: &quot;John&quot; }</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">schema2</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span> <span class="p">})</span>
+<span class="go">ValidationError: key &quot;name&quot; not found, but is required</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="parasite.string.String.required">
+<span class="sig-name descname"><span class="pre">required</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#parasite.string.String" title="parasite.string.String"><span class="pre">String</span></a></span></span><a class="reference internal" href="../../_modules/parasite/string.html#String.required"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parasite.string.String.required" title="Link to this definition">¶</a></dt>
+<dd><p>Makes the value required, when parsing with <code class="xref py py-func docutils literal notranslate"><span class="pre">_find_and_parse()</span></code>. Has no effect on
+<a class="reference internal" href="#parasite.string.String.parse" title="parasite.string.String.parse"><code class="xref py py-func docutils literal notranslate"><span class="pre">parse()</span></code></a>. Inverse of <a class="reference internal" href="#parasite.string.String.optional" title="parasite.string.String.optional"><code class="xref py py-func docutils literal notranslate"><span class="pre">optional()</span></code></a>. Default behavior.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This function is default behavior for the class and therefore only has an effect if the
+function <a class="reference internal" href="#parasite.string.String.optional" title="parasite.string.String.optional"><code class="xref py py-func docutils literal notranslate"><span class="pre">optional()</span></code></a> may have been called before.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function has no effect if the value is parsed as a standalone value.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The updated instance of the class.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#parasite.string.String" title="parasite.string.String">String</a></p>
+</dd>
+</dl>
+<dl>
+<dt>Example usage:</dt><dd><p>Lets assume we have the following schemas:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">parasite</span> <span class="kn">import</span> <span class="n">p</span>
+
+<span class="n">schema</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">obj</span><span class="p">({</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">string</span><span class="p">()</span><span class="o">.</span><span class="n">optional</span><span class="p">()</span><span class="o">.</span><span class="n">required</span><span class="p">()</span> <span class="p">})</span>
+<span class="n">schema2</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">obj</span><span class="p">({</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">string</span><span class="p">()</span> <span class="p">})</span>
+</pre></div>
+</div>
+<p>The resulting schemas will parse the following objects:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">schema</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;John&quot;</span> <span class="p">})</span>
+<span class="go">{ &quot;name&quot;: &quot;John&quot; }</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">schema</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span> <span class="p">})</span>
+<span class="go">ValidationError: key &quot;name&quot; not found, but is required</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">schema2</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;John&quot;</span> <span class="p">})</span>
+<span class="go">{ &quot;name&quot;: &quot;John&quot; }</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">schema2</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span> <span class="p">})</span>
+<span class="go">ValidationError: key &quot;name&quot; not found, but is required</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="parasite.string.String.nullable">
+<span class="sig-name descname"><span class="pre">nullable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#parasite.string.String" title="parasite.string.String"><span class="pre">String</span></a></span></span><a class="reference internal" href="../../_modules/parasite/string.html#String.nullable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parasite.string.String.nullable" title="Link to this definition">¶</a></dt>
+<dd><p>Makes the value nullable, when parsing with <code class="xref py py-func docutils literal notranslate"><span class="pre">_find_and_parse()</span></code>. Has no effect on
+<a class="reference internal" href="#parasite.string.String.parse" title="parasite.string.String.parse"><code class="xref py py-func docutils literal notranslate"><span class="pre">parse()</span></code></a>. Inverse of <a class="reference internal" href="#parasite.string.String.not_nullable" title="parasite.string.String.not_nullable"><code class="xref py py-func docutils literal notranslate"><span class="pre">not_nullable()</span></code></a>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function has no effect if the value is parsed as a standalone value.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The updated instance of the class.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#parasite.string.String" title="parasite.string.String">String</a></p>
+</dd>
+</dl>
+<dl>
+<dt>Example usage:</dt><dd><p>Lets assume we have the following schemas:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">parasite</span> <span class="kn">import</span> <span class="n">p</span>
+
+<span class="n">schema</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">obj</span><span class="p">({</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">string</span><span class="p">()</span><span class="o">.</span><span class="n">nullable</span><span class="p">()</span> <span class="p">})</span>
+<span class="n">schema2</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">obj</span><span class="p">({</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">string</span><span class="p">()</span> <span class="p">})</span>
+</pre></div>
+</div>
+<p>The resulting schemas will parse the following objects:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">schema</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;John&quot;</span> <span class="p">})</span>
+<span class="go">{ &quot;name&quot;: &quot;John&quot; }</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">schema</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="kc">None</span> <span class="p">})</span>
+<span class="go">{ &quot;name&quot;: None }</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">schema2</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;John&quot;</span> <span class="p">})</span>
+<span class="go">{ &quot;name&quot;: &quot;John&quot; }</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">schema2</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="kc">None</span> <span class="p">})</span>
+<span class="go">ValidationError: key &quot;name&quot; is not nullable, but is None</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="parasite.string.String.not_nullable">
+<span class="sig-name descname"><span class="pre">not_nullable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#parasite.string.String" title="parasite.string.String"><span class="pre">String</span></a></span></span><a class="reference internal" href="../../_modules/parasite/string.html#String.not_nullable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parasite.string.String.not_nullable" title="Link to this definition">¶</a></dt>
+<dd><p>Makes the value not-nullable, when parsing with <code class="xref py py-func docutils literal notranslate"><span class="pre">_find_and_parse()</span></code>. Has no effect on
+<a class="reference internal" href="#parasite.string.String.parse" title="parasite.string.String.parse"><code class="xref py py-func docutils literal notranslate"><span class="pre">parse()</span></code></a>. Default behavior. Inverse of <a class="reference internal" href="#parasite.string.String.nullable" title="parasite.string.String.nullable"><code class="xref py py-func docutils literal notranslate"><span class="pre">nullable()</span></code></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This function is default behavior for the class and therefore only has an effect if the
+function <a class="reference internal" href="#parasite.string.String.nullable" title="parasite.string.String.nullable"><code class="xref py py-func docutils literal notranslate"><span class="pre">nullable()</span></code></a> may have been called before.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function has no effect if the value is parsed as a standalone value.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The updated instance of the class.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#parasite.string.String" title="parasite.string.String">String</a></p>
+</dd>
+</dl>
+<dl>
+<dt>Example usage:</dt><dd><p>Lets assume we have the following schemas:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">parasite</span> <span class="kn">import</span> <span class="n">p</span>
+
+<span class="n">schema</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">obj</span><span class="p">({</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">string</span><span class="p">()</span><span class="o">.</span><span class="n">nullable</span><span class="p">()</span><span class="o">.</span><span class="n">not_nullable</span><span class="p">()</span> <span class="p">})</span>
+<span class="n">schema2</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">obj</span><span class="p">({</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">string</span><span class="p">()</span> <span class="p">})</span>
+</pre></div>
+</div>
+<p>The resulting schemas will parse the following objects:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">schema</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;John&quot;</span> <span class="p">})</span>
+<span class="go">{ &quot;name&quot;: &quot;John&quot; }</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">schema</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="kc">None</span> <span class="p">})</span>
+<span class="go">ValidationError: key &quot;name&quot; is not nullable, but is None</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">schema2</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;John&quot;</span> <span class="p">})</span>
+<span class="go">{ &quot;name&quot;: &quot;John&quot; }</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">schema2</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="kc">None</span> <span class="p">})</span>
+<span class="go">ValidationError: key &quot;name&quot; is not nullable, but is None</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="parasite.string.String.trim">
+<span class="sig-name descname"><span class="pre">trim</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#parasite.string.String" title="parasite.string.String"><span class="pre">String</span></a></span></span><a class="reference internal" href="../../_modules/parasite/string.html#String.trim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parasite.string.String.trim" title="Link to this definition">¶</a></dt>
+<dd><p>Trims the value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>modified instance</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#parasite.string.String" title="parasite.string.String">String</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="parasite.string.String.to_lower">
+<span class="sig-name descname"><span class="pre">to_lower</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#parasite.string.String" title="parasite.string.String"><span class="pre">String</span></a></span></span><a class="reference internal" href="../../_modules/parasite/string.html#String.to_lower"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parasite.string.String.to_lower" title="Link to this definition">¶</a></dt>
+<dd><p>Converts the value to lowercase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>modified instance</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#parasite.string.String" title="parasite.string.String">String</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="parasite.string.String.to_upper">
+<span class="sig-name descname"><span class="pre">to_upper</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#parasite.string.String" title="parasite.string.String"><span class="pre">String</span></a></span></span><a class="reference internal" href="../../_modules/parasite/string.html#String.to_upper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parasite.string.String.to_upper" title="Link to this definition">¶</a></dt>
+<dd><p>Converts the value to uppercase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>modified instance</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#parasite.string.String" title="parasite.string.String">String</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="parasite.string.String.transform_before_parse">
+<span class="sig-name descname"><span class="pre">transform_before_parse</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#parasite.string.String" title="parasite.string.String"><span class="pre">String</span></a></span></span><a class="reference internal" href="../../_modules/parasite/string.html#String.transform_before_parse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parasite.string.String.transform_before_parse" title="Link to this definition">¶</a></dt>
+<dd><p>Transforms the value before parsing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>modified instance</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#parasite.string.String" title="parasite.string.String">String</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="parasite.string.String.min">
+<span class="sig-name descname"><span class="pre">min</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#parasite.string.String" title="parasite.string.String"><span class="pre">String</span></a></span></span><a class="reference internal" href="../../_modules/parasite/string.html#String.min"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parasite.string.String.min" title="Link to this definition">¶</a></dt>
+<dd><p>Sets the lower length limit for the string value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a>) – lower limit</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>modified instance</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#parasite.string.String" title="parasite.string.String">String</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="parasite.string.String.max">
+<span class="sig-name descname"><span class="pre">max</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#parasite.string.String" title="parasite.string.String"><span class="pre">String</span></a></span></span><a class="reference internal" href="../../_modules/parasite/string.html#String.max"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parasite.string.String.max" title="Link to this definition">¶</a></dt>
+<dd><p>Sets the upper length limit for the string value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a>) – upper limit</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>modified instance</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#parasite.string.String" title="parasite.string.String">String</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="parasite.string.String.length">
+<span class="sig-name descname"><span class="pre">length</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#parasite.string.String" title="parasite.string.String"><span class="pre">String</span></a></span></span><a class="reference internal" href="../../_modules/parasite/string.html#String.length"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parasite.string.String.length" title="Link to this definition">¶</a></dt>
+<dd><p>Sets the lower and upper limit for the value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a>) – length of the value</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>modified instance</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#parasite.string.String" title="parasite.string.String">String</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="parasite.string.String.not_empty">
+<span class="sig-name descname"><span class="pre">not_empty</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#parasite.string.String" title="parasite.string.String"><span class="pre">String</span></a></span></span><a class="reference internal" href="../../_modules/parasite/string.html#String.not_empty"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parasite.string.String.not_empty" title="Link to this definition">¶</a></dt>
+<dd><p>Sets the lower limit for the value. The value has to be not-empty.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>modified instance</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#parasite.string.String" title="parasite.string.String">String</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="parasite.string.String.starts_with">
+<span class="sig-name descname"><span class="pre">starts_with</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#parasite.string.String" title="parasite.string.String"><span class="pre">String</span></a></span></span><a class="reference internal" href="../../_modules/parasite/string.html#String.starts_with"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parasite.string.String.starts_with" title="Link to this definition">¶</a></dt>
+<dd><p>Sets the value that the string must start with.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – string that the value must start with</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>modified instance</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#parasite.string.String" title="parasite.string.String">String</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="parasite.string.String.ends_with">
+<span class="sig-name descname"><span class="pre">ends_with</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#parasite.string.String" title="parasite.string.String"><span class="pre">String</span></a></span></span><a class="reference internal" href="../../_modules/parasite/string.html#String.ends_with"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parasite.string.String.ends_with" title="Link to this definition">¶</a></dt>
+<dd><p>Sets the value that the string must end with.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – string that the value must end with</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>modified instance</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#parasite.string.String" title="parasite.string.String">String</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="parasite.string.String.contains">
+<span class="sig-name descname"><span class="pre">contains</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#parasite.string.String" title="parasite.string.String"><span class="pre">String</span></a></span></span><a class="reference internal" href="../../_modules/parasite/string.html#String.contains"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parasite.string.String.contains" title="Link to this definition">¶</a></dt>
+<dd><p>Sets the value that the string must contain.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – string that the value must contain</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>modified instance</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#parasite.string.String" title="parasite.string.String">String</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="parasite.string.String.email">
+<span class="sig-name descname"><span class="pre">email</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#parasite.string.String" title="parasite.string.String"><span class="pre">String</span></a></span></span><a class="reference internal" href="../../_modules/parasite/string.html#String.email"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parasite.string.String.email" title="Link to this definition">¶</a></dt>
+<dd><p>Sets the regex type to email.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>modified instance</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#parasite.string.String" title="parasite.string.String">String</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="parasite.string.String.url">
+<span class="sig-name descname"><span class="pre">url</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#parasite.string.String" title="parasite.string.String"><span class="pre">String</span></a></span></span><a class="reference internal" href="../../_modules/parasite/string.html#String.url"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parasite.string.String.url" title="Link to this definition">¶</a></dt>
+<dd><p>Sets the regex type to URL.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>modified instance</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#parasite.string.String" title="parasite.string.String">String</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="parasite.string.String.uuid">
+<span class="sig-name descname"><span class="pre">uuid</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#parasite.string.String" title="parasite.string.String"><span class="pre">String</span></a></span></span><a class="reference internal" href="../../_modules/parasite/string.html#String.uuid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parasite.string.String.uuid" title="Link to this definition">¶</a></dt>
+<dd><p>Sets the regex type to UUID.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>modified instance</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#parasite.string.String" title="parasite.string.String">String</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="parasite.string.String.cuid">
+<span class="sig-name descname"><span class="pre">cuid</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#parasite.string.String" title="parasite.string.String"><span class="pre">String</span></a></span></span><a class="reference internal" href="../../_modules/parasite/string.html#String.cuid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parasite.string.String.cuid" title="Link to this definition">¶</a></dt>
+<dd><p>Sets the regex type to CUID.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>modified instance</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#parasite.string.String" title="parasite.string.String">String</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="parasite.string.String.cuid2">
+<span class="sig-name descname"><span class="pre">cuid2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#parasite.string.String" title="parasite.string.String"><span class="pre">String</span></a></span></span><a class="reference internal" href="../../_modules/parasite/string.html#String.cuid2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parasite.string.String.cuid2" title="Link to this definition">¶</a></dt>
+<dd><p>Sets the regex type to CUID2.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>modified instance</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#parasite.string.String" title="parasite.string.String">String</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="parasite.string.String.ulid">
+<span class="sig-name descname"><span class="pre">ulid</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#parasite.string.String" title="parasite.string.String"><span class="pre">String</span></a></span></span><a class="reference internal" href="../../_modules/parasite/string.html#String.ulid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parasite.string.String.ulid" title="Link to this definition">¶</a></dt>
+<dd><p>Sets the regex type to ULID.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>modified instance</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#parasite.string.String" title="parasite.string.String">String</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="parasite.string.String.ipv4">
+<span class="sig-name descname"><span class="pre">ipv4</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#parasite.string.String" title="parasite.string.String"><span class="pre">String</span></a></span></span><a class="reference internal" href="../../_modules/parasite/string.html#String.ipv4"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parasite.string.String.ipv4" title="Link to this definition">¶</a></dt>
+<dd><p>Sets the regex type to IPv4.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>modified instance</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#parasite.string.String" title="parasite.string.String">String</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="parasite.string.String.ipv6">
+<span class="sig-name descname"><span class="pre">ipv6</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#parasite.string.String" title="parasite.string.String"><span class="pre">String</span></a></span></span><a class="reference internal" href="../../_modules/parasite/string.html#String.ipv6"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parasite.string.String.ipv6" title="Link to this definition">¶</a></dt>
+<dd><p>Sets the regex type to IPv6.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>modified instance</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#parasite.string.String" title="parasite.string.String">String</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="parasite.string.String.regex">
+<span class="sig-name descname"><span class="pre">regex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/re.html#re.Pattern" title="(in Python v3.12)"><span class="pre">Pattern</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#parasite.string.String" title="parasite.string.String"><span class="pre">String</span></a></span></span><a class="reference internal" href="../../_modules/parasite/string.html#String.regex"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parasite.string.String.regex" title="Link to this definition">¶</a></dt>
+<dd><p>Sets the regex pattern to use for validation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>Pattern</em>) – compiled regex pattern</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>modified instance</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#parasite.string.String" title="parasite.string.String">String</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="parasite.string.String.match">
+<span class="sig-name descname"><span class="pre">match</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#parasite.string.String" title="parasite.string.String"><span class="pre">String</span></a></span></span><a class="reference internal" href="../../_modules/parasite/string.html#String.match"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parasite.string.String.match" title="Link to this definition">¶</a></dt>
+<dd><p>Sets the regex pattern to use for validation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – regex pattern</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>modified instance</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#parasite.string.String" title="parasite.string.String">String</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="parasite.string.String.parse">
+<span class="sig-name descname"><span class="pre">parse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.12)"><span class="pre">Any</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></span><a class="reference internal" href="../../_modules/parasite/string.html#String.parse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parasite.string.String.parse" title="Link to this definition">¶</a></dt>
+<dd><p>Default method for parsing a value. This method should be overridden by subclasses.</p>
+<dl class="simple">
+<dt>Throws:</dt><dd><p>ValidationError: if the value could not be parsed or was invalid</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>obj</strong> (<em>Any</em>) – value to parse</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>parsed destination value</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>T</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="parasite.string.String.parse_safe">
+<span class="sig-name descname"><span class="pre">parse_safe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.12)"><span class="pre">Any</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://hendrikboeck.github.io/rusttypes-py3/modules/result/result.html#rusttypes.result.Result" title="(in rusttypes)"><span class="pre">Result</span></a><span class="p"><span class="pre">[</span></span><span class="pre">T</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="errors.html#parasite.errors.ValidationError" title="parasite.errors.ValidationError"><span class="pre">ValidationError</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#parasite.string.String.parse_safe" title="Link to this definition">¶</a></dt>
+<dd><p>Converts the result of <a class="reference internal" href="#parasite.string.String.parse" title="parasite.string.String.parse"><code class="xref py py-func docutils literal notranslate"><span class="pre">parse()</span></code></a> into a <a class="reference external" href="https://hendrikboeck.github.io/rusttypes-py3/modules/result/result.html#rusttypes.result.Result" title="(in rusttypes)"><code class="xref py py-class docutils literal notranslate"><span class="pre">rusttypes.result.Result</span></code></a> type. Should be
+used when safe parsing is required.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Will only catch <a class="reference internal" href="errors.html#parasite.errors.ValidationError" title="parasite.errors.ValidationError"><code class="xref py py-class docutils literal notranslate"><span class="pre">parasite.errors.ValidationError</span></code></a> exceptions!!!</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>obj</strong> (<em>Any</em>) – value to parse</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>parsed destination value or an error</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Result[T, <a class="reference internal" href="errors.html#parasite.errors.ValidationError" title="parasite.errors.ValidationError">ValidationError</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        <div class="related-pages">
+          <a class="next-page" href="variant.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title"><code class="docutils literal notranslate"><span class="pre">parasite.variant</span></code></div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="object.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title"><code class="docutils literal notranslate"><span class="pre">parasite.object</span></code></div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024-2024, Hendrik Boeck &lt;hendrikboeck.dev@protonmail.com&gt;
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">parasite.string</span></code></a><ul>
+<li><a class="reference internal" href="#brief">Brief</a></li>
+<li><a class="reference internal" href="#usage">Usage</a></li>
+<li><a class="reference internal" href="#module-parasite.string">Member Reference</a><ul>
+<li><a class="reference internal" href="#parasite.string.K"><code class="docutils literal notranslate"><span class="pre">K</span></code></a></li>
+<li><a class="reference internal" href="#parasite.string.String"><code class="docutils literal notranslate"><span class="pre">String</span></code></a><ul>
+<li><a class="reference internal" href="#parasite.string.String.optional"><code class="docutils literal notranslate"><span class="pre">String.optional()</span></code></a></li>
+<li><a class="reference internal" href="#parasite.string.String.required"><code class="docutils literal notranslate"><span class="pre">String.required()</span></code></a></li>
+<li><a class="reference internal" href="#parasite.string.String.nullable"><code class="docutils literal notranslate"><span class="pre">String.nullable()</span></code></a></li>
+<li><a class="reference internal" href="#parasite.string.String.not_nullable"><code class="docutils literal notranslate"><span class="pre">String.not_nullable()</span></code></a></li>
+<li><a class="reference internal" href="#parasite.string.String.trim"><code class="docutils literal notranslate"><span class="pre">String.trim()</span></code></a></li>
+<li><a class="reference internal" href="#parasite.string.String.to_lower"><code class="docutils literal notranslate"><span class="pre">String.to_lower()</span></code></a></li>
+<li><a class="reference internal" href="#parasite.string.String.to_upper"><code class="docutils literal notranslate"><span class="pre">String.to_upper()</span></code></a></li>
+<li><a class="reference internal" href="#parasite.string.String.transform_before_parse"><code class="docutils literal notranslate"><span class="pre">String.transform_before_parse()</span></code></a></li>
+<li><a class="reference internal" href="#parasite.string.String.min"><code class="docutils literal notranslate"><span class="pre">String.min()</span></code></a></li>
+<li><a class="reference internal" href="#parasite.string.String.max"><code class="docutils literal notranslate"><span class="pre">String.max()</span></code></a></li>
+<li><a class="reference internal" href="#parasite.string.String.length"><code class="docutils literal notranslate"><span class="pre">String.length()</span></code></a></li>
+<li><a class="reference internal" href="#parasite.string.String.not_empty"><code class="docutils literal notranslate"><span class="pre">String.not_empty()</span></code></a></li>
+<li><a class="reference internal" href="#parasite.string.String.starts_with"><code class="docutils literal notranslate"><span class="pre">String.starts_with()</span></code></a></li>
+<li><a class="reference internal" href="#parasite.string.String.ends_with"><code class="docutils literal notranslate"><span class="pre">String.ends_with()</span></code></a></li>
+<li><a class="reference internal" href="#parasite.string.String.contains"><code class="docutils literal notranslate"><span class="pre">String.contains()</span></code></a></li>
+<li><a class="reference internal" href="#parasite.string.String.email"><code class="docutils literal notranslate"><span class="pre">String.email()</span></code></a></li>
+<li><a class="reference internal" href="#parasite.string.String.url"><code class="docutils literal notranslate"><span class="pre">String.url()</span></code></a></li>
+<li><a class="reference internal" href="#parasite.string.String.uuid"><code class="docutils literal notranslate"><span class="pre">String.uuid()</span></code></a></li>
+<li><a class="reference internal" href="#parasite.string.String.cuid"><code class="docutils literal notranslate"><span class="pre">String.cuid()</span></code></a></li>
+<li><a class="reference internal" href="#parasite.string.String.cuid2"><code class="docutils literal notranslate"><span class="pre">String.cuid2()</span></code></a></li>
+<li><a class="reference internal" href="#parasite.string.String.ulid"><code class="docutils literal notranslate"><span class="pre">String.ulid()</span></code></a></li>
+<li><a class="reference internal" href="#parasite.string.String.ipv4"><code class="docutils literal notranslate"><span class="pre">String.ipv4()</span></code></a></li>
+<li><a class="reference internal" href="#parasite.string.String.ipv6"><code class="docutils literal notranslate"><span class="pre">String.ipv6()</span></code></a></li>
+<li><a class="reference internal" href="#parasite.string.String.regex"><code class="docutils literal notranslate"><span class="pre">String.regex()</span></code></a></li>
+<li><a class="reference internal" href="#parasite.string.String.match"><code class="docutils literal notranslate"><span class="pre">String.match()</span></code></a></li>
+<li><a class="reference internal" href="#parasite.string.String.parse"><code class="docutils literal notranslate"><span class="pre">String.parse()</span></code></a></li>
+<li><a class="reference internal" href="#parasite.string.String.parse_safe"><code class="docutils literal notranslate"><span class="pre">String.parse_safe()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../_static/documentation_options.js?v=11d05786"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/scripts/qiskit-sphinx-theme.js?v=4d77b8ca"></script>
+    </body>
+</html>

@@ -1,0 +1,1014 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="parasite.string" href="string.html" /><link rel="prev" title="parasite.null" href="null.html" />
+
+    <!-- Generated with Sphinx 7.3.7 and Furo 2024.01.29 -->
+        <title>parasite.object - Parasite v0.1.10</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=135e06be" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=83e35b93" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/qiskit-sphinx-theme.css?v=fe84956c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/qiskit-ecosystem.css?v=745c5aa7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=36a5483c" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #282C34;
+  --color-code-foreground: #ABB2BF;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #282C34;
+  --color-code-foreground: #ABB2BF;
+  
+      }
+    }
+  }
+</style><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<script src="../../_static/js/web-components/top-nav-bar.js"></script></head>
+  <body>
+    
+    <script>document.body.dataset.theme = "light";</script>
+    
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg id="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+      <defs><style>.cls-1{fill:none;}</style></defs>
+      <path d="M28,4H4A2,2,0,0,0,2,6V26a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V6A2,2,0,0,0,28,4ZM4,6H20V26H4ZM28,26H22V6h6Z"/>
+      <rect id="_Transparent_Rectangle_" data-name="&lt;Transparent Rectangle&gt;" class="cls-1" width="32" height="32"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg id="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+      <defs><style>.cls-1{fill:none;}</style></defs>
+      <rect x="4" y="6" width="24" height="2"/>
+      <rect x="4" y="24" width="24" height="2"/>
+      <rect x="4" y="12" width="24" height="2"/>
+      <rect x="4" y="18" width="24" height="2"/>
+      <rect id="_Transparent_Rectangle_" data-name="&lt;Transparent Rectangle&gt;" class="cls-1" width="32" height="32"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg version="1.1" id="icon" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+         viewBox="0 0 32 32" style="enable-background:new 0 0 32 32;" xml:space="preserve"><polygon points="22,16 12,26 10.6,24.6 19.2,16 10.6,7.4 12,6 " stroke="currentColor"/>
+      <rect id="_x3C_Transparent_Rectangle_x3E_" fill="none" width="32" height="32"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-new-tab" viewBox="0 0 32 32">
+    <svg id="icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+      <defs>
+        <style>
+          .cls-1 {
+            fill: none;
+          }
+        </style>
+      </defs>
+      <path fill="#6929C4" d="M26,28H6a2.0027,2.0027,0,0,1-2-2V6A2.0027,2.0027,0,0,1,6,4H16V6H6V26H26V16h2V26A2.0027,2.0027,0,0,1,26,28Z"/>
+      <polygon fill="#6929C4" points="20 2 20 4 26.586 4 18 12.586 19.414 14 28 5.414 28 12 30 12 30 2 20 2"/>
+      <rect id="_Transparent_Rectangle_" data-name="&lt;Transparent Rectangle&gt;" class="cls-1" width="32" height="32"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">Parasite v0.1.10</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky">
+<a class="sidebar-brand" href="../../index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="../../_static/parasite-logo.png" alt="Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">Parasite v0.1.10</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">API Reference</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of API Reference</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="_root.html"><code class="docutils literal notranslate"><span class="pre">parasite</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="_const.html"><code class="docutils literal notranslate"><span class="pre">parasite._const</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="errors.html"><code class="docutils literal notranslate"><span class="pre">parasite.errors</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="any.html"><code class="docutils literal notranslate"><span class="pre">parasite.any</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="array.html"><code class="docutils literal notranslate"><span class="pre">parasite.array</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="boolean.html"><code class="docutils literal notranslate"><span class="pre">parasite.boolean</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="never.html"><code class="docutils literal notranslate"><span class="pre">parasite.never</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="null.html"><code class="docutils literal notranslate"><span class="pre">parasite.null</span></code></a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">parasite.object</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="string.html"><code class="docutils literal notranslate"><span class="pre">parasite.string</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="variant.html"><code class="docutils literal notranslate"><span class="pre">parasite.variant</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/hendrikboeck/parasite">GitHub</a></li>
+</ul>
+
+</div></div>
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="parasite-object">
+<h1><code class="docutils literal notranslate"><span class="pre">parasite.object</span></code><a class="headerlink" href="#parasite-object" title="Link to this heading">¶</a></h1>
+<section id="brief">
+<h2>Brief<a class="headerlink" href="#brief" title="Link to this heading">¶</a></h2>
+<p>Reference for the <code class="docutils literal notranslate"><span class="pre">object</span></code> submodule of the <code class="docutils literal notranslate"><span class="pre">parasite</span></code> package. This submodule
+contains the <a class="reference internal" href="#parasite.object.Object" title="parasite.object.Object"><code class="xref py py-class docutils literal notranslate"><span class="pre">parasite.object.Object</span></code></a> class, which is a generic container for a dictionary Python object.</p>
+</section>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">parasite</span> <span class="kn">import</span> <span class="n">p</span>
+
+<span class="n">schema</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">obj</span><span class="p">({</span>
+   <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">string</span><span class="p">(),</span>
+   <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">number</span><span class="p">()</span><span class="o">.</span><span class="n">integer</span><span class="p">()</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
+<span class="p">})</span><span class="o">.</span><span class="n">strict</span><span class="p">()</span>
+
+<span class="n">schema</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span>
+   <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
+<span class="p">})</span>  <span class="c1"># -&gt; {&quot;name&quot;: &quot;John&quot;, &quot;age&quot;: 30 }</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+</section>
+<section id="module-parasite.object">
+<span id="member-reference"></span><h2>Member Reference<a class="headerlink" href="#module-parasite.object" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="parasite.object.K">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">parasite.object.</span></span><span class="sig-name descname"><span class="pre">K</span></span><a class="headerlink" href="#parasite.object.K" title="Link to this definition">¶</a></dt>
+<dd><p>Template type for the key in a dictionary.</p>
+<p>alias of TypeVar(‘K’)</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="parasite.object.Object">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">parasite.object.</span></span><span class="sig-name descname"><span class="pre">Object</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">items</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.12)"><span class="pre">Any</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ParasiteType</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/parasite/object.html#Object"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parasite.object.Object" title="Link to this definition">¶</a></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">parasite</span></code> type for creating and parsing dictionary based schemas. Will return a python
+<code class="docutils literal notranslate"><span class="pre">dict[Any,</span> <span class="pre">Any]</span></code> with the parsed values on success.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Please use <code class="docutils literal notranslate"><span class="pre">p.obj(...)</span></code> instead of instantiating this class directly. <code class="docutils literal notranslate"><span class="pre">p</span></code> can be
+imported with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">parasite</span> <span class="kn">import</span> <span class="n">p</span>
+
+<span class="n">schema</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">obj</span><span class="p">({</span><span class="o">...</span><span class="p">})</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Calling the constructor with a dictionary of keys and their respective schemas will create a
+new schema. This is equivalent to calling <a class="reference internal" href="#parasite.object.Object.add_item" title="parasite.object.Object.add_item"><code class="xref py py-func docutils literal notranslate"><span class="pre">add_item()</span></code></a> for each key and schema. If no or
+an empty dictionary is passed, the schema will accept any kind of dictionary.</p>
+</div>
+<dl>
+<dt>Inheritance:</dt><dd><div class="graphviz"><object data="../../_images/inheritance-be6223811730d01e91f824bb57a7755fe73b568d.svg" type="image/svg+xml" class="inheritance graphviz">
+<p class="warning">Inheritance diagram of parasite.object.Object</p></object></div>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>items</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em>[</em><a class="reference internal" href="#parasite.object.K" title="parasite.object.K"><em>K</em></a><em>, </em><em>ParasiteType</em><em>]</em>) – The schema of subitems of the dictionary. Default: {}.</p>
+</dd>
+</dl>
+<dl>
+<dt>Example usage:</dt><dd><p>You can create a dictionary schema by passing a dictionary of keys and their respective
+schemas. The following example shows how to create a schema for a dictionary with a
+the keys “name”,”age”:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">parasite</span> <span class="kn">import</span> <span class="n">p</span>
+
+<span class="n">schema</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">obj</span><span class="p">({</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">string</span><span class="p">(),</span>
+    <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">number</span><span class="p">()</span><span class="o">.</span><span class="n">integer</span><span class="p">()</span><span class="o">.</span><span class="n">optional</span><span class="p">(),</span>
+<span class="p">})</span>
+<span class="n">schema2</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">obj</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The resulting schemas will parse the following objects:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">schema</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;John&quot;</span> <span class="p">})</span>
+<span class="go">{ &quot;name&quot;: &quot;John&quot; }</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">schema</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span> <span class="p">})</span>
+<span class="go">ValidationError: key &quot;name&quot; not found, but is required</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">schema2</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span> <span class="p">})</span>
+<span class="go">{ }</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">schema2</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;John&quot;</span> <span class="p">})</span>
+<span class="go">{ &quot;name&quot;: &quot;John&quot; }</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="parasite.object.Object.optional">
+<span class="sig-name descname"><span class="pre">optional</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#parasite.object.Object" title="parasite.object.Object"><span class="pre">Object</span></a></span></span><a class="reference internal" href="../../_modules/parasite/object.html#Object.optional"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parasite.object.Object.optional" title="Link to this definition">¶</a></dt>
+<dd><p>Makes the value optional, when parsing with <code class="xref py py-func docutils literal notranslate"><span class="pre">_find_and_parse()</span></code>. Has no effect on
+<a class="reference internal" href="#parasite.object.Object.parse" title="parasite.object.Object.parse"><code class="xref py py-func docutils literal notranslate"><span class="pre">parse()</span></code></a>. Inverse of <a class="reference internal" href="#parasite.object.Object.required" title="parasite.object.Object.required"><code class="xref py py-func docutils literal notranslate"><span class="pre">required()</span></code></a>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function has no effect if the value is parsed as a standalone value.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The updated instance of the class.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#parasite.object.Object" title="parasite.object.Object">Object</a></p>
+</dd>
+</dl>
+<dl>
+<dt>Example usage:</dt><dd><p>Lets assume we have the following schemas:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">parasite</span> <span class="kn">import</span> <span class="n">p</span>
+
+<span class="n">schema</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">obj</span><span class="p">({</span> <span class="s2">&quot;sub&quot;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">obj</span><span class="p">()</span><span class="o">.</span><span class="n">optional</span><span class="p">()</span> <span class="p">})</span>
+<span class="n">schema2</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">obj</span><span class="p">({</span> <span class="s2">&quot;sub&quot;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">obj</span><span class="p">()</span> <span class="p">})</span>
+</pre></div>
+</div>
+<p>The resulting schemas will parse the following objects:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">schema</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span> <span class="s2">&quot;sub&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="p">}</span> <span class="p">})</span>
+<span class="go">{ &quot;sub&quot;: { } }</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">schema</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span> <span class="p">})</span>
+<span class="go">{ }</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">schema2</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span> <span class="s2">&quot;sub&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="p">}</span> <span class="p">})</span>
+<span class="go">{ &quot;sub&quot;: { } }</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">schema2</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span> <span class="p">})</span>
+<span class="go">ValidationError: key &quot;sub&quot; not found, but is required</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="parasite.object.Object.required">
+<span class="sig-name descname"><span class="pre">required</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#parasite.object.Object" title="parasite.object.Object"><span class="pre">Object</span></a></span></span><a class="reference internal" href="../../_modules/parasite/object.html#Object.required"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parasite.object.Object.required" title="Link to this definition">¶</a></dt>
+<dd><p>Makes the value required, when parsing with <code class="xref py py-func docutils literal notranslate"><span class="pre">_find_and_parse()</span></code>. Has no effect on
+<a class="reference internal" href="#parasite.object.Object.parse" title="parasite.object.Object.parse"><code class="xref py py-func docutils literal notranslate"><span class="pre">parse()</span></code></a>. Inverse of <a class="reference internal" href="#parasite.object.Object.optional" title="parasite.object.Object.optional"><code class="xref py py-func docutils literal notranslate"><span class="pre">optional()</span></code></a>. Default behavior.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This function is default behavior for the class and therefore only has an effect if the
+function <a class="reference internal" href="#parasite.object.Object.optional" title="parasite.object.Object.optional"><code class="xref py py-func docutils literal notranslate"><span class="pre">optional()</span></code></a> may have been called before.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function has no effect if the value is parsed as a standalone value.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The updated instance of the class.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#parasite.object.Object" title="parasite.object.Object">Object</a></p>
+</dd>
+</dl>
+<dl>
+<dt>Example usage:</dt><dd><p>Lets assume we have the following schemas:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">parasite</span> <span class="kn">import</span> <span class="n">p</span>
+
+<span class="n">schema</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">obj</span><span class="p">({</span> <span class="s2">&quot;sub&quot;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">obj</span><span class="p">()</span><span class="o">.</span><span class="n">optional</span><span class="p">()</span><span class="o">.</span><span class="n">required</span><span class="p">()</span> <span class="p">})</span>
+<span class="n">schema2</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">obj</span><span class="p">({</span> <span class="s2">&quot;sub&quot;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">obj</span><span class="p">()</span> <span class="p">})</span>
+</pre></div>
+</div>
+<p>The resulting schemas will parse the following objects:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">schema</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span> <span class="s2">&quot;sub&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="p">}</span> <span class="p">})</span>
+<span class="go">{ &quot;sub&quot;: { } }</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">schema</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span> <span class="p">})</span>
+<span class="go">ValidationError: key &quot;sub&quot; not found, but is required</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">schema2</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span> <span class="s2">&quot;sub&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="p">}</span> <span class="p">})</span>
+<span class="go">{ &quot;sub&quot;: { } }</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">schema2</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span> <span class="p">})</span>
+<span class="go">ValidationError: key &quot;sub&quot; not found, but is required</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="parasite.object.Object.nullable">
+<span class="sig-name descname"><span class="pre">nullable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#parasite.object.Object" title="parasite.object.Object"><span class="pre">Object</span></a></span></span><a class="reference internal" href="../../_modules/parasite/object.html#Object.nullable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parasite.object.Object.nullable" title="Link to this definition">¶</a></dt>
+<dd><p>Makes the value nullable, when parsing with <code class="xref py py-func docutils literal notranslate"><span class="pre">_find_and_parse()</span></code>. Has no effect on
+<a class="reference internal" href="#parasite.object.Object.parse" title="parasite.object.Object.parse"><code class="xref py py-func docutils literal notranslate"><span class="pre">parse()</span></code></a>. Inverse of <a class="reference internal" href="#parasite.object.Object.not_nullable" title="parasite.object.Object.not_nullable"><code class="xref py py-func docutils literal notranslate"><span class="pre">not_nullable()</span></code></a>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function has no effect if the value is parsed as a standalone value.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The updated instance of the class.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#parasite.object.Object" title="parasite.object.Object">Object</a></p>
+</dd>
+</dl>
+<dl>
+<dt>Example usage:</dt><dd><p>Lets assume we have the following schemas:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">parasite</span> <span class="kn">import</span> <span class="n">p</span>
+
+<span class="n">schema</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">obj</span><span class="p">({</span> <span class="s2">&quot;sub&quot;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">obj</span><span class="p">()</span><span class="o">.</span><span class="n">nullable</span><span class="p">()</span> <span class="p">})</span>
+<span class="n">schema2</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">obj</span><span class="p">({</span> <span class="s2">&quot;sub&quot;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">obj</span><span class="p">()</span> <span class="p">})</span>
+</pre></div>
+</div>
+<p>The resulting schemas will parse the following objects:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">schema</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span> <span class="s2">&quot;sub&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="p">}</span> <span class="p">})</span>
+<span class="go">{ &quot;sub&quot;: { } }</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">schema</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span> <span class="s2">&quot;sub&quot;</span><span class="p">:</span> <span class="kc">None</span> <span class="p">})</span>
+<span class="go">{ &quot;sub&quot;: None }</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">schema2</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span> <span class="s2">&quot;sub&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="p">}</span> <span class="p">})</span>
+<span class="go">{ &quot;sub&quot;: { } }</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">schema2</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span> <span class="s2">&quot;sub&quot;</span><span class="p">:</span> <span class="kc">None</span> <span class="p">})</span>
+<span class="go">ValidationError: key &quot;sub&quot; is not nullable, but is None</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="parasite.object.Object.not_nullable">
+<span class="sig-name descname"><span class="pre">not_nullable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#parasite.object.Object" title="parasite.object.Object"><span class="pre">Object</span></a></span></span><a class="reference internal" href="../../_modules/parasite/object.html#Object.not_nullable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parasite.object.Object.not_nullable" title="Link to this definition">¶</a></dt>
+<dd><p>Makes the value not-nullable, when parsing with <code class="xref py py-func docutils literal notranslate"><span class="pre">_find_and_parse()</span></code>. Has no effect on
+<a class="reference internal" href="#parasite.object.Object.parse" title="parasite.object.Object.parse"><code class="xref py py-func docutils literal notranslate"><span class="pre">parse()</span></code></a>. Inverse of <a class="reference internal" href="#parasite.object.Object.nullable" title="parasite.object.Object.nullable"><code class="xref py py-func docutils literal notranslate"><span class="pre">nullable()</span></code></a>. Default behavior.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This function is default behavior for the class and therefore only has an effect if the
+function <a class="reference internal" href="#parasite.object.Object.nullable" title="parasite.object.Object.nullable"><code class="xref py py-func docutils literal notranslate"><span class="pre">nullable()</span></code></a> may have been called before.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function has no effect if the value is parsed as a standalone value.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The updated instance of the class.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#parasite.object.Object" title="parasite.object.Object">Object</a></p>
+</dd>
+</dl>
+<dl>
+<dt>Example usage:</dt><dd><p>Lets assume we have the following schemas:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">parasite</span> <span class="kn">import</span> <span class="n">p</span>
+
+<span class="n">schema</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">obj</span><span class="p">({</span> <span class="s2">&quot;sub&quot;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">obj</span><span class="p">()</span><span class="o">.</span><span class="n">nullable</span><span class="p">()</span><span class="o">.</span><span class="n">not_nullable</span><span class="p">()</span> <span class="p">})</span>
+<span class="n">schema2</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">obj</span><span class="p">({</span> <span class="s2">&quot;sub&quot;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">obj</span><span class="p">()</span> <span class="p">})</span>
+</pre></div>
+</div>
+<p>The resulting schemas will parse the following objects:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">schema</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span> <span class="s2">&quot;sub&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="p">}</span> <span class="p">})</span>
+<span class="go">{ &quot;sub&quot;: { } }</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">schema</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span> <span class="s2">&quot;sub&quot;</span><span class="p">:</span> <span class="kc">None</span> <span class="p">})</span>
+<span class="go">ValidationError: key &quot;sub&quot; is not nullable, but is None</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">schema2</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span> <span class="s2">&quot;sub&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="p">}</span> <span class="p">})</span>
+<span class="go">{ &quot;sub&quot;: { } }</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">schema2</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span> <span class="s2">&quot;sub&quot;</span><span class="p">:</span> <span class="kc">None</span> <span class="p">})</span>
+<span class="go">ValidationError: key &quot;sub&quot; is not nullable, but is None</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="parasite.object.Object.strict">
+<span class="sig-name descname"><span class="pre">strict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#parasite.object.Object" title="parasite.object.Object"><span class="pre">Object</span></a></span></span><a class="reference internal" href="../../_modules/parasite/object.html#Object.strict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parasite.object.Object.strict" title="Link to this definition">¶</a></dt>
+<dd><p>Set the dictionary to be strict. This function ensures that only the keys in the schema are
+allowed in the dictionary. If this function is used <a class="reference internal" href="#parasite.object.Object.strip" title="parasite.object.Object.strip"><code class="xref py py-func docutils literal notranslate"><span class="pre">strip()</span></code></a> has no effect.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The updated instance of the class.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#parasite.object.Object" title="parasite.object.Object">Object</a></p>
+</dd>
+</dl>
+<dl>
+<dt>Example usage:</dt><dd><p>Lets assume we have the following schemas:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">parasite</span> <span class="kn">import</span> <span class="n">p</span>
+
+<span class="n">schema</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">obj</span><span class="p">({</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">string</span><span class="p">()</span> <span class="p">})</span><span class="o">.</span><span class="n">strict</span><span class="p">()</span>
+<span class="n">schema2</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">obj</span><span class="p">({</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">string</span><span class="p">()</span> <span class="p">})</span>
+</pre></div>
+</div>
+<p>The resulting schemas will parse the following objects:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">schema</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;John&quot;</span> <span class="p">})</span>
+<span class="go">{ &quot;name&quot;: &quot;John&quot; }</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">schema</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">20</span> <span class="p">})</span>
+<span class="go">ValidationError: object has the key &quot;age&quot;, but is not allowed to</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">schema2</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;John&quot;</span> <span class="p">})</span>
+<span class="go">{ &quot;name&quot;: &quot;John&quot; }</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">schema2</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">20</span> <span class="p">})</span>
+<span class="go">{ &quot;name&quot;: &quot;John&quot;, &quot;age&quot;: 20 }</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="parasite.object.Object.strip">
+<span class="sig-name descname"><span class="pre">strip</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#parasite.object.Object" title="parasite.object.Object"><span class="pre">Object</span></a></span></span><a class="reference internal" href="../../_modules/parasite/object.html#Object.strip"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parasite.object.Object.strip" title="Link to this definition">¶</a></dt>
+<dd><p>Set the dictionary to be stripped. This will remove all keys that are not in the schema. In
+constrast to <a class="reference internal" href="#parasite.object.Object.strict" title="parasite.object.Object.strict"><code class="xref py py-func docutils literal notranslate"><span class="pre">strict()</span></code></a> this function does not raise an error if a key is not in the
+schema.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The updated instance of the class.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#parasite.object.Object" title="parasite.object.Object">Object</a></p>
+</dd>
+</dl>
+<dl>
+<dt>Example usage:</dt><dd><p>Lets assume we have the following schemas:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">parasite</span> <span class="kn">import</span> <span class="n">p</span>
+
+<span class="n">schema</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">obj</span><span class="p">({</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">string</span><span class="p">()</span> <span class="p">})</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+<span class="n">schema2</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">obj</span><span class="p">({</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">string</span><span class="p">()</span> <span class="p">})</span>
+</pre></div>
+</div>
+<p>The resulting schemas will parse the following objects:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">schema</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;John&quot;</span> <span class="p">})</span>
+<span class="go">{ &quot;name&quot;: &quot;John&quot; }</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">schema</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">20</span> <span class="p">})</span>
+<span class="go">{ &quot;name&quot;: &quot;John&quot; }</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">schema2</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;John&quot;</span> <span class="p">})</span>
+<span class="go">{ &quot;name&quot;: &quot;John&quot; }</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">schema2</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">20</span> <span class="p">})</span>
+<span class="go">{ &quot;name&quot;: &quot;John&quot;, &quot;age&quot;: 20 }</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="parasite.object.Object.extend">
+<span class="sig-name descname"><span class="pre">extend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#parasite.object.Object" title="parasite.object.Object"><span class="pre">Object</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#parasite.object.Object" title="parasite.object.Object"><span class="pre">Object</span></a></span></span><a class="reference internal" href="../../_modules/parasite/object.html#Object.extend"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parasite.object.Object.extend" title="Link to this definition">¶</a></dt>
+<dd><p>Extend the dictionary with another dictionary. This will overwrite all values of the current
+dictionary with the values of the other dictionary if the key exists in both dictionaries.
+If you want to merge the dictionaries, use <a class="reference internal" href="#parasite.object.Object.merge" title="parasite.object.Object.merge"><code class="xref py py-func docutils literal notranslate"><span class="pre">merge()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>other</strong> (<a class="reference internal" href="#parasite.object.Object" title="parasite.object.Object"><em>Object</em></a>) – The dictionary to extend with.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The updated instance of the class.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#parasite.object.Object" title="parasite.object.Object">Object</a></p>
+</dd>
+</dl>
+<dl>
+<dt>Example usage:</dt><dd><p>Lets assume we have the following two schemas:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">parasite</span> <span class="kn">import</span> <span class="n">p</span>
+
+<span class="n">schema</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">obj</span><span class="p">({</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">string</span><span class="p">(),</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">string</span><span class="p">()</span> <span class="p">})</span>
+<span class="n">schema2</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">obj</span><span class="p">({</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">number</span><span class="p">()</span><span class="o">.</span><span class="n">integer</span><span class="p">()</span> <span class="p">})</span>
+</pre></div>
+</div>
+<p>If we extend the two schemas, the resulting schema will be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># -&gt; schema.extend(schema2)</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">obj</span><span class="p">({</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">string</span><span class="p">(),</span>
+    <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">number</span><span class="p">()</span><span class="o">.</span><span class="n">integer</span><span class="p">(),</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>The resulting schema will parse the following objects:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">schema</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">20</span> <span class="p">})</span>
+<span class="go">{ &quot;name&quot;: &quot;John&quot;, &quot;age&quot;: 20 }</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">schema</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="s2">&quot;20&quot;</span> <span class="p">})</span>
+<span class="go">ValidationError: key &quot;age&quot; has to be an integer, but is 20</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="parasite.object.Object.merge">
+<span class="sig-name descname"><span class="pre">merge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#parasite.object.Object" title="parasite.object.Object"><span class="pre">Object</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#parasite.object.Object" title="parasite.object.Object"><span class="pre">Object</span></a></span></span><a class="reference internal" href="../../_modules/parasite/object.html#Object.merge"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parasite.object.Object.merge" title="Link to this definition">¶</a></dt>
+<dd><p>Merge the dictionary with another dictionary. This tries to merge the values of the current
+dictionary with the values of the other dictionary. If the key exists in both dictionaries
+the value of the current dictionary will not be overwritten, but the values will be merged.
+This results in the following behavior:</p>
+<ul class="simple">
+<li><p>If both values are objects, they will be merged (<a class="reference internal" href="#parasite.object.Object.merge" title="parasite.object.Object.merge"><code class="xref py py-func docutils literal notranslate"><span class="pre">merge()</span></code></a>) into a single dictionary.</p></li>
+<li><p>If both values are variants, they will be merged into a single variant.</p></li>
+<li><p>If one value is a variant and the other is not, the value will be added to the variant.</p></li>
+<li><p>If both values are something else, they will be merged into a new variant.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>other</strong> (<a class="reference internal" href="#parasite.object.Object" title="parasite.object.Object"><em>Object</em></a>) – The dictionary to merge with.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The updated instance of the class.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#parasite.object.Object" title="parasite.object.Object">Object</a></p>
+</dd>
+</dl>
+<dl>
+<dt>Example usage:</dt><dd><p>Lets assume we have the following two schemas:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">parasite</span> <span class="kn">import</span> <span class="n">p</span>
+
+<span class="n">schema</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">obj</span><span class="p">({</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">string</span><span class="p">(),</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">string</span><span class="p">()</span> <span class="p">})</span>
+<span class="n">schema2</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">obj</span><span class="p">({</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">number</span><span class="p">()</span><span class="o">.</span><span class="n">integer</span><span class="p">()</span> <span class="p">})</span>
+</pre></div>
+</div>
+<p>If we merge the two schemas, the resulting schema will be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># -&gt; schema.merge(schema2)</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">obj</span><span class="p">({</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">string</span><span class="p">(),</span>
+    <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">variant</span><span class="p">([</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">string</span><span class="p">(),</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">number</span><span class="p">()</span><span class="o">.</span><span class="n">integer</span><span class="p">(),</span>
+    <span class="p">])</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>The resulting schema will parse the following objects:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">schema</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">20</span> <span class="p">})</span>
+<span class="go">{ &quot;name&quot;: &quot;John&quot;, &quot;age&quot;: 20 }</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">schema</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="s2">&quot;20&quot;</span> <span class="p">})</span>
+<span class="go">{ &quot;name&quot;: &quot;John&quot;, &quot;age&quot;: &quot;20&quot; }</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="parasite.object.Object.pick">
+<span class="sig-name descname"><span class="pre">pick</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">keys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><span class="pre">list</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#parasite.object.Object" title="parasite.object.Object"><span class="pre">Object</span></a></span></span><a class="reference internal" href="../../_modules/parasite/object.html#Object.pick"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parasite.object.Object.pick" title="Link to this definition">¶</a></dt>
+<dd><p>Pick only the keys from the object. This will create a new <a class="reference internal" href="#parasite.object.Object" title="parasite.object.Object"><code class="xref py py-class docutils literal notranslate"><span class="pre">Object</span></code></a> with only the
+keys found in the list. If a key is not found in the object, it will raise a KeyError. If
+you want to ignore keys that are not found, use <a class="reference internal" href="#parasite.object.Object.pick_safe" title="parasite.object.Object.pick_safe"><code class="xref py py-func docutils literal notranslate"><span class="pre">pick_safe()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>keys</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em>[</em><a class="reference internal" href="#parasite.object.K" title="parasite.object.K"><em>K</em></a><em>]</em>) – The keys to pick.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>New instance of the class with only the picked keys.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#parasite.object.Object" title="parasite.object.Object">Object</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#KeyError" title="(in Python v3.12)"><strong>KeyError</strong></a> – If a key is not found in the object.</p>
+</dd>
+</dl>
+<dl>
+<dt>Example usage:</dt><dd><p>Lets assume we have the following schema:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">parasite</span> <span class="kn">import</span> <span class="n">p</span>
+
+<span class="n">schema</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">obj</span><span class="p">({</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">string</span><span class="p">(),</span>
+    <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">number</span><span class="p">()</span><span class="o">.</span><span class="n">integer</span><span class="p">(),</span>
+    <span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">string</span><span class="p">(),</span>
+<span class="p">})</span><span class="o">.</span><span class="n">strict</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>If we pick the keys “name” and “age”, the resulting schema will be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># -&gt; schema = schema.pick([&quot;name&quot;, &quot;age&quot;])</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">obj</span><span class="p">({</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">string</span><span class="p">(),</span>
+    <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">number</span><span class="p">()</span><span class="o">.</span><span class="n">integer</span><span class="p">(),</span>
+<span class="p">})</span><span class="o">.</span><span class="n">strict</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The resulting schema will parse the following objects:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">schema</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">20</span> <span class="p">})</span>
+<span class="go">{ &quot;name&quot;: &quot;John&quot;, &quot;age&quot;: 20 }</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">schema</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="s2">&quot;New York&quot;</span> <span class="p">})</span>
+<span class="go">ValidationError: object has the key &quot;city&quot;, but is not allowed to</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="parasite.object.Object.pick_safe">
+<span class="sig-name descname"><span class="pre">pick_safe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">keys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><span class="pre">list</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#parasite.object.Object" title="parasite.object.Object"><span class="pre">Object</span></a></span></span><a class="reference internal" href="../../_modules/parasite/object.html#Object.pick_safe"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parasite.object.Object.pick_safe" title="Link to this definition">¶</a></dt>
+<dd><p>Pick only the keys from the object. This will create a new <a class="reference internal" href="#parasite.object.Object" title="parasite.object.Object"><code class="xref py py-class docutils literal notranslate"><span class="pre">Object</span></code></a> with only the
+keys found in the list. If a key is not found in the object, it will be ignored. If you want
+to raise an error if a key is not found, use <a class="reference internal" href="#parasite.object.Object.pick" title="parasite.object.Object.pick"><code class="xref py py-func docutils literal notranslate"><span class="pre">pick()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>keys</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em>[</em><a class="reference internal" href="#parasite.object.K" title="parasite.object.K"><em>K</em></a><em>]</em>) – The keys to pick.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The updated instance of the class.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#parasite.object.Object" title="parasite.object.Object">Object</a></p>
+</dd>
+</dl>
+<dl>
+<dt>Example usage:</dt><dd><p>Lets assume we have the following schema:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">parasite</span> <span class="kn">import</span> <span class="n">p</span>
+
+<span class="n">schema</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">obj</span><span class="p">({</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">string</span><span class="p">(),</span>
+    <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">number</span><span class="p">()</span><span class="o">.</span><span class="n">integer</span><span class="p">(),</span>
+    <span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">string</span><span class="p">(),</span>
+<span class="p">})</span><span class="o">.</span><span class="n">strict</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>If we pick the keys “name” and “age”, the resulting schema will be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># -&gt; schema = schema.pick_safe([&quot;name&quot;, &quot;age&quot;])</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">obj</span><span class="p">({</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">string</span><span class="p">(),</span>
+    <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">number</span><span class="p">()</span><span class="o">.</span><span class="n">integer</span><span class="p">(),</span>
+<span class="p">})</span><span class="o">.</span><span class="n">strict</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The resulting schema will parse the following objects:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">schema</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">20</span> <span class="p">})</span>
+<span class="go">{ &quot;name&quot;: &quot;John&quot;, &quot;age&quot;: 20 }</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">schema</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="s2">&quot;New York&quot;</span> <span class="p">})</span>
+<span class="go">{ &quot;name&quot;: &quot;John&quot;, &quot;age&quot;: 20 }</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="parasite.object.Object.omit">
+<span class="sig-name descname"><span class="pre">omit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">keys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><span class="pre">list</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#parasite.object.Object" title="parasite.object.Object"><span class="pre">Object</span></a></span></span><a class="reference internal" href="../../_modules/parasite/object.html#Object.omit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parasite.object.Object.omit" title="Link to this definition">¶</a></dt>
+<dd><p>Omit the keys from the object. This will create a new <a class="reference internal" href="#parasite.object.Object" title="parasite.object.Object"><code class="xref py py-class docutils literal notranslate"><span class="pre">Object</span></code></a> with all keys except
+the ones found in the list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>keys</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em>[</em><a class="reference internal" href="#parasite.object.K" title="parasite.object.K"><em>K</em></a><em>]</em>) – The keys to omit.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>New instance of the class with the omitted keys.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#parasite.object.Object" title="parasite.object.Object">Object</a></p>
+</dd>
+</dl>
+<dl>
+<dt>Example usage:</dt><dd><p>Lets assume we have the following schema:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">parasite</span> <span class="kn">import</span> <span class="n">p</span>
+
+<span class="n">schema</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">obj</span><span class="p">({</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">string</span><span class="p">(),</span>
+    <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">number</span><span class="p">()</span><span class="o">.</span><span class="n">integer</span><span class="p">(),</span>
+    <span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">string</span><span class="p">(),</span>
+<span class="p">})</span><span class="o">.</span><span class="n">strict</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>If we omit the keys “name” and “age”, the resulting schema will be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># -&gt; schema = schema.omit([&quot;name&quot;, &quot;age&quot;])</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">obj</span><span class="p">({</span>
+    <span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">string</span><span class="p">(),</span>
+<span class="p">})</span><span class="o">.</span><span class="n">strict</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The resulting schema will parse the following objects:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">schema</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="s2">&quot;New York&quot;</span> <span class="p">})</span>
+<span class="go">ValidationError: object has the key &quot;name&quot;, but is not allowed to</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">schema</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span> <span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="s2">&quot;New York&quot;</span> <span class="p">})</span>
+<span class="go">{ &quot;city&quot;: &quot;New York&quot; }</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="parasite.object.Object.add_item">
+<span class="sig-name descname"><span class="pre">add_item</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.12)"><span class="pre">Any</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">item</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ParasiteType</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#parasite.object.Object" title="parasite.object.Object"><span class="pre">Object</span></a></span></span><a class="reference internal" href="../../_modules/parasite/object.html#Object.add_item"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parasite.object.Object.add_item" title="Link to this definition">¶</a></dt>
+<dd><p>Add an item to the object. This will also overwrite the item if it already exists.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key</strong> (<a class="reference internal" href="#parasite.object.K" title="parasite.object.K"><em>K</em></a>) – The key of the item.</p></li>
+<li><p><strong>item</strong> (<em>ParasiteType</em>) – The item to add.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The updated instance of the class.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#parasite.object.Object" title="parasite.object.Object">Object</a></p>
+</dd>
+</dl>
+<dl>
+<dt>Example usage:</dt><dd><p>Lets assume we have the following schema:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">parasite</span> <span class="kn">import</span> <span class="n">p</span>
+
+<span class="n">schema</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">obj</span><span class="p">({</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">string</span><span class="p">(),</span>
+    <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">number</span><span class="p">()</span><span class="o">.</span><span class="n">integer</span><span class="p">(),</span>
+<span class="p">})</span><span class="o">.</span><span class="n">strict</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>If we add the key “city” with a string schema, the resulting schema will be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># -&gt; schema.add_item(&quot;city&quot;, p.string())</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">obj</span><span class="p">({</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">string</span><span class="p">(),</span>
+    <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">number</span><span class="p">()</span><span class="o">.</span><span class="n">integer</span><span class="p">(),</span>
+    <span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">string</span><span class="p">(),</span>
+<span class="p">})</span><span class="o">.</span><span class="n">strict</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The resulting schema will parse the following objects:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">schema</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="s2">&quot;New York&quot;</span> <span class="p">})</span>
+<span class="go">{ &quot;name&quot;: &quot;John&quot;, &quot;age&quot;: 20, &quot;city&quot;: &quot;New York&quot; }</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">schema</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">20</span> <span class="p">})</span>
+<span class="go">ValidationError: key &quot;city&quot; not found, but is required</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="parasite.object.Object.parse">
+<span class="sig-name descname"><span class="pre">parse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.12)"><span class="pre">Any</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.12)"><span class="pre">Any</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.12)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/parasite/object.html#Object.parse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parasite.object.Object.parse" title="Link to this definition">¶</a></dt>
+<dd><p>Default method for parsing a value. This method should be overridden by subclasses.</p>
+<dl class="simple">
+<dt>Throws:</dt><dd><p>ValidationError: if the value could not be parsed or was invalid</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>obj</strong> (<em>Any</em>) – value to parse</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>parsed destination value</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>T</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="parasite.object.Object.parse_safe">
+<span class="sig-name descname"><span class="pre">parse_safe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.12)"><span class="pre">Any</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://hendrikboeck.github.io/rusttypes-py3/modules/result/result.html#rusttypes.result.Result" title="(in rusttypes)"><span class="pre">Result</span></a><span class="p"><span class="pre">[</span></span><span class="pre">T</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="errors.html#parasite.errors.ValidationError" title="parasite.errors.ValidationError"><span class="pre">ValidationError</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#parasite.object.Object.parse_safe" title="Link to this definition">¶</a></dt>
+<dd><p>Converts the result of <a class="reference internal" href="#parasite.object.Object.parse" title="parasite.object.Object.parse"><code class="xref py py-func docutils literal notranslate"><span class="pre">parse()</span></code></a> into a <a class="reference external" href="https://hendrikboeck.github.io/rusttypes-py3/modules/result/result.html#rusttypes.result.Result" title="(in rusttypes)"><code class="xref py py-class docutils literal notranslate"><span class="pre">rusttypes.result.Result</span></code></a> type. Should be
+used when safe parsing is required.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Will only catch <a class="reference internal" href="errors.html#parasite.errors.ValidationError" title="parasite.errors.ValidationError"><code class="xref py py-class docutils literal notranslate"><span class="pre">parasite.errors.ValidationError</span></code></a> exceptions!!!</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>obj</strong> (<em>Any</em>) – value to parse</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>parsed destination value or an error</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Result[T, <a class="reference internal" href="errors.html#parasite.errors.ValidationError" title="parasite.errors.ValidationError">ValidationError</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        <div class="related-pages">
+          <a class="next-page" href="string.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title"><code class="docutils literal notranslate"><span class="pre">parasite.string</span></code></div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="null.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title"><code class="docutils literal notranslate"><span class="pre">parasite.null</span></code></div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024-2024, Hendrik Boeck &lt;hendrikboeck.dev@protonmail.com&gt;
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">parasite.object</span></code></a><ul>
+<li><a class="reference internal" href="#brief">Brief</a></li>
+<li><a class="reference internal" href="#usage">Usage</a></li>
+<li><a class="reference internal" href="#module-parasite.object">Member Reference</a><ul>
+<li><a class="reference internal" href="#parasite.object.K"><code class="docutils literal notranslate"><span class="pre">K</span></code></a></li>
+<li><a class="reference internal" href="#parasite.object.Object"><code class="docutils literal notranslate"><span class="pre">Object</span></code></a><ul>
+<li><a class="reference internal" href="#parasite.object.Object.optional"><code class="docutils literal notranslate"><span class="pre">Object.optional()</span></code></a></li>
+<li><a class="reference internal" href="#parasite.object.Object.required"><code class="docutils literal notranslate"><span class="pre">Object.required()</span></code></a></li>
+<li><a class="reference internal" href="#parasite.object.Object.nullable"><code class="docutils literal notranslate"><span class="pre">Object.nullable()</span></code></a></li>
+<li><a class="reference internal" href="#parasite.object.Object.not_nullable"><code class="docutils literal notranslate"><span class="pre">Object.not_nullable()</span></code></a></li>
+<li><a class="reference internal" href="#parasite.object.Object.strict"><code class="docutils literal notranslate"><span class="pre">Object.strict()</span></code></a></li>
+<li><a class="reference internal" href="#parasite.object.Object.strip"><code class="docutils literal notranslate"><span class="pre">Object.strip()</span></code></a></li>
+<li><a class="reference internal" href="#parasite.object.Object.extend"><code class="docutils literal notranslate"><span class="pre">Object.extend()</span></code></a></li>
+<li><a class="reference internal" href="#parasite.object.Object.merge"><code class="docutils literal notranslate"><span class="pre">Object.merge()</span></code></a></li>
+<li><a class="reference internal" href="#parasite.object.Object.pick"><code class="docutils literal notranslate"><span class="pre">Object.pick()</span></code></a></li>
+<li><a class="reference internal" href="#parasite.object.Object.pick_safe"><code class="docutils literal notranslate"><span class="pre">Object.pick_safe()</span></code></a></li>
+<li><a class="reference internal" href="#parasite.object.Object.omit"><code class="docutils literal notranslate"><span class="pre">Object.omit()</span></code></a></li>
+<li><a class="reference internal" href="#parasite.object.Object.add_item"><code class="docutils literal notranslate"><span class="pre">Object.add_item()</span></code></a></li>
+<li><a class="reference internal" href="#parasite.object.Object.parse"><code class="docutils literal notranslate"><span class="pre">Object.parse()</span></code></a></li>
+<li><a class="reference internal" href="#parasite.object.Object.parse_safe"><code class="docutils literal notranslate"><span class="pre">Object.parse_safe()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../_static/documentation_options.js?v=11d05786"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/scripts/qiskit-sphinx-theme.js?v=4d77b8ca"></script>
+    </body>
+</html>

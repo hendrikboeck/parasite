@@ -1,0 +1,741 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" />
+
+    <!-- Generated with Sphinx 7.3.7 and Furo 2024.01.29 -->
+        <title>parasite.array - Parasite v0.1.10</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=135e06be" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=83e35b93" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/qiskit-sphinx-theme.css?v=fe84956c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/qiskit-ecosystem.css?v=745c5aa7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=36a5483c" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #282C34;
+  --color-code-foreground: #ABB2BF;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #282C34;
+  --color-code-foreground: #ABB2BF;
+  
+      }
+    }
+  }
+</style><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<script src="../../_static/js/web-components/top-nav-bar.js"></script></head>
+  <body>
+    
+    <script>document.body.dataset.theme = "light";</script>
+    
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg id="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+      <defs><style>.cls-1{fill:none;}</style></defs>
+      <path d="M28,4H4A2,2,0,0,0,2,6V26a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V6A2,2,0,0,0,28,4ZM4,6H20V26H4ZM28,26H22V6h6Z"/>
+      <rect id="_Transparent_Rectangle_" data-name="&lt;Transparent Rectangle&gt;" class="cls-1" width="32" height="32"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg id="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+      <defs><style>.cls-1{fill:none;}</style></defs>
+      <rect x="4" y="6" width="24" height="2"/>
+      <rect x="4" y="24" width="24" height="2"/>
+      <rect x="4" y="12" width="24" height="2"/>
+      <rect x="4" y="18" width="24" height="2"/>
+      <rect id="_Transparent_Rectangle_" data-name="&lt;Transparent Rectangle&gt;" class="cls-1" width="32" height="32"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg version="1.1" id="icon" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+         viewBox="0 0 32 32" style="enable-background:new 0 0 32 32;" xml:space="preserve"><polygon points="22,16 12,26 10.6,24.6 19.2,16 10.6,7.4 12,6 " stroke="currentColor"/>
+      <rect id="_x3C_Transparent_Rectangle_x3E_" fill="none" width="32" height="32"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-new-tab" viewBox="0 0 32 32">
+    <svg id="icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+      <defs>
+        <style>
+          .cls-1 {
+            fill: none;
+          }
+        </style>
+      </defs>
+      <path fill="#6929C4" d="M26,28H6a2.0027,2.0027,0,0,1-2-2V6A2.0027,2.0027,0,0,1,6,4H16V6H6V26H26V16h2V26A2.0027,2.0027,0,0,1,26,28Z"/>
+      <polygon fill="#6929C4" points="20 2 20 4 26.586 4 18 12.586 19.414 14 28 5.414 28 12 30 12 30 2 20 2"/>
+      <rect id="_Transparent_Rectangle_" data-name="&lt;Transparent Rectangle&gt;" class="cls-1" width="32" height="32"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">Parasite v0.1.10</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky">
+<a class="sidebar-brand" href="../../index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="../../_static/parasite-logo.png" alt="Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">Parasite v0.1.10</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../apidocs/pkg_parasite/index.html">API Reference</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of API Reference</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../apidocs/pkg_parasite/_root.html"><code class="docutils literal notranslate"><span class="pre">parasite</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../apidocs/pkg_parasite/_const.html"><code class="docutils literal notranslate"><span class="pre">parasite._const</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../apidocs/pkg_parasite/errors.html"><code class="docutils literal notranslate"><span class="pre">parasite.errors</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../apidocs/pkg_parasite/any.html"><code class="docutils literal notranslate"><span class="pre">parasite.any</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../apidocs/pkg_parasite/array.html"><code class="docutils literal notranslate"><span class="pre">parasite.array</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../apidocs/pkg_parasite/boolean.html"><code class="docutils literal notranslate"><span class="pre">parasite.boolean</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../apidocs/pkg_parasite/never.html"><code class="docutils literal notranslate"><span class="pre">parasite.never</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../apidocs/pkg_parasite/null.html"><code class="docutils literal notranslate"><span class="pre">parasite.null</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../apidocs/pkg_parasite/object.html"><code class="docutils literal notranslate"><span class="pre">parasite.object</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../apidocs/pkg_parasite/string.html"><code class="docutils literal notranslate"><span class="pre">parasite.string</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../apidocs/pkg_parasite/variant.html"><code class="docutils literal notranslate"><span class="pre">parasite.variant</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/hendrikboeck/parasite">GitHub</a></li>
+</ul>
+
+</div></div>
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <h1>Source code for parasite.array</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -- Future Imports -- (Use with caution, may not work as expected in all cases)</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="c1"># -- STL Imports --</span>
+<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">TypeVar</span>
+
+<span class="c1"># -- Library Imports --</span>
+<span class="kn">from</span> <span class="nn">rusttypes.option</span> <span class="kn">import</span> <span class="n">Nil</span><span class="p">,</span> <span class="n">Option</span><span class="p">,</span> <span class="n">Some</span>
+
+<span class="c1"># -- Package Imports --</span>
+<span class="kn">from</span> <span class="nn">parasite.errors</span> <span class="kn">import</span> <span class="n">ValidationError</span>
+<span class="kn">from</span> <span class="nn">parasite.type</span> <span class="kn">import</span> <span class="n">ParasiteType</span><span class="p">,</span> <span class="n">_NotFound</span>
+
+<span class="n">K</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;K&quot;</span><span class="p">)</span>
+<span class="sd">&quot;&quot;&quot;Template type for the key in a dictionary.&quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="Array">
+<a class="viewcode-back" href="../../apidocs/pkg_parasite/array.html#parasite.array.Array">[docs]</a>
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">Array</span><span class="p">(</span><span class="n">ParasiteType</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    ``parasite`` type for creating and parsing list/array based schemas. Will return a python</span>
+<span class="sd">    ``list[Any]`` with the parsed values on success.</span>
+
+<span class="sd">    Note:</span>
+<span class="sd">        Please use ``p.array(...)`` instead of instantiating this class directly. ``p`` can be</span>
+<span class="sd">        imported with::</span>
+
+<span class="sd">            from parasite import p</span>
+
+<span class="sd">            schema = p.array(...)</span>
+<span class="sd">            ...</span>
+
+<span class="sd">    Note:</span>
+<span class="sd">        Calling the constructor with an element type will set the element type of the list. This is</span>
+<span class="sd">        equivalent to calling ``p.array().element(element)`` (see :func:`element`). If no element</span>
+<span class="sd">        type is specified, the list will skip parsing the elements, and therefore accept any type of</span>
+<span class="sd">        object or value.</span>
+
+<span class="sd">    Inheritance:</span>
+<span class="sd">        .. inheritance-diagram:: parasite.array.Array</span>
+<span class="sd">            :parts: 1</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">_m_element</span><span class="p">:</span> <span class="n">ParasiteType</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># The element type of the list.</span>
+
+    <span class="n">_f_optional</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># Whether the value is optional.</span>
+    <span class="n">_f_nullable</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># Whether the value can be None.</span>
+
+    <span class="n">_m_ul</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># The upper limit of the list.</span>
+    <span class="n">_m_ll</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># The lower limit of the list.</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">:</span> <span class="n">ParasiteType</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Args:</span>
+<span class="sd">            element (ParasiteType | None): The element type of the list. Default: None</span>
+
+<span class="sd">        Example usage:</span>
+<span class="sd">            Lets assume we have the following schemas::</span>
+
+<span class="sd">                from parasite import p</span>
+
+<span class="sd">                schema = p.array()</span>
+<span class="sd">                schema2 = p.array(p.string())</span>
+
+<span class="sd">            The resulting schemas will parse the following objects::</span>
+
+<span class="sd">                &gt;&gt;&gt; schema.parse([&quot;John&quot;, &quot;Doe&quot;])</span>
+<span class="sd">                [&quot;John&quot;, &quot;Doe&quot;]</span>
+<span class="sd">                &gt;&gt;&gt; schema.parse([&quot;John&quot;, 1])</span>
+<span class="sd">                [&quot;John&quot;, 1]</span>
+
+<span class="sd">                &gt;&gt;&gt; schema.parse([&quot;John&quot;, &quot;Doe&quot;])</span>
+<span class="sd">                [&quot;John&quot;, &quot;Doe&quot;]</span>
+<span class="sd">                &gt;&gt;&gt; schema.parse([&quot;John&quot;, 1])</span>
+<span class="sd">                ValidationError: element at index 1 is invalid: object has to be a string, but is 1</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">element</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Array.optional">
+<a class="viewcode-back" href="../../apidocs/pkg_parasite/array.html#parasite.array.Array.optional">[docs]</a>
+    <span class="k">def</span> <span class="nf">optional</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Array</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Makes the value optional, when parsing with :func:`_find_and_parse`. Has no effect on</span>
+<span class="sd">        :func:`parse`. Inverse of :func:`required`.</span>
+
+<span class="sd">        Warning:</span>
+<span class="sd">            This function has no effect if the value is parsed as a standalone value.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Array: The updated instance of the class.</span>
+
+<span class="sd">        Example usage:</span>
+<span class="sd">            Lets assume we have the following schemas::</span>
+
+<span class="sd">                from parasite import p</span>
+
+<span class="sd">                schema = p.obj({&quot;name&quot;: p.array().optional()})</span>
+<span class="sd">                schema2 = p.obj({&quot;name&quot;: p.array()})</span>
+
+<span class="sd">            The resulting schemas will parse the following objects::</span>
+
+<span class="sd">                &gt;&gt;&gt; schema.parse({ &quot;name&quot;: [&quot;John&quot;, &quot;Doe&quot;] })</span>
+<span class="sd">                { &quot;name&quot;: [&quot;John&quot;, &quot;Doe&quot;] }</span>
+<span class="sd">                &gt;&gt;&gt; schema.parse({ })</span>
+<span class="sd">                { }</span>
+
+<span class="sd">                &gt;&gt;&gt; schema2.parse({ &quot;name&quot;: [&quot;John&quot;, &quot;Doe&quot;] })</span>
+<span class="sd">                { &quot;name&quot;: [&quot;John&quot;, &quot;Doe&quot;] }</span>
+<span class="sd">                &gt;&gt;&gt; schema2.parse({ })</span>
+<span class="sd">                ValidationError: key &quot;name&quot; not found, but is required</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_f_optional</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="Array.required">
+<a class="viewcode-back" href="../../apidocs/pkg_parasite/array.html#parasite.array.Array.required">[docs]</a>
+    <span class="k">def</span> <span class="nf">required</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Array</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Makes the value required, when parsing with :func:`_find_and_parse`. Has no effect on</span>
+<span class="sd">        :func:`parse`. Inverse of :func:`optional`. Default behavior.</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            This function is default behavior for the class and therefore only has an effect if the</span>
+<span class="sd">            function :func:`optional` may have been called before.</span>
+
+<span class="sd">        Warning:</span>
+<span class="sd">            This function has no effect if the value is parsed as a standalone value.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Array: The updated instance of the class.</span>
+
+<span class="sd">        Example usage:</span>
+<span class="sd">            Lets assume we have the following schemas::</span>
+
+<span class="sd">                from parasite import p</span>
+
+<span class="sd">                schema = p.obj({&quot;name&quot;: p.array().optional().required()})</span>
+<span class="sd">                schema2 = p.obj({&quot;name&quot;: p.array()})</span>
+
+<span class="sd">            The resulting schemas will parse the following objects::</span>
+
+<span class="sd">                &gt;&gt;&gt; schema.parse({ &quot;name&quot;: [&quot;John&quot;, &quot;Doe&quot;] })</span>
+<span class="sd">                { &quot;name&quot;: [&quot;John&quot;, &quot;Doe&quot;] }</span>
+<span class="sd">                &gt;&gt;&gt; schema.parse({ })</span>
+<span class="sd">                ValidationError: key &quot;name&quot; not found, but is required</span>
+
+<span class="sd">                &gt;&gt;&gt; schema2.parse({ &quot;name&quot;: [&quot;John&quot;, &quot;Doe&quot;] })</span>
+<span class="sd">                { &quot;name&quot;: [&quot;John&quot;, &quot;Doe&quot;] }</span>
+<span class="sd">                &gt;&gt;&gt; schema2.parse({ })</span>
+<span class="sd">                ValidationError: key &quot;name&quot; not found, but is required</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_f_optional</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="Array.nullable">
+<a class="viewcode-back" href="../../apidocs/pkg_parasite/array.html#parasite.array.Array.nullable">[docs]</a>
+    <span class="k">def</span> <span class="nf">nullable</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Array</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Makes the value nullable, when parsing with :func:`_find_and_parse`. Has no effect on</span>
+<span class="sd">        :func:`parse`. Inverse of :func:`not_nullable`.</span>
+
+<span class="sd">        Warning:</span>
+<span class="sd">            This function has no effect if the value is parsed as a standalone value.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Array: The updated instance of the class.</span>
+
+<span class="sd">        Example usage:</span>
+<span class="sd">            Lets assume we have the following schemas::</span>
+
+<span class="sd">                from parasite import p</span>
+
+<span class="sd">                schema = p.obj({&quot;name&quot;: p.array().nullable()})</span>
+<span class="sd">                schema2 = p.obj({&quot;name&quot;: p.array()})</span>
+
+<span class="sd">            The resulting schemas will parse the following objects::</span>
+
+<span class="sd">                &gt;&gt;&gt; schema.parse({ &quot;name&quot;: [&quot;John&quot;, &quot;Doe&quot;] })</span>
+<span class="sd">                { &quot;name&quot;: [&quot;John&quot;, &quot;Doe&quot;] }</span>
+<span class="sd">                &gt;&gt;&gt; schema.parse({ &quot;name&quot;: None })</span>
+<span class="sd">                { &quot;name&quot;: None }</span>
+
+<span class="sd">                &gt;&gt;&gt; schema2.parse({ &quot;name&quot;: [&quot;John&quot;, &quot;Doe&quot;] })</span>
+<span class="sd">                { &quot;name&quot;: [&quot;John&quot;, &quot;Doe&quot;] }</span>
+<span class="sd">                &gt;&gt;&gt; schema2.parse({ &quot;name&quot;: None })</span>
+<span class="sd">                ValidationError: key &quot;name&quot; is not nullable, but is None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_f_nullable</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="Array.not_nullable">
+<a class="viewcode-back" href="../../apidocs/pkg_parasite/array.html#parasite.array.Array.not_nullable">[docs]</a>
+    <span class="k">def</span> <span class="nf">not_nullable</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Array</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Makes the value not-nullable, when parsing with :func:`_find_and_parse`. Has no effect on</span>
+<span class="sd">        :func:`parse`. Inverse of :func:`nullable`. Default behavior.</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            This function is default behavior for the class and therefore only has an effect if the</span>
+<span class="sd">            function :func:`nullable` may have been called before.</span>
+
+<span class="sd">        Warning:</span>
+<span class="sd">            This function has no effect if the value is parsed as a standalone value.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Array: The updated instance of the class.</span>
+
+<span class="sd">        Example usage:</span>
+<span class="sd">            Lets assume we have the following schemas::</span>
+
+<span class="sd">                from parasite import p</span>
+
+<span class="sd">                schema = p.obj({&quot;name&quot;: p.array().nullable().not_nullable()})</span>
+<span class="sd">                schema2 = p.obj({&quot;name&quot;: p.array()})</span>
+
+<span class="sd">            The resulting schemas will parse the following objects::</span>
+
+<span class="sd">                &gt;&gt;&gt; schema.parse({ &quot;name&quot;: [&quot;John&quot;, &quot;Doe&quot;] })</span>
+<span class="sd">                { &quot;name&quot;: [&quot;John&quot;, &quot;Doe&quot;] }</span>
+<span class="sd">                &gt;&gt;&gt; schema.parse({ &quot;name&quot;: None })</span>
+<span class="sd">                ValidationError: key &quot;name&quot; is not nullable, but is None</span>
+
+<span class="sd">                &gt;&gt;&gt; schema2.parse({ &quot;name&quot;: [&quot;John&quot;, &quot;Doe&quot;] })</span>
+<span class="sd">                { &quot;name&quot;: [&quot;John&quot;, &quot;Doe&quot;] }</span>
+<span class="sd">                &gt;&gt;&gt; schema2.parse({ &quot;name&quot;: None })</span>
+<span class="sd">                ValidationError: key &quot;name&quot; is not nullable, but is None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_f_nullable</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="Array.min">
+<a class="viewcode-back" href="../../apidocs/pkg_parasite/array.html#parasite.array.Array.min">[docs]</a>
+    <span class="k">def</span> <span class="nf">min</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Array</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Enforce the minimum length of the list.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            value (int): The minimum length of the list.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Array: The updated instance of the class.</span>
+
+<span class="sd">        Example usage:</span>
+<span class="sd">            Lets assume we have the following schemas::</span>
+
+<span class="sd">                from parasite import p</span>
+
+<span class="sd">                schema = p.array().min(2)</span>
+
+<span class="sd">            The resulting schemas will parse the following objects::</span>
+
+<span class="sd">                &gt;&gt;&gt; schema.parse([&quot;John&quot;, &quot;Doe&quot;])</span>
+<span class="sd">                [&quot;John&quot;, &quot;Doe&quot;]</span>
+
+<span class="sd">                &gt;&gt;&gt; schema.parse([&quot;John&quot;])</span>
+<span class="sd">                ValidationError: list has to have at least 2 elements, but has 1</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_m_ll</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="Array.max">
+<a class="viewcode-back" href="../../apidocs/pkg_parasite/array.html#parasite.array.Array.max">[docs]</a>
+    <span class="k">def</span> <span class="nf">max</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Array</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Enforce the maximum length of the list.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            value (int): The maximum length of the list.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Array: The updated instance of the class.</span>
+
+<span class="sd">        Example usage:</span>
+<span class="sd">            Lets assume we have the following schemas::</span>
+
+<span class="sd">                from parasite import p</span>
+
+<span class="sd">                schema = p.array().max(2)</span>
+
+<span class="sd">            The resulting schemas will parse the following objects::</span>
+
+<span class="sd">                &gt;&gt;&gt; schema.parse([&quot;John&quot;, &quot;Doe&quot;])</span>
+<span class="sd">                [&quot;John&quot;, &quot;Doe&quot;]</span>
+
+<span class="sd">                &gt;&gt;&gt; schema.parse([&quot;John&quot;, &quot;Doe&quot;, &quot;Smith&quot;])</span>
+<span class="sd">                ValidationError: list has to have at most 2 elements, but has 3</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_m_ul</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="Array.not_empty">
+<a class="viewcode-back" href="../../apidocs/pkg_parasite/array.html#parasite.array.Array.not_empty">[docs]</a>
+    <span class="k">def</span> <span class="nf">not_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Array</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Enforce the list to not be empty. Equivalent to calling ``min(1)``.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Array: The updated instance of the class.</span>
+
+<span class="sd">        Example usage:</span>
+<span class="sd">            Lets assume we have the following schemas::</span>
+
+<span class="sd">                from parasite import p</span>
+
+<span class="sd">                schema = p.array().not_empty()</span>
+
+<span class="sd">            The resulting schemas will parse the following objects::</span>
+
+<span class="sd">                &gt;&gt;&gt; schema.parse([&quot;John&quot;, &quot;Doe&quot;])</span>
+<span class="sd">                [&quot;John&quot;, &quot;Doe&quot;]</span>
+
+<span class="sd">                &gt;&gt;&gt; schema.parse([ ])</span>
+<span class="sd">                ValidationError: list has to have at least 1 elements, but has 0</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Array.empty">
+<a class="viewcode-back" href="../../apidocs/pkg_parasite/array.html#parasite.array.Array.empty">[docs]</a>
+    <span class="k">def</span> <span class="nf">empty</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Array</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Enforce the list to be empty. Equivalent to calling ``max(0)``.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Array: The updated instance of the class.</span>
+
+<span class="sd">        Example usage:</span>
+<span class="sd">            Lets assume we have the following schemas::</span>
+
+<span class="sd">                from parasite import p</span>
+
+<span class="sd">                schema = p.array().empty()</span>
+
+<span class="sd">            The resulting schemas will parse the following objects::</span>
+
+<span class="sd">                &gt;&gt;&gt; schema.parse([ ])</span>
+<span class="sd">                [ ]</span>
+
+<span class="sd">                &gt;&gt;&gt; schema.parse([&quot;John&quot;, &quot;Doe&quot;])</span>
+<span class="sd">                ValidationError: list has to have at most 0 elements, but has 2</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Array.length">
+<a class="viewcode-back" href="../../apidocs/pkg_parasite/array.html#parasite.array.Array.length">[docs]</a>
+    <span class="k">def</span> <span class="nf">length</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Array</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Enforce the list to have exactly the given length. Equivalent to calling</span>
+<span class="sd">        ``min(value).max(value)``.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            value (int): The length of the list.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Array: The updated instance of the class.</span>
+
+<span class="sd">        Example usage:</span>
+<span class="sd">            Lets assume we have the following schemas::</span>
+
+<span class="sd">                from parasite import p</span>
+
+<span class="sd">                schema = p.array().length(2)</span>
+
+<span class="sd">            The resulting schemas will parse the following objects::</span>
+
+<span class="sd">                &gt;&gt;&gt; schema.parse([&quot;John&quot;, &quot;Doe&quot;])</span>
+<span class="sd">                [&quot;John&quot;, &quot;Doe&quot;]</span>
+
+<span class="sd">                &gt;&gt;&gt; schema.parse([&quot;John&quot;, &quot;Doe&quot;, &quot;Smith&quot;])</span>
+<span class="sd">                ValidationError: list has to have exactly 2 elements, but has 3</span>
+
+<span class="sd">                &gt;&gt;&gt; schema.parse([&quot;John&quot;])</span>
+<span class="sd">                ValidationError: list has to have exactly 2 elements, but has 1</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Array.element">
+<a class="viewcode-back" href="../../apidocs/pkg_parasite/array.html#parasite.array.Array.element">[docs]</a>
+    <span class="k">def</span> <span class="nf">element</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">:</span> <span class="n">ParasiteType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Array</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set the ParsiteType schema of the elements in the list. Can also be set in the constructor.</span>
+<span class="sd">        Note:</span>
+<span class="sd">            If not set, the list will skip parsing the elements, and therefore accept any type of</span>
+<span class="sd">            object or value.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            element (ParasiteType[T]): The element type of the list.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Array: The updated instance of the class.</span>
+
+<span class="sd">        Example usage:</span>
+<span class="sd">            Lets assume we have the following schemas::</span>
+
+<span class="sd">                from parasite import p</span>
+
+<span class="sd">                schema = p.array().element(p.string())</span>
+
+<span class="sd">            The resulting schemas will parse the following objects::</span>
+
+<span class="sd">                &gt;&gt;&gt; schema.parse([&quot;John&quot;, &quot;Doe&quot;])</span>
+<span class="sd">                [&quot;John&quot;, &quot;Doe&quot;]</span>
+
+<span class="sd">                &gt;&gt;&gt; schema.parse([&quot;John&quot;, 1])</span>
+<span class="sd">                ValidationError: element at index 1 is invalid: object has to be a string, but is 1</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_m_element</span> <span class="o">=</span> <span class="n">element</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="Array.parse">
+<a class="viewcode-back" href="../../apidocs/pkg_parasite/array.html#parasite.array.Array.parse">[docs]</a>
+    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;object has to be a list, but is </span><span class="si">{</span><span class="n">obj</span><span class="si">!r}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_m_ll</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_m_ll</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;list has to have at least </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_m_ll</span><span class="si">}</span><span class="s2"> elements, but has </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_m_ul</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_m_ul</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;list has to have at most </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_m_ul</span><span class="si">}</span><span class="s2"> elements, but has </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_m_element</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># create a cache to not overwrite the original list on error</span>
+            <span class="n">cache</span> <span class="o">=</span> <span class="p">[]</span>
+
+            <span class="c1"># parse each element individually</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">element</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="c1"># may throw a ValidationError exception</span>
+                    <span class="n">cache</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_m_element</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">element</span><span class="p">))</span>
+
+                <span class="c1"># handle ValidationError exceptions, if parsing fails</span>
+                <span class="k">except</span> <span class="n">ValidationError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;element at index </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> is invalid: </span><span class="si">{</span><span class="n">exc</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">exc</span>
+
+            <span class="c1"># if the parsing was successful, overwrite the original list</span>
+            <span class="n">obj</span> <span class="o">=</span> <span class="n">cache</span>
+
+        <span class="k">return</span> <span class="n">obj</span></div>
+
+
+    <span class="k">def</span> <span class="nf">_find_and_parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">K</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">key</span><span class="p">:</span> <span class="n">K</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Option</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">value</span> <span class="o">:=</span> <span class="n">parent</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">_NotFound</span><span class="p">))</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">_NotFound</span><span class="p">:</span>
+            <span class="c1"># if key is found, just package ``parse(..)`` it into a Some</span>
+            <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">Some</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+
+            <span class="c1"># if value is None, check if the value is nullable</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_f_nullable</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">Some</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+
+            <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;key </span><span class="si">{</span><span class="n">key</span><span class="si">!r}</span><span class="s2"> is not nullable, but is None&quot;</span><span class="p">)</span>
+
+        <span class="c1"># if key is not found, return Nil if optional, else raise an error</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_f_optional</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">Nil</span>
+
+        <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;key </span><span class="si">{</span><span class="n">key</span><span class="si">!r}</span><span class="s2"> not found, but is required&quot;</span><span class="p">)</span></div>
+
+</pre></div>
+        </article>
+      </div>
+      <footer>
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024-2024, Hendrik Boeck &lt;hendrikboeck.dev@protonmail.com&gt;
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script src="../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../_static/documentation_options.js?v=11d05786"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/scripts/qiskit-sphinx-theme.js?v=4d77b8ca"></script>
+    </body>
+</html>
