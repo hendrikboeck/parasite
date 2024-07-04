@@ -11,6 +11,7 @@ from rusttypes.option import Nil, Option, Some
 # -- Package Imports --
 from parasite.errors import ValidationError
 from parasite.type import ParasiteType, _NotFound
+from parasite._utils import map_optional
 
 K = TypeVar("K")
 """Template type for the key in a dictionary."""
@@ -254,21 +255,24 @@ class Number(ParasiteType[Numerical]):
         """
         # cast to integer, if required
         if self._f_integer:
-            self._m_ll = int(self._m_ll) if self._m_ll is not None else None
-            self._m_ul = int(self._m_ul) if self._m_ul is not None else None
+            self._m_ll = map_optional(int, self._m_ll)
+            self._m_ul = map_optional(int, self._m_ul)
 
+        # validate upper limit values and guard clauses
         if self._f_lt and obj >= self._m_ul:
             raise ValidationError(f"object has to be < '{self._m_ul}', but is {obj!r}")
 
         elif self._f_lte and obj > self._m_ul:
             raise ValidationError(f"object has to be =<'{self._m_ul}', but is {obj!r}")
 
+        # validate lower limit values and guard clauses
         if self._f_gt and obj <= self._m_ll:
             raise ValidationError(f"object has to be > '{self._m_ll}', but is {obj!r}")
 
         elif self._f_gte and obj < self._m_ll:
             raise ValidationError(f"object has to be >='{self._m_ll}', but is {obj!r}")
 
+        # return the parsed value
         return obj
 
     def parse(self, obj: Any) -> Numerical:

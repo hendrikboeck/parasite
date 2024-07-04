@@ -62,11 +62,19 @@ def test_number_gt() -> None:
     assert p.number().gt(1).parse_safe(1).is_err()
     assert p.number().gt(1).parse_safe(0).is_err()
 
+    assert p.number().integer().gt(1).parse_safe(2) == Ok(2)
+    assert p.number().integer().gt(1).parse_safe(1).is_err()
+    assert p.number().integer().gt(1).parse_safe(0).is_err()
+
 
 def test_number_gte() -> None:
     assert p.number().gte(1).parse_safe(2) == Ok(2)
     assert p.number().gte(1).parse_safe(1) == Ok(1)
     assert p.number().gte(1).parse_safe(0).is_err()
+
+    assert p.number().integer().gte(1).parse_safe(2) == Ok(2)
+    assert p.number().integer().gte(1).parse_safe(1) == Ok(1)
+    assert p.number().integer().gte(1).parse_safe(0).is_err()
 
 
 def test_number_positive() -> None:
@@ -92,11 +100,19 @@ def test_number_lt() -> None:
     assert p.number().lt(1).parse_safe(1).is_err()
     assert p.number().lt(1).parse_safe(2).is_err()
 
+    assert p.number().integer().lt(1).parse_safe(0) == Ok(0)
+    assert p.number().integer().lt(1).parse_safe(1).is_err()
+    assert p.number().integer().lt(1).parse_safe(2).is_err()
+
 
 def test_number_lte() -> None:
     assert p.number().lte(1).parse_safe(0) == Ok(0)
     assert p.number().lte(1).parse_safe(1) == Ok(1)
     assert p.number().lte(1).parse_safe(2).is_err()
+
+    assert p.number().integer().lte(1).parse_safe(0) == Ok(0)
+    assert p.number().integer().lte(1).parse_safe(1) == Ok(1)
+    assert p.number().integer().lte(1).parse_safe(2).is_err()
 
 
 def test_number_negative() -> None:

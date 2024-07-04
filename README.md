@@ -12,7 +12,7 @@
     <img src="https://raw.githubusercontent.com/hendrikboeck/parasite/main/.github/parasite_logo.png" alt="Logo" width="128" height="128">
 </a>
 
-<h1 align="center">parasite <code>v0.1</code></h1>
+<h1 align="center">parasite <code>v0.1.9</code></h1>
 
 <p align="center">
     <code>zod</code> inspired library for Python 3.11+
@@ -116,19 +116,20 @@ Name                       Stmts   Miss  Cover
 ----------------------------------------------
 src/parasite/__init__.py      22      0   100%
 src/parasite/_const.py        17      0   100%
+src/parasite/_utils.py         7      0   100%
 src/parasite/any.py           27      0   100%
 src/parasite/array.py         70      0   100%
 src/parasite/boolean.py       72      0   100%
 src/parasite/errors.py         1      0   100%
 src/parasite/never.py         18      0   100%
 src/parasite/null.py          29      0   100%
-src/parasite/number.py       105      0   100%
+src/parasite/number.py       106      0   100%
 src/parasite/object.py        93      0   100%
 src/parasite/string.py       207      0   100%
 src/parasite/type.py          29      0   100%
 src/parasite/variant.py       61      0   100%
 ----------------------------------------------
-TOTAL                        751      0   100%
+TOTAL                        759      0   100%
 ```
 
 

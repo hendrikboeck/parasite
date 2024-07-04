@@ -134,3 +134,4 @@ select = [
     # flake8-simplify
     "SIM",
 ]
+ignore = ["UP007", "UP035"]
