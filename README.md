@@ -12,7 +12,7 @@
     <img src="https://raw.githubusercontent.com/hendrikboeck/parasite/main/.github/parasite_logo.png" alt="Logo" width="128" height="128">
 </a>
 
-<h1 align="center">parasite <code>v0.1.9</code></h1>
+<h1 align="center">parasite <code>v0.1.10</code></h1>
 
 <p align="center">
     <code>zod</code> inspired library for Python 3.11+
